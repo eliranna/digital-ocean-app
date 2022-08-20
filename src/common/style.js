@@ -17,7 +17,9 @@ const spacing = {
 
 const colors = {
     background: 'white',
-    accent: 'black'
+    text: '#37352f',
+    textOnAccent: 'white',
+    accent: '#4240EA'
 }
 
 const fonts = {

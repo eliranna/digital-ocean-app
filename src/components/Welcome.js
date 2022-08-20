@@ -1,6 +1,6 @@
 import React from 'react'
 import styled from "styled-components/macro"
-import { fontSize, pageWidth, spacing } from '../common/style';
+import { fontSize, pageWidth, spacing, colors } from '../common/style';
 
 import Spacer from '../common/components/Spacer';
 import Page from '../common/components/Page';
@@ -26,12 +26,14 @@ const Header = styled.div`
 const Title = styled.div`
     text-align: center;
     font-size: ${fontSize.fontSize7};
+    color: ${colors.accent};
     font-weight: 700; 
 `;
 
 const Subtitle = styled.div`
     text-align: center;
     font-size: ${fontSize.fontSize3};
+    font-weight: 500;
 `;
 
 const Description = styled(Centered)`
@@ -39,6 +41,7 @@ const Description = styled(Centered)`
     font-size: ${fontSize.fontSize3};
     max-width: ${pageWidth.maxWidthMD};
     width: 100%;
+    font-weight: 500;
 `;
 
 const WelcomeSection = () => {

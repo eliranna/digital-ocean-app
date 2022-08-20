@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import styled from 'styled-components/macro';
-import { spacing, fontSize } from './common/style';
+import { spacing, fontSize, colors } from './common/style';
 
 import Page from './common/components/Page'
 import Navbar from './components/Navbar';
@@ -9,6 +9,7 @@ import Homepage from './components/Homepage';
 const Wrapper = styled.div`
     display: flex;
     flex-direction: column;
+    color: ${colors.text};
 `;
 
 /*
