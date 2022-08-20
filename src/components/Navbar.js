@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import styled from "styled-components"
+import styled from "styled-components/macro"
 import { spacing, fontSize } from '../common/style'
 
 import Button from '../common/components/Button'

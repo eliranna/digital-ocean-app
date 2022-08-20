@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from "styled-components/macro";
 import { colors, fonts, fontSize, pageWidth } from '../style'
 import Centered from "./Centered";
 

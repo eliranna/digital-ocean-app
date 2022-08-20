@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from "styled-components/macro";
 import { colors, fonts, fontSize } from '../style'
 
 const Spacer = styled.div`

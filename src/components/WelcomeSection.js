@@ -1,5 +1,5 @@
 import React from 'react'
-import styled from "styled-components"
+import styled from "styled-components/macro"
 import { fontSize, pageWidth, spacing } from '../common/style';
 
 import Spacer from '../common/components/Spacer';
