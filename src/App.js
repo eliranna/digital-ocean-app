@@ -1,7 +1,16 @@
 import React, { useState } from 'react';
-import logo from './logo.svg';
-import './App.css';
+import styled from 'styled-components';
+import { spacing } from './common/style';
 
+import Navbar from './components/Navbar';
+
+const Wrapper = styled.div`
+    padding: ${spacing.large};
+    display: flex;
+    justify-content: flex-end;
+`;
+
+/*
 async function loginUser(credentials) {
   return fetch('http://localhost:8080/login', {
     method: 'POST',
@@ -12,8 +21,18 @@ async function loginUser(credentials) {
   })
     .then(data => data.json())
 }
+*/
 
 function App() {
+
+  return (
+    <Wrapper>
+      <Navbar/>
+
+    </Wrapper>
+  )
+
+  /*
 
   const [username, setUserName] = useState();
   const [password, setPassword] = useState();
@@ -58,7 +77,9 @@ function App() {
         </div>
       </form>      
     </div>
+    
   );
+  */
 }
 
 export default App;
