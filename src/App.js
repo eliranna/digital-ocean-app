@@ -1,13 +1,14 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
-import { spacing } from './common/style';
+import { spacing, fontSize } from './common/style';
 
+import Page from './common/components/Page'
 import Navbar from './components/Navbar';
+import Homepage from './components/Homepage';
 
 const Wrapper = styled.div`
-    padding: ${spacing.large};
     display: flex;
-    justify-content: flex-end;
+    flex-direction: column;
 `;
 
 /*
@@ -28,7 +29,7 @@ function App() {
   return (
     <Wrapper>
       <Navbar/>
-
+      <Homepage/>
     </Wrapper>
   )
 

@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { colors, fonts } from '../common/style'
+import { colors, fonts, fontSize } from '../style'
 
 const Button = styled.button`
     color: ${props => (props.full ? colors.background : colors.accent)};
@@ -13,6 +13,7 @@ const Button = styled.button`
     border-radius: 3px;
     font-family: ${fonts.main}, sans-serif;
     cursor: pointer;
+    font-size: ${fontSize.fontSize2};
 `;
 
 export default Button;
