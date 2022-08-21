@@ -7,6 +7,7 @@ import Spacer from '../common/components/Spacer'
 import Welcome from './Welcome'
 import Features from './Features'
 import Info from './Info'
+import Register from './Register'
 
 const Wrapper = styled.div`
 
@@ -20,6 +21,9 @@ const Homepage = () => {
             <Features/>
             <Spacer height={spacing.spacing32}/>
             <Info/>
+            <Spacer height={spacing.spacing32}/>
+            <Register/>
+            <Spacer height={spacing.spacing32}/>
         </Wrapper>
     )
 }

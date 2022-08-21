@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import styled from "styled-components/macro"
-import { spacing, fontSize } from '../common/style'
+import { spacing, fontSize, colors } from '../common/style'
 
 import Button from '../common/components/Button'
 import Spacer from '../common/components/Spacer';
@@ -17,17 +17,30 @@ const ButtonsPanel = styled.div`
     flex-direction: row;
 `;
 
+const Link = styled(Button)`
+    border: none;
+    background: none;
+    font-size: ${fontSize.fontSize2};
+`
+
+const RegisterButton = styled(Button)`
+    border: none;
+    background: ${colors.accent};
+    color: ${colors.textOnAccent};
+    font-size: ${fontSize.fontSize2};
+`
+
 const Navbar = () => {
     return (
         <Wrapper>
             <ButtonsPanel>
-                <Button>
+                <Link>
                     שאלות נפוצות
-                </Button>
+                </Link>
                 <Spacer width={spacing.spacing6}/>
-                <Button full>
+                <RegisterButton full>
                     הרשמה
-                </Button>
+                </RegisterButton>
             </ButtonsPanel>
         </Wrapper>
     )

@@ -65,12 +65,12 @@ const Info = () => {
     return (
         <Wrapper>
             <Page nerrow>
-                {info.map(item => {
+                {info.map((item,index) => {
                     return (
-                        <>
+                        <React.Fragment key={index}>
                             <InfoBlock question={item.question} answare={item.answare}/>
                             <Spacer height={spacing.spacing12}/>
-                        </>
+                        </React.Fragment>
                     )
                 })}
             </Page>
