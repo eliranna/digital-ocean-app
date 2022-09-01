@@ -46,13 +46,13 @@ const Card = styled.div`
 
 const Title = styled.div`
     text-align: center;
-    font-size: ${fontSize.fontSize4};
+    font-size: ${fontSize.fontSize32};
     font-weight: 500;
 `;
 
 const Description = styled(Centered)`
     text-align: center;
-    font-size: ${fontSize.fontSize3};
+    font-size: ${fontSize.fontSize21};
     max-width: 500px;
 `;
 
@@ -103,7 +103,7 @@ const Approch = () => {
                 <Description>
                     התוכנית משלבת יסודות של מדעי המחשב, עקרונות של פיתוח תוכנה, מיומנויות תכנות, והכרות עם כלי העבודה העדכניים והנפוצים ביותר לשימוש ע״י חברות ההייטק ויחידות המודיעין של צה״ל תוך שימת דגש מיוחדת על שילובם של הנושאים השונים זה עם זה.
                 </Description>
-                <Spacer height={spacing.spacing16}/>
+                <Spacer height={spacing.spacing24}/>
                 <FeaturesPanel features={features} featureWidth={"30%"}/>
                 <Spacer height={spacing.spacing32}/>
                 <ToggleButtonPanel>

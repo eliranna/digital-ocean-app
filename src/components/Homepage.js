@@ -27,6 +27,9 @@ const Homepage = () => {
             <Features/>
             <Approch/>
             <Program/>
+            <Info/>
+            <Register/>
+            <Host/>
         </Wrapper>
     )
 }

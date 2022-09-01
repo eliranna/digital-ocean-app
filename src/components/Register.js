@@ -8,6 +8,7 @@ import Page from '../common/components/Page'
 import Centered from '../common/components/Centered';
 import Button from '../common/components/Button';
 import RegistrationForm from './RegistrationForm';
+import Strip from '../common/components/Strip';
 
 const TITLE = 'הרשמה לתוכנית'
 const SUBTITLE = 'להרשמה, אנא בחר את הקבוצה אליה תרצה להצטרף:'
@@ -61,7 +62,7 @@ const CoursesSelectionPanel = styled.div`
 `;
 
 const CourseOptionWrapper = styled.div`
-    border: ${props => (props.isSelected ? "4px" : "2px")} solid ${colors.textOnAccent};
+    border: ${props => (props.isSelected ? "4px" : "2px")} solid ${colors.text};
     border-radius: 6px;
     padding: ${spacing.spacing5};
     cursor: ${props => (props.fade ? "default" : "pointer")};
@@ -178,6 +179,10 @@ const PriceSection = () => {
     )
 }
 
+const SpacerRigid = styled(Spacer)`
+    flex-shrink: 0;
+`;
+
 const Register = () => {
 
     const [selectedCourseIndex, setSelectedCourseIndex] = useState(-1);
@@ -187,7 +192,7 @@ const Register = () => {
     }
 
     return (
-        <Wrapper>
+        <Strip backgroundColor={colors.lightGrey}>
             <Page nerrow>
                 <Title>
                     {TITLE}
@@ -202,7 +207,7 @@ const Register = () => {
                         return (
                             <React.Fragment key={course.id}>
                                 <CourseOption title={course.title} description={course.description} freeSpots={course.freeSpots} onClick={() => handleCourseSelection(index)} isSelected={selectedCourseIndex === index}/>
-                                {(index != courses.length-1) && <Spacer width={spacing.spacing8}/>}
+                                {(index != courses.length-1) && <SpacerRigid width={spacing.spacing8}/>}
                             </React.Fragment>
                         )
                     })}
@@ -216,7 +221,7 @@ const Register = () => {
                     </React.Fragment>
                 }
             </Page>
-        </Wrapper>
+        </Strip>
     )
 }
 

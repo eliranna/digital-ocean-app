@@ -9,7 +9,7 @@ const InputBox = styled.input`
     outline: none;
     border-radius: 6px;
     background: ${colors.background};
-    border: 2px solid ${colors.background};
+    border: 2px solid ${colors.text};
     font-size: ${fontSize.fontSize1};
     font-color: ${colors.text}; 
     padding: 16.5px 14px;

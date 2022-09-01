@@ -42,6 +42,28 @@ const RegistrationForm = () => {
             <FormSection>
                 <SectionTitle>
                     <Title>
+                        פרטי התלמיד
+                    </Title>
+                </SectionTitle>
+                <Spacer height={spacing.spacing6}/>
+                <SectionContent>
+                    <InputRow>
+                        <InputBox placeholder={"שם הפרטי"}/> 
+                    </InputRow>
+                    <Spacer height={spacing.spacing6}/>
+                    <InputRow>
+                        <InputBox placeholder={"שם משפחה"}/> 
+                    </InputRow>
+                    <Spacer height={spacing.spacing6}/>
+                    <InputRow>
+                        <InputBox placeholder={"תלמיד כיתה ..."}/> 
+                    </InputRow>
+                </SectionContent>
+            </FormSection>   
+            <Spacer height={spacing.spacing16}/>         
+            <FormSection>
+                <SectionTitle>
+                    <Title>
                         פרטי מבצע ההזמנה
                     </Title>
                 </SectionTitle>
@@ -61,24 +83,6 @@ const RegistrationForm = () => {
                     <Spacer height={spacing.spacing6}/>
                     <InputRow>
                         <InputBox left placeholder={"מספר טלפון"}/> 
-                    </InputRow>
-                </SectionContent>
-            </FormSection>
-            <Spacer height={spacing.spacing16}/>
-            <FormSection>
-                <SectionTitle>
-                    <Title>
-                        פרטי התלמיד
-                    </Title>
-                </SectionTitle>
-                <Spacer height={spacing.spacing6}/>
-                <SectionContent>
-                    <InputRow>
-                        <InputBox placeholder={"שם הפרטי"}/> 
-                    </InputRow>
-                    <Spacer height={spacing.spacing6}/>
-                    <InputRow>
-                        <InputBox placeholder={"שם משפחה"}/> 
                     </InputRow>
                     <Spacer height={spacing.spacing6}/>
                     <InputRow>
