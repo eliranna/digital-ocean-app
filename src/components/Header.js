@@ -1,0 +1,76 @@
+import React from 'react'
+import styled from "styled-components/macro"
+import { fontSize, pageWidth, spacing, colors } from '../common/style';
+
+import Spacer from '../common/components/Spacer';
+import Page from '../common/components/Page';
+import Centered from '../common/components/Centered';
+
+const caption = {
+    TITLE: "שביטים",
+    SUBTITLE: "תוכנית הכנה ליחידות הסייבר ולתעשיית ההייטק עבור תלמידי תיכון מצטיינים",
+    DESCRIPTION: "שביטים הינו מסלול העשרה המיועד לתלמידי תיכון מצטיינים אשר מעוניינים להעמיק את ידיעותיהם ולפתח את כישוריהם במדעי המחשב ובפיתוח תוכנה, לצורך השתלבותם העתידית במערך הסייבר הצבאי, בתעשיית ההייטק ובאקדמיה.",
+    VISION: "ההשתתפות בתוכנית תחשוף את התלמידים אל עקרונות עולם התוכנה המודרני, תעודד את יצר סקרנותם כלפי התחום, תעניק להם כלים ראשוניים להמשך למידה עצמאית או אקדמאית, ותפתח את יכולתם להתנהל כאנשי צוות בסביבה טכנולוגית."
+}
+
+const Wrapper = styled.div`
+    width: 100%:
+    display: flex;
+    justify-content: center; 
+    flex-direction: column;
+`;
+
+const TitlePanel = styled(Centered)`
+    width: 100%;
+    max-width: 600px;
+`;
+
+const Title = styled.div`
+    text-align: center;
+    font-size: ${fontSize.fontSize8};
+    color: ${colors.accent};
+    font-weight: 300; 
+`;
+
+const Subtitle = styled.div`
+    text-align: center;
+    font-size: ${fontSize.fontSize9};
+    font-weight: 300;
+`;
+
+const Description = styled(Centered)`
+    text-align: center;
+    font-size: ${fontSize.fontSize3};
+    max-width: ${pageWidth.maxWidthMD};
+    width: 100%;
+    font-weight: 500;
+`;
+
+const Vision = styled(Centered)`
+    text-align: center;
+    font-size: ${fontSize.fontSize3};
+    max-width: ${pageWidth.maxWidthMD};
+    width: 100%;
+    font-weight: 700;
+    color: ${colors.accent};
+`;
+
+const Header = () => {
+    return (
+        <Wrapper>
+            <Page nerrow>
+                <TitlePanel>
+                    <Title>
+                        {caption.TITLE}
+                    </Title>
+                    <Spacer height={spacing.spacing6}/>
+                    <Subtitle>
+                        {caption.SUBTITLE}
+                    </Subtitle>
+                </TitlePanel>
+            </Page>
+        </Wrapper>
+    )
+}
+
+export default Header;

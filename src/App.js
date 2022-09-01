@@ -1,8 +1,7 @@
 import React, { useState } from 'react';
 import styled from 'styled-components/macro';
-import { spacing, fontSize, colors } from './common/style';
+import { colors } from './common/style';
 
-import Page from './common/components/Page'
 import Navbar from './components/Navbar';
 import Homepage from './components/Homepage';
 
@@ -28,10 +27,10 @@ async function loginUser(credentials) {
 function App() {
 
   return (
-    <Wrapper>
-      <Navbar/>
-      <Homepage/>
-    </Wrapper>
+      <Wrapper>
+        <Navbar/>
+        <Homepage/>
+      </Wrapper>
   )
 
   /*

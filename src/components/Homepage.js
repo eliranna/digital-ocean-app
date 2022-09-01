@@ -4,10 +4,16 @@ import styled from "styled-components/macro"
 import { spacing } from '../common/style';
 import Spacer from '../common/components/Spacer'
 
-import Welcome from './Welcome'
+import Header from './Header';
+import Overview from './Overview';
 import Features from './Features'
+import Approch from './Approch'
+import Program from './Program'
 import Info from './Info'
 import Register from './Register'
+import Host from './Host'
+import Topics from './Topics'
+
 
 const Wrapper = styled.div`
 
@@ -16,14 +22,11 @@ const Wrapper = styled.div`
 const Homepage = () => {
     return (
         <Wrapper>
-            <Welcome/>
-            <Spacer height={spacing.spacing32}/>
+            <Header/>
+            <Overview/>
             <Features/>
-            <Spacer height={spacing.spacing32}/>
-            <Info/>
-            <Spacer height={spacing.spacing32}/>
-            <Register/>
-            <Spacer height={spacing.spacing32}/>
+            <Approch/>
+            <Program/>
         </Wrapper>
     )
 }

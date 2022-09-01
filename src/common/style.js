@@ -16,10 +16,11 @@ const spacing = {
 }
 
 const colors = {
-    background: 'white',
+    background: '#FFFFFF',
     text: '#37352f',
-    textOnAccent: 'white',
-    accent: '#4240EA'
+    textOnAccent: '#FFFFFF',
+    accent: '#4240EA',
+    lightGrey: '#fbfbfa'
 }
 
 const fonts = {
@@ -36,7 +37,12 @@ const fontSize = {
     fontSize4: '1.728rem',
     fontSize5: '2.074rem',
     fontSize6: '2.488rem',
-    fontSize7: '2.986rem'
+    fontSize7: '2.986rem',
+    fontSize8: '69.33333333333333px',
+    fontSize9: '40px',
+    fontSize32: '32px',
+    fontSize21: '21.3px',
+    fontSize25: '25.3px'
 }
 
 const pageWidth = {
@@ -48,7 +54,7 @@ const pageWidth = {
     maxWidth2XL: '42rem',
     maxWidth3XL: '48rem',
     maxWidth4XL: '56rem',
-    maxWidth5XL: '62rem'
+    maxWidth5XL: '1141.3px'
 }
 
 export {

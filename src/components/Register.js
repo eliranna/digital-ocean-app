@@ -7,6 +7,7 @@ import Spacer from '../common/components/Spacer'
 import Page from '../common/components/Page'
 import Centered from '../common/components/Centered';
 import Button from '../common/components/Button';
+import RegistrationForm from './RegistrationForm';
 
 const TITLE = 'הרשמה לתוכנית'
 const SUBTITLE = 'להרשמה, אנא בחר את הקבוצה אליה תרצה להצטרף:'
@@ -14,21 +15,24 @@ const SUBTITLE = 'להרשמה, אנא בחר את הקבוצה אליה תרצ�
 const courses = [
     {
         id: 1,
-        title: "אוקטובר - נובמבר",
+        title: "אוקטובר — נובמבר",
         description: "המפגש הראשון יתקיים ביום חמישי, 03 לאוקטובר 2022",
-        priceLabel: "₪8,250"
+        priceLabel: "₪8,250",
+        freeSpots: 0
     },
     {
         id: 2,
-        title: "דצמבר - ינואר",
+        title: "דצמבר — ינואר",
         description: "המפגש הראשון יתקיים ביום חמישי, 03 לדצמבר 2022",
-        priceLabel: "₪8,250"
+        priceLabel: "₪8,250",
+        freeSpots: 2
     },
     {
         id: 3,
-        title: "פברואר - מרץ",
+        title: "פברואר — מרץ",
         description: "המפגש הראשון יתקיים ביום חמישי, 03 לפברואר 2023",
-        priceLabel: "₪8,250"
+        priceLabel: "₪8,250",
+        freeSpots: 5
     }
 ]
 
@@ -50,23 +54,28 @@ const Subtitle = styled.div`
     text-align: center;
 `;
 
-const CoursesSelectionPanel = styled(Centered)`
+const CoursesSelectionPanel = styled.div`
     display: flex;
-    flex-direction: column;
-    max-width: 288px; 
+    flex-direction: row;
+    justify-content: center;
 `;
 
 const CourseOptionWrapper = styled.div`
     border: ${props => (props.isSelected ? "4px" : "2px")} solid ${colors.textOnAccent};
     border-radius: 6px;
-    padding: ${spacing.spacing3};
-    cursor: pointer;
+    padding: ${spacing.spacing5};
+    cursor: ${props => (props.fade ? "default" : "pointer")};
+    pointer-events: ${props => (props.fade ? "none" : "default")};
+    flex-shrink: 0;
+    width: 200px;
+    opacity: ${props => (props.fade ? "0.5" : "1")};
 `;
 
 const CourseOptionTitle = styled.div`
     text-align: center;
     font-size: ${fontSize.fontSize2};
     font-weight: 600;
+    text-decoration: ${props => (props.crossed ? "line-through" : "none")};
 `;
 
 const CourseOptionDescription = styled.div`
@@ -110,17 +119,62 @@ const PaymentButton = styled(Button)`
     height: 50px;
 `
 
-const CourseOption = ({title, description, isSelected, onClick}) => {
+const RegistrationPanel = styled.div`
+
+`
+
+const CourseOptionSpotsLeft = styled.div`
+    font-weight: 700;
+    text-align: center;
+`
+
+const CourseOption = ({title, description, isSelected, freeSpots, onClick}) => {
+
+    const freeSpotCaption = (freeSpots) => {
+        return `נותרו ${freeSpots} מקומות`
+    }
+
     return (
-        <CourseOptionWrapper isSelected={isSelected} onClick={onClick}>
-            <CourseOptionTitle>
+        <CourseOptionWrapper isSelected={isSelected} onClick={onClick} fade={freeSpots === 0}>
+            <CourseOptionTitle crossed={freeSpots === 0}>
                 {title}
             </CourseOptionTitle>
             <Spacer height={spacing.spacing6}/>
             <CourseOptionDescription>
                 {description}
             </CourseOptionDescription>
+            <Spacer height={spacing.spacing6}/>
+            <CourseOptionSpotsLeft>
+                {freeSpots == 0 ? "אזלו המקומות" : freeSpotCaption(freeSpots)}
+            </CourseOptionSpotsLeft>
         </CourseOptionWrapper>
+    )
+}
+
+const PriceSection = () => {
+    return (
+        <PricePanel>
+            <PriceNote>
+                עלות התוכנית לתלמיד
+            </PriceNote>
+            <Price>
+                ₪8,250
+            </Price>
+            <Spacer height={spacing.spacing12}/>
+            {false && <Remarks>
+                <Remark>
+                    *המחיר אינו כולל מע״מ
+                </Remark>
+                <Spacer height={spacing.spacing2}/>
+                <Remark>
+                    **ניתן לפריסה של עד שישה תשלומים
+                </Remark>
+                <Spacer height={spacing.spacing2}/>
+                <Remark>
+                    ***ניתן לביטול מלא בתוך 14 ימים או עד יום המפגש הראשון, המוקדם מבינהם 
+                </Remark>                                                
+            </Remarks>}
+        </PricePanel>        
     )
 }
 
@@ -147,42 +201,19 @@ const Register = () => {
                     {courses.map((course, index) => {
                         return (
                             <React.Fragment key={course.id}>
-                                <CourseOption title={course.title} description={course.description} onClick={() => handleCourseSelection(index)} isSelected={selectedCourseIndex === index}/>
-                                <Spacer height={spacing.spacing8}/>
+                                <CourseOption title={course.title} description={course.description} freeSpots={course.freeSpots} onClick={() => handleCourseSelection(index)} isSelected={selectedCourseIndex === index}/>
+                                {(index != courses.length-1) && <Spacer width={spacing.spacing8}/>}
                             </React.Fragment>
                         )
                     })}
                 </CoursesSelectionPanel>
                 <Spacer height={spacing.spacing16}/>
-                {(selectedCourseIndex != -1) && 
-                    <PricePanel>
-                        <PriceNote>
-                            עלות התוכנית לתלמיד
-                        </PriceNote>
-                        <Price>
-                            {courses[selectedCourseIndex].priceLabel}
-                        </Price>
-                        <Spacer height={spacing.spacing6}/>
-                        <PaymentButtonPanel>
-                            <PaymentButton>
-                                לתשלום
-                            </PaymentButton>
-                        </PaymentButtonPanel>
+                {(selectedCourseIndex != -1) &&
+                    <React.Fragment>
+                        {PriceSection}
                         <Spacer height={spacing.spacing16}/>
-                        <Remarks>
-                            <Remark>
-                                *המחיר אינו כולל מע״מ
-                            </Remark>
-                            <Spacer height={spacing.spacing2}/>
-                            <Remark>
-                                **ניתן לפריסה של עד שישה תשלומים
-                            </Remark>
-                            <Spacer height={spacing.spacing2}/>
-                            <Remark>
-                                ***ניתן לביטול מלא בתוך 14 ימים או עד יום המפגש הראשון, המוקדם מבינהם 
-                            </Remark>                                                
-                        </Remarks>
-                    </PricePanel>
+                        <RegistrationForm/>
+                    </React.Fragment>
                 }
             </Page>
         </Wrapper>
