@@ -20,7 +20,8 @@ const colors = {
     text: '#37352f',
     textOnAccent: '#FFFFFF',
     accent: '#4240EA',
-    lightGrey: '#fbfbfa'
+    lightGrey: '#fbfbfa',
+    accentDeep: '#2623ea'
 }
 
 const fonts = {

@@ -62,7 +62,9 @@ const CoursesSelectionPanel = styled.div`
 `;
 
 const CourseOptionWrapper = styled.div`
-    border: ${props => (props.isSelected ? "4px" : "2px")} solid ${colors.text};
+    border: ${props => (props.isSelected ? "2px" : "2px")} solid ${props => (props.isSelected ? colors.accent : colors.text)};
+    background-color: ${props => (props.isSelected ? colors.accent : 'transparant')};
+    color: ${props => (props.isSelected ? colors.textOnAccent : colors.text)};
     border-radius: 6px;
     padding: ${spacing.spacing5};
     cursor: ${props => (props.fade ? "default" : "pointer")};
@@ -70,6 +72,10 @@ const CourseOptionWrapper = styled.div`
     flex-shrink: 0;
     width: 200px;
     opacity: ${props => (props.fade ? "0.5" : "1")};
+    transition: all 500ms; 
+    :hover {
+        border-color: ${colors.accent};
+    }
 `;
 
 const CourseOptionTitle = styled.div`
@@ -152,33 +158,6 @@ const CourseOption = ({title, description, isSelected, freeSpots, onClick}) => {
     )
 }
 
-const PriceSection = () => {
-    return (
-        <PricePanel>
-            <PriceNote>
-                עלות התוכנית לתלמיד
-            </PriceNote>
-            <Price>
-                ₪8,250
-            </Price>
-            <Spacer height={spacing.spacing12}/>
-            {false && <Remarks>
-                <Remark>
-                    *המחיר אינו כולל מע״מ
-                </Remark>
-                <Spacer height={spacing.spacing2}/>
-                <Remark>
-                    **ניתן לפריסה של עד שישה תשלומים
-                </Remark>
-                <Spacer height={spacing.spacing2}/>
-                <Remark>
-                    ***ניתן לביטול מלא בתוך 14 ימים או עד יום המפגש הראשון, המוקדם מבינהם 
-                </Remark>                                                
-            </Remarks>}
-        </PricePanel>        
-    )
-}
-
 const SpacerRigid = styled(Spacer)`
     flex-shrink: 0;
 `;
@@ -215,7 +194,6 @@ const Register = () => {
                 <Spacer height={spacing.spacing16}/>
                 {(selectedCourseIndex != -1) &&
                     <React.Fragment>
-                        {PriceSection}
                         <Spacer height={spacing.spacing16}/>
                         <RegistrationForm/>
                     </React.Fragment>
