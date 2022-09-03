@@ -6,18 +6,20 @@ import Navbar from './components/Navbar';
 import Homepage from './components/Homepage';
 import axios from 'axios'
 
-const apiURL = 'https://urchin-app-omluv.ondigitalocean.app';
+const apiURL = 'https://urchin-app-omluv.ondigitalocean.app/sample-nodejs/register';
 const endpoint = 'api/login'
 const url = `${apiURL}/${endpoint}`;
 
 
 async function loginUser() {
-  var FUNCTION_API_URL = "%%FUNCTION_API_URL%%";
-  let API = FUNCTION_API_URL + '/qr/qr'
-  let src = API + '?text=' + "sometext"
-  console.log("sending", src)
-  return axios.get(src).then(res => {
-    console.log(res)
+  //var FUNCTION_API_URL = "%%FUNCTION_API_URL%%";
+  //let API = FUNCTION_API_URL + '/qr/qr'
+  //let src = API + '?text=' + "sometext"
+  //console.log("sending", src)
+  return axios.get('sample-nodejs/register').then(res => {
+    res.send({
+      ok: 1
+    })
   });
 }
 
