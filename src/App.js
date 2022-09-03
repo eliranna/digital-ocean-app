@@ -12,10 +12,13 @@ const url = `${apiURL}/${endpoint}`;
 
 
 async function loginUser() {
-  return axios.post(url, {
-    name: 'avi',
-    pass: 'docker'
-  }, {headers: {'Content-Type': 'application/json'}});
+  var FUNCTION_API_URL = "%%FUNCTION_API_URL%%";
+  let API = FUNCTION_API_URL + '/qr/qr'
+  let src = API + '?text=' + "sometext"
+  console.log("sending", src)
+  return axios.get(src).then(res => {
+    console.log(res)
+  });
 }
 
 
