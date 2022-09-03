@@ -11,24 +11,28 @@ const Wrapper = styled.div`
     color: ${colors.text};
 `;
 
-/*
-async function loginUser(credentials) {
+
+async function loginUser() {
   return fetch('http://localhost:8080/login', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json'
     },
-    body: JSON.stringify(credentials)
+    body: JSON.stringify({
+      user: 'koko',
+      pass: 'dodo'
+    })
   })
     .then(data => data.json())
 }
-*/
+
 
 
 function App() {
 
   return (
       <Wrapper>
+        <button onClick={loginUser}>ok</button>
         <Navbar/>
         <Homepage/>
       </Wrapper>

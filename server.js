@@ -85,6 +85,13 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 app.use(bodyParser.raw());
 
+app.use('/login', function (req, res, next) {
+  res.json("ok")
+})
+
+app.listen(8080, () => console.log('API is running on http://localhost:8080/login'))
+
+/*
 app.use('/open-registration-request', multer().any(), function (req, res, next) {
 
   console.log(req.body.studentFirstName)
@@ -95,5 +102,4 @@ app.use('/open-registration-request', multer().any(), function (req, res, next) 
   sendResponseEmail(req.body)
   sendRegistrationEmail(req.body, req.files[0])
 });
-
-app.listen(8080, () => console.log('API is running on http://localhost:8080/login'));
+*/
