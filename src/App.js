@@ -16,10 +16,8 @@ async function loginUser() {
   //let API = FUNCTION_API_URL + '/qr/qr'
   //let src = API + '?text=' + "sometext"
   //console.log("sending", src)
-  return axios.get('sample-nodejs/register').then(res => {
-    res.send({
-      ok: 1
-    })
+  return axios.get('shavitim-backend/url').then(res => {
+    console.log(res)
   });
 }
 
