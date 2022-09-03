@@ -1,10 +1,47 @@
 const express = require('express');
+const http = require('http');
 const cors = require('cors')
 const bodyParser = require('body-parser');
 const multer = require('multer');
 const util = require('util');
+const path = require('path');
 var nodemailer = require('nodemailer');
 
+const PORT = 3001;
+const app = express();
+app.server = http.createServer(app);
+
+app.use(cors({
+  exposedHeaders: "*"
+}));
+
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.raw());
+
+app.use('/login', (req, res) => res.send('Hello World!'))
+
+app.use(bodyParser.json({
+  limit: '50mb'
+}));
+
+// static www files use express
+const wwwPath = path.join(__dirname, 'www');
+app.use('/', express.static(wwwPath));
+
+app.post('/api/login', (req, res, next) => {
+  return res.status(200).json({
+      token: 123
+  });
+});
+
+app.server.listen(process.env.PORT || PORT, () => {
+  console.log(`App is running on port ${app.server.address().port}`);
+});
+
+
+//app.listen(8080, () => console.log('API is running on http://localhost:8080/login'))
+
+/*
 const TRANSPORTER = 'gmail';
 const TRANSPORTER_EMAIL = 'eliran.natan.87@gmail.com';
 const TRANSPORTER_PASS = 'zeteigabaryvppvo';
@@ -78,17 +115,9 @@ const sendRegistrationEmail = (info, file) => {
 
 }
 
-const app = express();
-
-app.use(cors());
-app.use(bodyParser.urlencoded({ extended: true }));
-app.use(bodyParser.json());
-app.use(bodyParser.raw());
-
-app.get('/login', (req, res) => res.send('Hello World!'))
+*/
 
 
-app.listen(8080, () => console.log('API is running on http://localhost:8080/login'))
 
 /*
 app.use('/open-registration-request', multer().any(), function (req, res, next) {

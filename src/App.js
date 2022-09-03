@@ -4,25 +4,26 @@ import { colors } from './common/style';
 
 import Navbar from './components/Navbar';
 import Homepage from './components/Homepage';
+import axios from 'axios'
+
+const apiURL = 'http://urchin-app-omluv.ondigitalocean.app';
+const endpoint = 'api/login'
+const url = `${apiURL}/${endpoint}`;
+
+
+async function loginUser() {
+  return axios.post(url, {
+    name: 'avi',
+    pass: 'docker'
+  }, {headers: {'Content-Type': 'application/json'}});
+}
+
 
 const Wrapper = styled.div`
     display: flex;
     flex-direction: column;
     color: ${colors.text};
 `;
-
-
-async function loginUser() {
-  return fetch('https://urchin-app-omluv.ondigitalocean.app/login', {
-    method: 'GET',
-    headers: {
-      'Content-Type': 'application/json'
-    }
-  })
-    .then(data => data.json())
-}
-
-
 
 function App() {
 
