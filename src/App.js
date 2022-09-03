@@ -6,7 +6,7 @@ import Navbar from './components/Navbar';
 import Homepage from './components/Homepage';
 import axios from 'axios'
 
-const apiURL = 'http://urchin-app-omluv.ondigitalocean.app';
+const apiURL = 'https://urchin-app-omluv.ondigitalocean.app';
 const endpoint = 'api/login'
 const url = `${apiURL}/${endpoint}`;
 
