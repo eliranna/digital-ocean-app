@@ -13,15 +13,11 @@ const Wrapper = styled.div`
 
 
 async function loginUser() {
-  return fetch('http://localhost:8080/login', {
-    method: 'POST',
+  return fetch('https://urchin-app-omluv.ondigitalocean.app/login', {
+    method: 'GET',
     headers: {
       'Content-Type': 'application/json'
-    },
-    body: JSON.stringify({
-      user: 'koko',
-      pass: 'dodo'
-    })
+    }
   })
     .then(data => data.json())
 }

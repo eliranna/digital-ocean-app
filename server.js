@@ -86,7 +86,9 @@ app.use(bodyParser.json());
 app.use(bodyParser.raw());
 
 app.use('/login', function (req, res, next) {
-  res.json("ok")
+  res.json({
+    token: 123
+  })
 })
 
 app.listen(8080, () => console.log('API is running on http://localhost:8080/login'))
