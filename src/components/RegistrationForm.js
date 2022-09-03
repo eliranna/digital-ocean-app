@@ -103,7 +103,7 @@ const SelectBox = styled.select`
 async function sendRegistrationForm(formData) {
     return axios({
         method: 'post',
-        url: '/open-registration-request',
+        url: 'http://localhost:8080/open-registration-request',
         data: formData,
         headers: {
             'Content-Type': 'multipart/form-data'

@@ -24,6 +24,7 @@ async function loginUser(credentials) {
 }
 */
 
+
 function App() {
 
   return (
@@ -32,6 +33,7 @@ function App() {
         <Homepage/>
       </Wrapper>
   )
+}
 
   /*
 
@@ -81,6 +83,6 @@ function App() {
     
   );
   */
-}
+
 
 export default App;
