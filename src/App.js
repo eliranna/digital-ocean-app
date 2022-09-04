@@ -5,6 +5,7 @@ import { colors } from './common/style';
 import Navbar from './components/Navbar';
 import Homepage from './components/Homepage';
 import axios from 'axios'
+import api from './api'
 
 const apiURL = 'https://urchin-app-omluv.ondigitalocean.app/sample-nodejs/register';
 const endpoint = 'api/login'
@@ -16,7 +17,7 @@ async function loginUser() {
   //let API = FUNCTION_API_URL + '/qr/qr'
   //let src = API + '?text=' + "sometext"
   //console.log("sending", src)
-  return axios.get('shavitim-backend/url').then(res => {
+  return axios.post(api.openRegistration).then(res => {
     console.log(res)
   });
 }
