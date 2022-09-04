@@ -4,24 +4,6 @@ import { colors } from './common/style';
 
 import Navbar from './components/Navbar';
 import Homepage from './components/Homepage';
-import axios from 'axios'
-import api from './api'
-
-const apiURL = 'https://urchin-app-omluv.ondigitalocean.app/sample-nodejs/register';
-const endpoint = 'api/login'
-const url = `${apiURL}/${endpoint}`;
-
-
-async function loginUser() {
-  //var FUNCTION_API_URL = "%%FUNCTION_API_URL%%";
-  //let API = FUNCTION_API_URL + '/qr/qr'
-  //let src = API + '?text=' + "sometext"
-  //console.log("sending", src)
-  return axios.post(api.openRegistration).then(res => {
-    console.log(res)
-  });
-}
-
 
 const Wrapper = styled.div`
     display: flex;
@@ -33,7 +15,6 @@ function App() {
 
   return (
       <Wrapper>
-        <button onClick={loginUser}>ok</button>
         <Navbar/>
         <Homepage/>
       </Wrapper>

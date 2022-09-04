@@ -1,7 +1,9 @@
 
+const isDevelopment = false;
+
 let BASE_URL = '';
 
-if (!process.env.NODE_ENV || process.env.NODE_ENV === 'development') {
+if (isDevelopment) {
     BASE_URL = 'http://localhost:8080'
 }
 
