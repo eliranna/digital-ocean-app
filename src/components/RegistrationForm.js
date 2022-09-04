@@ -8,6 +8,7 @@ import Centered from '../common/components/Centered';
 import Button from '../common/components/Button';
 import DragDropFile from '../common/components/FileUploader';
 import axios from 'axios'
+import api from '../api';
 
 const Wrapper = styled.div`
     display: flex;
@@ -103,7 +104,7 @@ const SelectBox = styled.select`
 async function sendRegistrationForm(formData) {
     return axios({
         method: 'post',
-        url: 'http://localhost:8080/open-registration-request',
+        url: api.openRegistration,
         data: formData,
         headers: {
             'Content-Type': 'multipart/form-data'
