@@ -1,5 +1,5 @@
 
-const isDevelopment = true;
+const isDevelopment = false;
 
 let BASE_URL = '/shavitim-backend';
 
