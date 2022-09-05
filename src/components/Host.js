@@ -15,14 +15,16 @@ const Wrapper = styled.div`
 
 const AvatarPanel = styled.div`
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     justify-content: center;
+    flex-grow: 0;
 `;
 
 const Avatar = styled.img`
     border-radius: 50%;
     width: 80px;
     height: auto;
+    align-self: center;
 `;
 
 const HostName = styled.div`

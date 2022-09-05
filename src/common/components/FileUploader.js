@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import styled from "styled-components/macro";
-import { colors, fonts, fontSize, spacing } from '../style'
+import { colors, device, fontSize, spacing } from '../style'
 import Button from './Button';
 import InputBox from './InputBox';
 import Spacer from './Spacer';
@@ -84,6 +84,9 @@ const Link = styled.div`
 
 const Instruction = styled.div`
     font-weight: 600;
+    @media ${device.mobileL} {
+      display: none;
+    }
 `
 
 const UploadSuccessMessage = styled.div``

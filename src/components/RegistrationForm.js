@@ -2,13 +2,14 @@ import React, { useState } from 'react'
 import styled from "styled-components/macro"
 import InputBox from '../common/components/InputBox'
 
-import { spacing, colors, fontSize, fonts } from '../common/style';
+import { spacing, colors, fontSize, device } from '../common/style';
 import Spacer from '../common/components/Spacer'
 import Centered from '../common/components/Centered';
 import Button from '../common/components/Button';
 import DragDropFile from '../common/components/FileUploader';
 import axios from 'axios'
 import api from '../api';
+import MobileSpacer from '../common/components/MobileSpacer';
 
 const Wrapper = styled.div`
     padding: ${spacing.spacing16};
@@ -32,9 +33,15 @@ const Row = styled.div`
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+    @media ${device.mobileL} {
+        flex-direction: column;
+    }
 `
 const Cell = styled.div`
     width: 300px;
+    @media ${device.mobileL} {
+        width: 100%;
+    }
 `
 
 const FileDropPanel = styled.div`
@@ -226,6 +233,7 @@ const RegistrationForm = ({onSuccess}) => {
                                 <InputBox type="text" onChange={e => setStudentFirstName(e.target.value)} placeholder={"שם פרטי"} />
                             </Cell>
                             <Spacer width={spacing.spacing6}/>
+                            <MobileSpacer height={spacing.spacing6}/>
                             <Cell>
                                 <InputBox type="text" onChange={e => setStudentLastName(e.target.value)} placeholder={"שם משפחה"}/> 
                             </Cell>
@@ -254,6 +262,7 @@ const RegistrationForm = ({onSuccess}) => {
                                 <InputBox type="text" onChange={e => setRequesterFirstName(e.target.value)} placeholder={"שם פרטי"} />
                             </Cell>
                             <Spacer width={spacing.spacing6}/>
+                            <MobileSpacer height={spacing.spacing6}/>
                             <Cell>
                                 <InputBox type="text" onChange={e => setRequesterLastName(e.target.value)} placeholder={"שם משפחה"}/> 
                             </Cell>
@@ -264,6 +273,7 @@ const RegistrationForm = ({onSuccess}) => {
                                 <InputBox left type="text" onChange={e => setRequesterPhoneNumber(e.target.value)} placeholder={"מספר טלפון"}/>
                             </Cell>
                             <Spacer width={spacing.spacing6}/>
+                            <MobileSpacer height={spacing.spacing6}/>
                             <Cell>
                                 <InputBox left type="text" onChange={e => setRequesterEmail(e.target.value)} placeholder={"כתובת דואר אלקטרוני"}/> 
                             </Cell>

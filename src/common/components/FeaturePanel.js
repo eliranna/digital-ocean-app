@@ -30,8 +30,11 @@ const FeatureWrapper = styled.div`
 const FeatureIcon = styled.div`
     display: flex;
     justify-content: center;
+    flex-direction: column;
+    flex-grow: 0;
     img {
         width: 150px;
+        align-self: center;
         filter: ${props => (props.invertColors ? "invert(1)" : "none")};
     }
 `;
