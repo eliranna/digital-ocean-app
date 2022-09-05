@@ -93,6 +93,25 @@ const Spinner = styled.div`
   }
 `;
 
+const SuccessIcon = styled.div`
+  text-align: center;
+  img {
+      width: 100px;
+  }
+`
+
+const SuccessNote = styled.div`
+  text-align: center;
+  font-size: ${fontSize.fontSize21};
+  font-weight: 600;
+`
+
+const SuccessInfo = styled.div`
+    text-align: center;
+    font-size: ${fontSize.fontSize21};
+    font-weight: 400;
+` 
+
 
 async function sendRegistrationForm(formData) {
     return axios({
@@ -184,7 +203,7 @@ const RegistrationForm = ({onSuccess}) => {
         const response = await sendRegistrationForm(data);
         setIsSending(false)
         if (response.status == 200) {
-            onSuccess()
+            setRequestSentSuccessfully(true)
         } else if (response.status == 500) {
             setRequestFailed(true)
         }
@@ -192,77 +211,95 @@ const RegistrationForm = ({onSuccess}) => {
 
     return (
         <Wrapper>
-            <FormSection>
-                <SectionTitle>
-                    <Title>
-                        פרטי התלמיד
-                    </Title>
-                </SectionTitle>
-                <Spacer height={spacing.spacing12}/>
-                <SectionContent>
-                    <Row>
-                        <Cell>
-                            <InputBox type="text" onChange={e => setStudentFirstName(e.target.value)} placeholder={"שם פרטי"} />
-                        </Cell>
-                        <Spacer width={spacing.spacing6}/>
-                        <Cell>
-                            <InputBox type="text" onChange={e => setStudentLastName(e.target.value)} placeholder={"שם משפחה"}/> 
-                        </Cell>
-                    </Row>
+            {!requestSentSuccessfully && (
+            <>
+                <FormSection>
+                    <SectionTitle>
+                        <Title>
+                            פרטי התלמיד
+                        </Title>
+                    </SectionTitle>
                     <Spacer height={spacing.spacing12}/>
-                    <FileDropPanel>
-                        <DragDropFile onUplode={file => setStudentDiploma(file)}/> 
-                        <Spacer height={spacing.spacing2}/>
-                        <FileInstructions>
-                            יש לצרף קובץ יחיד בפורמט PDF או קובץ תמונה.
-                        </FileInstructions>
-                    </FileDropPanel>
-                </SectionContent>
-            </FormSection> 
-            <Spacer height={spacing.spacing16}/> 
-            <FormSection>
-                <SectionTitle>
-                    <Title>
-                        פרטי מגיש הבקשה
-                    </Title>
-                </SectionTitle>
-                <Spacer height={spacing.spacing12}/>
-                <SectionContent>
-                    <Row>
-                        <Cell>
-                            <InputBox type="text" onChange={e => setRequesterFirstName(e.target.value)} placeholder={"שם פרטי"} />
-                        </Cell>
-                        <Spacer width={spacing.spacing6}/>
-                        <Cell>
-                            <InputBox type="text" onChange={e => setRequesterLastName(e.target.value)} placeholder={"שם משפחה"}/> 
-                        </Cell>
-                    </Row>
-                    <Spacer height={spacing.spacing6}/>
-                    <Row>
-                        <Cell>
-                            <InputBox left type="text" onChange={e => setRequesterPhoneNumber(e.target.value)} placeholder={"מספר טלפון"}/>
-                        </Cell>
-                        <Spacer width={spacing.spacing6}/>
-                        <Cell>
-                            <InputBox left type="text" onChange={e => setRequesterEmail(e.target.value)} placeholder={"כתובת דואר אלקטרוני"}/> 
-                        </Cell>
-                    </Row>
-                </SectionContent>
-            </FormSection>  
-            <Spacer height={spacing.spacing24}/> 
-            <FormSection>
-                <ButtonPanel>
-                    <RequestRegistrationButton full onClick={handleSubmit}>
-                        {isSending ? <Spinner/> : <span>שלח בקשת הרשמה</span>}
-                    </RequestRegistrationButton>
-                </ButtonPanel>
-                <Spacer height={spacing.spacing6}/> 
-                {invalidForm && (
-                    <Error>
-                        <span>{invalidForm}</span>
-                    </Error>
-                )}
-            </FormSection>                                   
+                    <SectionContent>
+                        <Row>
+                            <Cell>
+                                <InputBox type="text" onChange={e => setStudentFirstName(e.target.value)} placeholder={"שם פרטי"} />
+                            </Cell>
+                            <Spacer width={spacing.spacing6}/>
+                            <Cell>
+                                <InputBox type="text" onChange={e => setStudentLastName(e.target.value)} placeholder={"שם משפחה"}/> 
+                            </Cell>
+                        </Row>
+                        <Spacer height={spacing.spacing12}/>
+                        <FileDropPanel>
+                            <DragDropFile onUplode={file => setStudentDiploma(file)}/> 
+                            <Spacer height={spacing.spacing2}/>
+                            <FileInstructions>
+                                יש לצרף קובץ יחיד בפורמט PDF או קובץ תמונה.
+                            </FileInstructions>
+                        </FileDropPanel>
+                    </SectionContent>
+                </FormSection> 
+                <Spacer height={spacing.spacing16}/> 
+                <FormSection>
+                    <SectionTitle>
+                        <Title>
+                            פרטי מגיש הבקשה
+                        </Title>
+                    </SectionTitle>
+                    <Spacer height={spacing.spacing12}/>
+                    <SectionContent>
+                        <Row>
+                            <Cell>
+                                <InputBox type="text" onChange={e => setRequesterFirstName(e.target.value)} placeholder={"שם פרטי"} />
+                            </Cell>
+                            <Spacer width={spacing.spacing6}/>
+                            <Cell>
+                                <InputBox type="text" onChange={e => setRequesterLastName(e.target.value)} placeholder={"שם משפחה"}/> 
+                            </Cell>
+                        </Row>
+                        <Spacer height={spacing.spacing6}/>
+                        <Row>
+                            <Cell>
+                                <InputBox left type="text" onChange={e => setRequesterPhoneNumber(e.target.value)} placeholder={"מספר טלפון"}/>
+                            </Cell>
+                            <Spacer width={spacing.spacing6}/>
+                            <Cell>
+                                <InputBox left type="text" onChange={e => setRequesterEmail(e.target.value)} placeholder={"כתובת דואר אלקטרוני"}/> 
+                            </Cell>
+                        </Row>
+                    </SectionContent>
+                </FormSection>  
+                <Spacer height={spacing.spacing24}/> 
+                <FormSection>
+                    <ButtonPanel>
+                        <RequestRegistrationButton full onClick={handleSubmit}>
+                            {isSending ? <Spinner/> : <span>שלח בקשת הרשמה</span>}
+                        </RequestRegistrationButton>
+                    </ButtonPanel>
+                    <Spacer height={spacing.spacing6}/> 
+                    {invalidForm && (
+                        <Error>
+                            <span>{invalidForm}</span>
+                        </Error>
+                    )}
+                </FormSection> 
+            </>
+            )}
+            {requestSentSuccessfully && (
+                <FormSection>
+                    <SuccessIcon>
+                        <img src="/assets/ok.svg"/>
+                    </SuccessIcon>
+                    <SuccessNote>
+                        הבקשה נשלחה בהצלחה!
+                    </SuccessNote>
+                    <Spacer height={spacing.spacing12}/> 
+                    <SuccessInfo>
+                        בעוד מספר ימים תשלח תשובה לכתובת הדואר האלקטרוני {requesterEmail}. אם לא התקבלה תשובה, יש לוודא שההודעה לא סומנה כדואר-זבל.
+                    </SuccessInfo>
+                </FormSection> 
+            )}                                  
         </Wrapper>
     )
 }

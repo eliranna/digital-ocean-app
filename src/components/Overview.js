@@ -1,11 +1,12 @@
 import React from 'react'
 import styled from "styled-components/macro"
-import { fontSize, pageWidth, spacing, colors } from '../common/style';
+import { fontSize, pageWidth, spacing, colors, device } from '../common/style';
 
 import Spacer from '../common/components/Spacer';
 import ImageStrip from '../common/components/ImageStrip';
 import Page from '../common/components/Page';
 import Strip from '../common/components/Strip';
+import MobileSpacer from '../common/components/MobileSpacer';
 
 const caption = {
     TITLE: "מה זה שביטים?",
@@ -23,7 +24,12 @@ const Content = styled.div`
     display: flex;
     justify-content: center;
     flex-direction: row;
-
+    @media ${device.mobileL} {
+        width: 100%;
+        flex-direction: column;
+        padding-left: ${spacing.spacingPaddingMobile};
+        padding-right: ${spacing.spacingPaddingMobile};
+    }
 `;
 
 const Title = styled.div`
@@ -56,6 +62,9 @@ const Image = styled.div`
         width: 100%;
         height: auto;
     }
+    @media ${device.mobileL} {
+        width: 100%;
+    }
 `;
 
 const Pane = styled.div`
@@ -68,6 +77,9 @@ const Inner = styled.div`
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+    @media ${device.mobileL} {
+        flex-direction: column-reverse;
+    }
 `;
 
 
@@ -92,6 +104,7 @@ const Overview = () => {
                         </Pane>
                     </Content>
                     <Spacer width={spacing.spacing32}/>
+                    <MobileSpacer height={spacing.spacing24}/>
                     <Image>
                         <img src='/assets/company.jpg'/>
                     </Image>

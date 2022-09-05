@@ -12,8 +12,30 @@ const spacing = {
     spacing16: '4rem',
     spacing20: '5rem',
     spacing24: '6rem',
-    spacing32: '8rem'
+    spacing32: '8rem',
+    spacingPaddingMobile: '3rem'
 }
+
+const size = {
+    mobileS: '320px',
+    mobileS: '375px',
+    mobileM: '425px',
+    mobileL: '768px',
+    tablet: '1024px',
+    laptop: '1440px',
+    laptopL: '2560px'
+}
+
+const device = {
+  mobileS: `(max-width: ${size.mobileS})`,
+  mobileM: `(max-width: ${size.mobileM})`,
+  mobileL: `(max-width: ${size.mobileL})`,
+  tablet: `(max-width: ${size.tablet})`,
+  laptop: `(max-width: ${size.laptop})`,
+  laptopL: `(max-width: ${size.laptopL})`,
+  desktop: `(max-width: ${size.desktop})`,
+  desktopL: `(max-width: ${size.desktop})`
+};
 
 const colors = {
     background: '#FFFFFF',
@@ -41,9 +63,11 @@ const fontSize = {
     fontSize7: '2.986rem',
     fontSize8: '69.33333333333333px',
     fontSize9: '40px',
+    fontSize9Mobile: '30px',
     fontSize32: '32px',
     fontSize21: '21.3px',
-    fontSize25: '25.3px'
+    fontSize25: '25.3px',
+    headerMobile: '70px'
 }
 
 const pageWidth = {
@@ -63,5 +87,6 @@ export {
     colors,
     fonts,
     fontSize,
-    pageWidth
+    pageWidth,
+    device
 }; 

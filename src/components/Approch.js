@@ -1,6 +1,6 @@
 import React, { Component, useState } from 'react'
 import styled from "styled-components/macro"
-import { spacing, fontSize, colors, pageWidth } from '../common/style'
+import { spacing, fontSize, colors, device } from '../common/style'
 
 import Page from '../common/components/Page';
 import Spacer from '../common/components/Spacer';
@@ -54,6 +54,10 @@ const Description = styled(Centered)`
     text-align: center;
     font-size: ${fontSize.fontSize21};
     max-width: 500px;
+    @media ${device.mobileL} {
+        padding-right: ${spacing.spacingPaddingMobile};
+        padding-left: ${spacing.spacingPaddingMobile};
+    }
 `;
 
 const ToggleButton = styled(Button)`

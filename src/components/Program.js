@@ -1,11 +1,13 @@
 import React from 'react'
 import styled from "styled-components/macro"
-import { fontSize, pageWidth, spacing, colors } from '../common/style';
+import { fontSize, pageWidth, spacing, colors , device} from '../common/style';
 
 import Spacer from '../common/components/Spacer';
 import Page from '../common/components/Page';
-import Centered from '../common/components/Centered';
+import MobileOnly from '../common/components/MobileOnly';
+import NonMobileOnly from '../common/components/NonMobileOnly';
 import Strip from '../common/components/Strip';
+import MobileSpacer from '../common/components/MobileSpacer';
 
 const caption = {
     TITLE: "איך לומדים?",
@@ -64,6 +66,9 @@ const Info = styled.div`
 const Title = styled.div`
     font-size: ${fontSize.fontSize32};
     font-weight: 500;
+    @media ${device.mobileL} {
+        text-align: center;
+    }
 `;
 
 const Description = styled.div`
@@ -86,6 +91,9 @@ const Inner = styled.div`
     display: flex;
     flex-direction: row-reverse;
     justify-content: space-between;
+    @media ${device.mobileL} {
+        flex-direction: column;
+    }
 `;
 
 const Image = styled.div`
@@ -97,6 +105,9 @@ const Image = styled.div`
     img {
         width: 100%;
         height: auto;
+    }
+    @media ${device.mobileL} {
+        width: 100%;
     }
 `;
 
@@ -110,6 +121,10 @@ const DescriptionBlock = styled.div`
     display: flex;
     justify-content: center;
     flex-direction: column;
+    @media ${device.mobileL} {
+        padding-right: ${spacing.spacingPaddingMobile};
+        padding-left: ${spacing.spacingPaddingMobile};
+    }
 `;
 
 const DescriptionTitle = styled.div`
@@ -138,6 +153,12 @@ const Program = () => {
                             <Title>
                                 {caption.TITLE}
                             </Title>
+                            <MobileOnly>
+                                <SpacerRigid height={spacing.spacing24}/>
+                                <Image>
+                                    <img src='/assets/student.jpg'/>
+                                </Image>
+                            </MobileOnly>
                             <Spacer height={spacing.spacing16}/>
                             <DescriptionBlock>
                                 <DescriptionTitle>
@@ -161,9 +182,11 @@ const Program = () => {
                         </Pane>
                     </Content>
                     <SpacerRigid width={spacing.spacing24}/>
-                    <Image>
-                        <img src='/assets/student.jpg'/>
-                    </Image>
+                    <NonMobileOnly>
+                        <Image>
+                            <img src='/assets/student.jpg'/>
+                        </Image>
+                    </NonMobileOnly>
                 </Inner>
                 <Spacer height={spacing.spacing32}/>
                 <Inner>
@@ -171,6 +194,7 @@ const Program = () => {
                         <img src='/assets/wework.jpg'/>
                     </Image>
                     <SpacerRigid width={spacing.spacing32}/>
+                    <MobileSpacer height={spacing.spacing32}/>
                     <Content>
                         <Pane>
                             <DescriptionBlock>

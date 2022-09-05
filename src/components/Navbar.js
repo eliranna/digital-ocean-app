@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import styled from "styled-components/macro"
-import { spacing, fontSize, colors } from '../common/style'
+import { spacing, fontSize, colors, device } from '../common/style'
 
 import Button from '../common/components/Button'
 import Spacer from '../common/components/Spacer';
@@ -10,6 +10,9 @@ const Wrapper = styled.div`
     display: flex;
     justify-content: flex-end;
     padding: ${spacing.spacing16} ${spacing.spacing32};
+    @media ${device.mobileL} {
+        justify-content: center;
+    }
 `;
 
 const ButtonsPanel = styled.div`

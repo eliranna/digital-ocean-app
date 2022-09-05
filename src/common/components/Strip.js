@@ -1,5 +1,5 @@
 import styled from "styled-components/macro";
-import { colors, fonts, fontSize, spacing } from '../style'
+import { spacing } from '../style'
 
 const Strip = styled.div`
     width: 100%;

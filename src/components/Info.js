@@ -3,9 +3,11 @@ import styled from "styled-components/macro"
 
 import Spacer from '../common/components/Spacer'
 import Page from '../common/components/Page'
-import { colors, fontSize, pageWidth, spacing } from '../common/style';
+import { colors, fontSize, pageWidth, spacing, device } from '../common/style';
 import Strip from '../common/components/Strip';
 import Centered from '../common/components/Centered';
+import MobileSpacer from '../common/components/MobileSpacer';
+import NonMobileOnly from '../common/components/NonMobileOnly';
 
 const info = [
     {
@@ -28,6 +30,11 @@ const Wrapper = styled.div`
 
 const InfoBlockWrapper = styled.div`
     display: flex;
+    @media ${device.mobileL} {
+        flex-direction: column;
+        padding-left: ${spacing.spacing12};
+        padding-right: ${spacing.spacing12};
+    }
 `;
 
 const Question = styled.div`
@@ -36,11 +43,19 @@ const Question = styled.div`
     width: 150px;
     flex-shrink: 0;
     flex-grow: 0;
+    @media ${device.mobileL} {
+        text-align: right;
+        width: 100%;
+    }
 `;
 
 const Answare = styled.div`
     font-size: ${fontSize.fontSize21};
     font-weight: 500;
+    @media ${device.mobileL} {
+        text-align: right;
+        width: 100%;
+    }
 `;
 
 const SpacerRigid = styled(Spacer)`
@@ -58,6 +73,7 @@ const InfoBlock = ({question, answare}) => {
                 {question}
             </Question>
             <SpacerRigid width={spacing.spacing12}/>
+            <MobileSpacer height={spacing.spacing12} />
             <Answare>
                 {answare}
             </Answare>
@@ -74,7 +90,7 @@ const Info = () => {
                         return (
                             <React.Fragment key={index}>
                                 <InfoBlock question={item.question} answare={item.answare}/>
-                                <Spacer height={spacing.spacing12}/>
+                                {(index < info.length - 1) && (<Spacer height={spacing.spacing24}/>)}
                             </React.Fragment>
                         )
                     })}

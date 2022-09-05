@@ -6,7 +6,7 @@ import Page from '../common/components/Page';
 import Spacer from '../common/components/Spacer';
 import Strip from '../common/components/Strip';
 import RegistrationScreen from '../components/RegistrationScreen';
-import { colors, spacing, fontSize } from '../common/style';
+import { colors, spacing, fontSize, device } from '../common/style';
 import RegistrationForm from './RegistrationForm';
 
 const caption = {
@@ -42,6 +42,10 @@ const Description = styled.div`
     left: 0;
     margin-right: auto;
     margin-left: auto;
+    @media ${device.mobileL} {
+        padding-right: ${spacing.spacingPaddingMobile};
+        padding-left: ${spacing.spacingPaddingMobile};
+    }
 `;
 
 const RequestRegistrationButton = styled(Button)`

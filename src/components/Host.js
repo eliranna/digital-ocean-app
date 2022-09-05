@@ -1,7 +1,7 @@
 import React from 'react'
 import styled from "styled-components/macro"
 
-import { colors, fontSize, spacing } from '../common/style';
+import { colors, fontSize, spacing, device } from '../common/style';
 import Spacer from '../common/components/Spacer'
 import Page from '../common/components/Page';
 import Centered from '../common/components/Centered';
@@ -45,6 +45,11 @@ const HostDescription = styled(Centered)`
     color: ${colors.text};
     max-width: 450px;
     font-weight: 600;
+    @media ${device.mobileL} {
+        padding-left: ${spacing.spacing12};
+        padding-right: ${spacing.spacing12};
+    }
+    
 `;
 
 const Host = () => {

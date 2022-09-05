@@ -1,6 +1,6 @@
 import React from 'react'
 import styled from "styled-components/macro"
-import { fontSize, pageWidth, spacing, colors } from '../common/style';
+import { fontSize, pageWidth, spacing, colors, device } from '../common/style';
 
 import Spacer from '../common/components/Spacer';
 import Page from '../common/components/Page';
@@ -14,7 +14,7 @@ const caption = {
 }
 
 const Wrapper = styled.div`
-    width: 100%:
+    width: 100%;
     display: flex;
     justify-content: center; 
     flex-direction: column;
@@ -29,30 +29,28 @@ const Title = styled.div`
     text-align: center;
     font-size: ${fontSize.fontSize8};
     color: ${colors.accent};
-    font-weight: 300; 
+    font-weight: 300;
+    right: 0;
+    left: 0;
+    margin-left: auto;
+    margin-right: auto;
+    @media ${device.mobileL} {
+        
+    }
 `;
 
 const Subtitle = styled.div`
     text-align: center;
     font-size: ${fontSize.fontSize9};
     font-weight: 300;
-`;
-
-const Description = styled(Centered)`
-    text-align: center;
-    font-size: ${fontSize.fontSize3};
-    max-width: ${pageWidth.maxWidthMD};
-    width: 100%;
-    font-weight: 500;
-`;
-
-const Vision = styled(Centered)`
-    text-align: center;
-    font-size: ${fontSize.fontSize3};
-    max-width: ${pageWidth.maxWidthMD};
-    width: 100%;
-    font-weight: 700;
-    color: ${colors.accent};
+    right: 0;
+    left: 0;
+    margin-left: auto;
+    margin-right: auto;
+    @media ${device.mobileL} {
+        font-size: ${fontSize.fontSize9Mobile};
+        max-width: 80%;
+    }
 `;
 
 const Header = () => {

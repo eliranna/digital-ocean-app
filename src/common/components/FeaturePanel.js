@@ -1,6 +1,7 @@
 import React from 'react'
 import styled from "styled-components/macro"
-import { fontSize, colors, spacing } from '../style';
+import { fontSize, colors, spacing, device } from '../style';
+import MobileSpacer from './MobileSpacer';
 
 import Spacer from './Spacer';
 
@@ -9,6 +10,11 @@ const Wrapper = styled.div`
     display: flex;
     justify-content: space-between; 
     flex-direction: row;
+    @media ${device.mobileL} {
+        flex-direction: column;
+        padding-left: ${spacing.spacingPaddingMobile};
+        padding-right: ${spacing.spacingPaddingMobile};
+    }
 `;
 
 const FeatureWrapper = styled.div`
@@ -16,6 +22,9 @@ const FeatureWrapper = styled.div`
     display: flex;
     flex-direction: column; 
     width: ${props => (props.featureWidth ? props.featureWidth : "23%")};
+    @media ${device.mobileL} {
+        width: 100%;
+    }
 `;
 
 const FeatureIcon = styled.div`
@@ -72,7 +81,12 @@ const FeaturesPanel = ({features, invertColors, featureWidth}) => {
     return (
         <Wrapper>
             {features.map((feature, index) => {
-                return <Feature key={index} icon={feature.icon} title={feature.title} description={feature.description} invertColors={invertColors} featureWidth={featureWidth}/>
+                return (
+                    <>
+                        <Feature key={index} icon={feature.icon} title={feature.title} description={feature.description} invertColors={invertColors} featureWidth={featureWidth}/>
+                        {(index < features.length - 1) && (<MobileSpacer height={spacing.spacing24}/>)}
+                    </>
+                )
             })}                                        
         </Wrapper>
     )
