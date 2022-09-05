@@ -49,7 +49,7 @@ const HostDescription = styled(Centered)`
 
 const Host = () => {
     return (
-        <Strip>
+        <Strip backgroundColor={colors.lightGrey}>
             <Page nerrow>
                 <AvatarPanel>
                     <Avatar src="./assets/host.jpg"/>

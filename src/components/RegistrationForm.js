@@ -11,95 +11,88 @@ import axios from 'axios'
 import api from '../api';
 
 const Wrapper = styled.div`
-    display: flex;
-    justify-content: center;
-    flex-direction: column;
-    align-elements: center;
-    form {
-        right: 0;
-        left: 0;
-        margin-left: auto;
-        margin-right: auto;
-    }
-`;
+    padding: ${spacing.spacing16};
+    background-color: ${colors.lightGrey};
 
-const FormSection = styled.div`
-    display: flex;
-    align-self: center;
-    flex-direction: column;
-    text-align: center;
-    width: 300px;
-`;
-
-const SectionTitle = styled.div`
-`;
-
-const Title = styled.div`
-    font-weight: 700;
-`;
-
-const SectionContent = styled.div`
-
-`;
-
-const InputRow = styled.div`
-
-`;
-
-const Error = styled.div`
-    font-size: ${fontSize.fontSize2};
-    color: #721c24;
-`;
-
-const RegisterButton = styled(Button)`
-    border: none;
-    background: ${colors.accent};
-    color: ${colors.textOnAccent};
-    font-size: ${fontSize.fontSize2};
-    height: 55px;
 `
 
-const FileInstructions = styled.div`
+const FormSection = styled.div``
+
+const SectionTitle = styled.div``
+
+const Title = styled.div`
+    font-size: ${fontSize.fontSize25};
+    text-align: center;
+    font-weight: 600;
+`
+
+const SectionContent = styled.div``
+
+const Row = styled.div`
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+`
+const Cell = styled.div`
+    width: 300px;
+`
+
+const FileDropPanel = styled.div`
     
 `
 
-const SelectBox = styled.select`
-    width: 100%;
-    padding: 4px 15px;
-    font-weight: 600;
-    white-space: nowrap;
-    outline: none;
-    border-radius: 6px;
-    background: ${colors.background};
-    border: 2px solid ${colors.text};
-    font-size: ${fontSize.fontSize1};
-    font-color: ${colors.text}; 
-    padding: 16.5px 14px;
-    font-family: ${fonts.main}, sans-serif;
-    color: ${colors.text}; 
-    opacity: 0.7;
-    transition: all 500ms;
-    text-align: ${props => (props.left ? "left" : "right")};
-    direction: ${props => (props.left ? "ltr" : "rtl")};
-    ::placeholder,
-    ::-webkit-input-placeholder {
-    color: ${colors.text}; 
-    opacity: 0.6;
-    text-align: right;
-    }
-    :-ms-input-placeholder {
-    color: ${colors.text};
-    opacity: 0.6;
-    }
-    &:focus {
-        opacity: 1;
-        transition: all 500ms;
-    }
-    &:hover {
-        opacity: 1;
-        transition: all 500ms;
-    }
+const FileInstructions = styled.div`
+    text-align: center;
 `
+
+const Error = styled.div`
+    text-align: center;
+    font-weight: 700;
+`
+
+const ButtonPanel = styled.div`
+    display: flex;
+    justify-content: center;
+`
+
+const RequestRegistrationButton = styled(Button)`
+    border: none;
+    background: ${colors.accent};
+    color: ${colors.textOnAccent};
+    height: 55px;
+    max-width: 225px;
+    width: 100%;
+    font-size: ${fontSize.fontSize21};
+    font-weight: 500;
+    transition: all 400ms;
+    align-text: center;
+    :hover {
+        opacity: 80%;
+    }
+`;
+
+const Spinner = styled.div`
+  border: 4px solid white;
+  border-top: 4px ${colors.accent} solid;
+  border-radius: 50%;
+  height: 30px;
+  width: 30px;
+  animation: spin 300ms linear infinite;
+  right: 0;
+  left: 0;
+  margin-left: auto;
+  margin-right: auto;
+  @keyframes spin {
+    0% {
+      transform: rotate(0deg);
+    }
+
+    100% {
+      transform: rotate(360deg);
+    }
+  }
+`;
+
 
 async function sendRegistrationForm(formData) {
     return axios({
@@ -111,10 +104,10 @@ async function sendRegistrationForm(formData) {
         }
     })
     .then(function (response) {
-        console.log(response);
+        return response
     })
     .catch(function (response) {
-        console.log(response);
+        return response
     });
 }
 
@@ -130,7 +123,7 @@ function isEmailValid(email) {
       );
 };
 
-const RegistrationForm = () => {
+const RegistrationForm = ({onSuccess}) => {
 
     const [studentFirstName, setStudentFirstName] = useState();
     const [studentLastName, setStudentLastName] = useState();
@@ -143,15 +136,16 @@ const RegistrationForm = () => {
     const [requesterEmail, setRequesterEmail] = useState();
 
     const [invalidForm, setInvalidForm] = useState();
+    const [isSending, setIsSending] = useState(false);
+    const [requestSentSuccessfully, setRequestSentSuccessfully] = useState(false);
+    const [requestFailed, setRequestFailed] = useState(false);
 
     const validateForm = () => {
         if (
             (!studentFirstName) || 
             (!studentLastName) || 
-            (!studentClass) ||
             (!requesterFirstName) || 
             (!requesterLastName) || 
-            (!requesterRelation) || 
             (!requesterPhoneNumber) || 
             (!requesterEmail)) {
                 setInvalidForm('יש למלא את כל השדות')
@@ -186,90 +180,89 @@ const RegistrationForm = () => {
         data.append('requesterRelation', requesterRelation)
         data.append('requesterPhoneNumber', requesterPhoneNumber)
         data.append('requesterEmail', requesterEmail)
-        const token = await sendRegistrationForm(data);
-        console.log(token)
+        setIsSending(true)
+        const response = await sendRegistrationForm(data);
+        setIsSending(false)
+        if (response.status == 200) {
+            onSuccess()
+        } else if (response.status == 500) {
+            setRequestFailed(true)
+        }
     }    
 
     return (
         <Wrapper>
-            <form> 
-                <FormSection>
-                    <SectionTitle>
-                        <Title>
-                            פרטי התלמיד
-                        </Title>
-                    </SectionTitle>
-                    <Spacer height={spacing.spacing6}/>
-                    <SectionContent>
-                        <InputRow>
-                            <InputBox type="text" onChange={e => setStudentFirstName(e.target.value)} placeholder={"שם פרטי"} /> 
-                        </InputRow>
-                        <Spacer height={spacing.spacing6}/>
-                        <InputRow>
+            <FormSection>
+                <SectionTitle>
+                    <Title>
+                        פרטי התלמיד
+                    </Title>
+                </SectionTitle>
+                <Spacer height={spacing.spacing12}/>
+                <SectionContent>
+                    <Row>
+                        <Cell>
+                            <InputBox type="text" onChange={e => setStudentFirstName(e.target.value)} placeholder={"שם פרטי"} />
+                        </Cell>
+                        <Spacer width={spacing.spacing6}/>
+                        <Cell>
                             <InputBox type="text" onChange={e => setStudentLastName(e.target.value)} placeholder={"שם משפחה"}/> 
-                        </InputRow>
-                        <Spacer height={spacing.spacing6}/>
-                        <InputRow>
-                            <SelectBox onChange={e => setStudentClass(e.target.value)}>
-                                <option value="" disabled defaultValue>תלמיד בכיתה...</option>
-                                <option value="1">כיתה י'</option>
-                                <option value="2">כיתה י״א</option>
-                                <option value="3">כיתה י״ב</option>
-                            </SelectBox>                        
-                        </InputRow>
-                        <Spacer height={spacing.spacing6}/>
-                        <InputRow>
-                            <DragDropFile onUplode={file => setStudentDiploma(file)}/> 
-                        </InputRow>
+                        </Cell>
+                    </Row>
+                    <Spacer height={spacing.spacing12}/>
+                    <FileDropPanel>
+                        <DragDropFile onUplode={file => setStudentDiploma(file)}/> 
                         <Spacer height={spacing.spacing2}/>
                         <FileInstructions>
                             יש לצרף קובץ יחיד בפורמט PDF או קובץ תמונה.
                         </FileInstructions>
-                    </SectionContent>
-                </FormSection>   
-                <Spacer height={spacing.spacing16}/>         
-                <FormSection>
-                    <SectionTitle>
-                        <Title>
-                            פרטי מבצע ההזמנה
-                        </Title>
-                    </SectionTitle>
-                    <Spacer height={spacing.spacing6}/>
-                    <SectionContent>
-                        <InputRow>
-                            <InputBox type="text" onChange={e => setRequesterFirstName(e.target.value)} placeholder={"שם הפרטי"}/> 
-                        </InputRow>
-                        <Spacer height={spacing.spacing6}/>
-                        <InputRow>
+                    </FileDropPanel>
+                </SectionContent>
+            </FormSection> 
+            <Spacer height={spacing.spacing16}/> 
+            <FormSection>
+                <SectionTitle>
+                    <Title>
+                        פרטי מגיש הבקשה
+                    </Title>
+                </SectionTitle>
+                <Spacer height={spacing.spacing12}/>
+                <SectionContent>
+                    <Row>
+                        <Cell>
+                            <InputBox type="text" onChange={e => setRequesterFirstName(e.target.value)} placeholder={"שם פרטי"} />
+                        </Cell>
+                        <Spacer width={spacing.spacing6}/>
+                        <Cell>
                             <InputBox type="text" onChange={e => setRequesterLastName(e.target.value)} placeholder={"שם משפחה"}/> 
-                        </InputRow>
-                        <Spacer height={spacing.spacing6}/>
-                        <InputRow>
-                            <InputBox type="text" onChange={e => setRequesterRelation(e.target.value)} placeholder={"קרבה לתלמיד"}/> 
-                        </InputRow>
-                        <Spacer height={spacing.spacing6}/>
-                        <InputRow>
-                            <InputBox left type="text" onChange={e => setRequesterPhoneNumber(e.target.value)} placeholder={"מספר טלפון"}/> 
-                        </InputRow>
-                        <Spacer height={spacing.spacing6}/>
-                        <InputRow>
+                        </Cell>
+                    </Row>
+                    <Spacer height={spacing.spacing6}/>
+                    <Row>
+                        <Cell>
+                            <InputBox left type="text" onChange={e => setRequesterPhoneNumber(e.target.value)} placeholder={"מספר טלפון"}/>
+                        </Cell>
+                        <Spacer width={spacing.spacing6}/>
+                        <Cell>
                             <InputBox left type="text" onChange={e => setRequesterEmail(e.target.value)} placeholder={"כתובת דואר אלקטרוני"}/> 
-                        </InputRow>
-                    </SectionContent>
-                </FormSection>
-                <Spacer height={spacing.spacing24}/> 
-                <FormSection>
-                    <RegisterButton full onClick={handleSubmit}>
-                        שלח בקשת הרשמה
-                    </RegisterButton>
-                    <Spacer height={spacing.spacing6}/> 
-                    {invalidForm && (
-                        <Error>
-                            <span>{invalidForm}</span>
-                        </Error>
-                    )}
-                </FormSection>
-            </form>
+                        </Cell>
+                    </Row>
+                </SectionContent>
+            </FormSection>  
+            <Spacer height={spacing.spacing24}/> 
+            <FormSection>
+                <ButtonPanel>
+                    <RequestRegistrationButton full onClick={handleSubmit}>
+                        {isSending ? <Spinner/> : <span>שלח בקשת הרשמה</span>}
+                    </RequestRegistrationButton>
+                </ButtonPanel>
+                <Spacer height={spacing.spacing6}/> 
+                {invalidForm && (
+                    <Error>
+                        <span>{invalidForm}</span>
+                    </Error>
+                )}
+            </FormSection>                                   
         </Wrapper>
     )
 }

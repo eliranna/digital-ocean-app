@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import styled from "styled-components/macro"
 
 import { spacing } from '../common/style';
@@ -10,9 +10,9 @@ import Features from './Features'
 import Approch from './Approch'
 import Program from './Program'
 import Info from './Info'
-import Register from './Register'
 import Host from './Host'
-import Topics from './Topics'
+import RequestRegistration from './RequestRegistration'
+import RegistrationScreen from './RegistrationScreen'
 
 
 const Wrapper = styled.div`
@@ -20,6 +20,7 @@ const Wrapper = styled.div`
 `;
 
 const Homepage = () => {
+
     return (
         <Wrapper>
             <Header/>
@@ -28,8 +29,8 @@ const Homepage = () => {
             <Approch/>
             <Program/>
             <Info/>
-            <Register/>
             <Host/>
+            <RequestRegistration/>
         </Wrapper>
     )
 }

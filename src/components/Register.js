@@ -162,9 +162,14 @@ const SpacerRigid = styled(Spacer)`
     flex-shrink: 0;
 `;
 
+const SuccessMessage = styled.div`
+   
+`;
+
 const Register = () => {
 
     const [selectedCourseIndex, setSelectedCourseIndex] = useState(-1);
+    const [requestSent, setRequestSent] = useState(false);
 
     const handleCourseSelection = (index) => {
         setSelectedCourseIndex(index)
@@ -177,27 +182,36 @@ const Register = () => {
                     {TITLE}
                 </Title>
                 <Spacer height={spacing.spacing12}/>
-                <Subtitle>
-                    {SUBTITLE}
-                </Subtitle>
-                <Spacer height={spacing.spacing16}/>
-                <CoursesSelectionPanel>
-                    {courses.map((course, index) => {
-                        return (
-                            <React.Fragment key={course.id}>
-                                <CourseOption title={course.title} description={course.description} freeSpots={course.freeSpots} onClick={() => handleCourseSelection(index)} isSelected={selectedCourseIndex === index}/>
-                                {(index != courses.length-1) && <SpacerRigid width={spacing.spacing8}/>}
-                            </React.Fragment>
-                        )
-                    })}
-                </CoursesSelectionPanel>
-                <Spacer height={spacing.spacing16}/>
-                {(selectedCourseIndex != -1) &&
-                    <React.Fragment>
+                {!requestSent && (
+                    <>
+                        <Subtitle>
+                            {SUBTITLE}
+                        </Subtitle>
                         <Spacer height={spacing.spacing16}/>
-                        <RegistrationForm/>
-                    </React.Fragment>
-                }
+                        <CoursesSelectionPanel>
+                            {courses.map((course, index) => {
+                                return (
+                                    <React.Fragment key={course.id}>
+                                        <CourseOption title={course.title} description={course.description} freeSpots={course.freeSpots} onClick={() => handleCourseSelection(index)} isSelected={selectedCourseIndex === index}/>
+                                        {(index != courses.length-1) && <SpacerRigid width={spacing.spacing8}/>}
+                                    </React.Fragment>
+                                )
+                            })}
+                        </CoursesSelectionPanel>
+                        <Spacer height={spacing.spacing16}/>
+                        {(selectedCourseIndex != -1) &&
+                            <React.Fragment>
+                                <Spacer height={spacing.spacing16}/>
+                                <RegistrationForm onSuccess={() => setRequestSent(true)}/>
+                            </React.Fragment>
+                        }
+                    </>
+                )}
+                {requestSent && (
+                    <SuccessMessage>
+                        הצלחנו
+                    </SuccessMessage>
+                )}                
             </Page>
         </Strip>
     )

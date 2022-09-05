@@ -1,10 +1,10 @@
 
-const isDevelopment = false;
+const isDevelopment = true;
 
 let BASE_URL = '/shavitim-backend';
 
 if (isDevelopment) {
-    BASE_URL = 'http://localhost:8080'
+    BASE_URL = 'http://localhost:9090'
 }
 
 export default {

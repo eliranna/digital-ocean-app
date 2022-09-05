@@ -6,8 +6,12 @@ import InputBox from './InputBox';
 import Spacer from './Spacer';
 
 const Form = styled.div`
-    width: 28rem;
     max-width: 100%;
+    text-align: center;
+    right: 0;
+    left: 0;
+    margin-right: auto;
+    margin-left: auto;
     text-align: center;
     position: relative;
 `;
@@ -41,7 +45,7 @@ const UploadButton = styled.div`
     line-height: 28px;
     transition: all 400ms;
     :hover {
-        background: ${colors.accentDeep};
+        opacity: 80%;
     }
 `
 
@@ -78,7 +82,9 @@ const Link = styled.div`
     cursor: pointer;
 `
 
-const Instruction = styled.div``
+const Instruction = styled.div`
+    font-weight: 600;
+`
 
 const UploadSuccessMessage = styled.div``
 
