@@ -13,6 +13,7 @@ import Info from './Info'
 import Host from './Host'
 import RequestRegistration from './RequestRegistration'
 import RegistrationScreen from './RegistrationScreen'
+import FAQs from './FAQ';
 
 
 const Wrapper = styled.div`
@@ -31,6 +32,7 @@ const Homepage = () => {
             <Info/>
             <Host/>
             <RequestRegistration/>
+            <FAQs/>
         </Wrapper>
     )
 }

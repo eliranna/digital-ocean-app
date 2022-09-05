@@ -80,7 +80,7 @@ const DescriptionContent = styled.div`
 
 const RequestRegistration = () => {
     return (
-        <Strip>
+        <Strip id="google">
             <Page nerrow>
                 <Title>
                     {caption.TITLE}

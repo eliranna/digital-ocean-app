@@ -41,9 +41,11 @@ const Navbar = () => {
                     שאלות נפוצות
                 </Link>
                 <Spacer width={spacing.spacing6}/>
-                <RegisterButton full>
-                    הרשמה
-                </RegisterButton>
+                <a href="#google">
+                    <RegisterButton full>
+                        הרשמה
+                    </RegisterButton>
+                </a>
             </ButtonsPanel>
         </Wrapper>
     )
