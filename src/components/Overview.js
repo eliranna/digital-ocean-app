@@ -63,7 +63,9 @@ const Image = styled.div`
         height: auto;
     }
     @media ${device.mobileL} {
+        flex-direction: column;
         width: 100%;
+        flex-grow: 0;
     }
 `;
 

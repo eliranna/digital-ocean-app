@@ -6,5 +6,7 @@ export default styled(Spacer)`
     display: none;
     @media ${device.mobileL} {
         display: block;
+        flex-grow: 0;
+        flex-shrink: 0;
     }
 `
