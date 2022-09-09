@@ -37,9 +37,11 @@ const Navbar = () => {
     return (
         <Wrapper>
             <ButtonsPanel>
-                <Link>
-                    שאלות נפוצות
-                </Link>
+                <a href="#faqs">
+                    <Link>
+                        שאלות נפוצות
+                    </Link>
+                </a>
                 <Spacer width={spacing.spacing6}/>
                 <a href="#google">
                     <RegisterButton full>

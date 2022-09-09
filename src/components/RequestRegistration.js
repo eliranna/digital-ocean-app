@@ -11,8 +11,8 @@ import RegistrationForm from './RegistrationForm';
 
 const caption = {
     TITLE: 'איך נרשמים?',
-    DESC: 'להצטרפות לתוכנית, יש ראשית לשלוח בקשה להרשמה. במהלך שליחת הבקשה תתבקשו למלא פרטים אישיים ולצרף את גיליון הציונים האחרון של התלמיד (ניתן להעלות קובץ בפורמט PDF או תמונה). שליחת הבקשה הינה בחינם ואינה מחייבת אתכם לרשום את התלמיד לתוכנית.',
-    DESC2: 'בתוך מספר ימים תקבלו מאיתנו תשובה במייל לגבי קבלתו של התלמיד לתוכנית. במידה וקיבלתם תשובה חיובית, תקבלו קישור מאובטח להרשמה לתוכנית ולביצוע התשלום כרטיס אשראי.'
+    DESC: 'להצטרפות לתוכנית, יש ראשית לבצע בדיקת התאמה באמצעות אתר זה. במהלך בדיקת ההתאמה תתבקשו לצרף את גיליון הציונים האחרון של התלמיד (ניתן להעלות קובץ בפורמט PDF או תמונה). שליחת הבקשה הינה בחינם ואינה מחייבת אתכם לרשום את התלמיד לתוכנית.',
+    DESC2: 'בתוך מספר ימים תקבלו מאיתנו תשובה במייל לגבי התאמתו של התלמיד לתוכנית. במידה והתקבלה תשובה חיובית, תקבלו קישור מאובטח להרשמה לתוכנית ולביצוע התשלום כרטיס אשראי.'
 }
 
 const Wrapper = styled.div`
@@ -78,7 +78,7 @@ const DescriptionContent = styled.div`
     text-align: center;
 `;
 
-const RequestRegistration = () => {
+const RequestRegistration = ({onShowTerms}) => {
     return (
         <Strip id="google">
             <Page nerrow>
@@ -100,7 +100,7 @@ const RequestRegistration = () => {
                     </DescriptionContent>
                 </Description> 
                 <Spacer height={spacing.spacing16}/>
-                <RegistrationForm/>
+                <RegistrationForm onShowTerms={onShowTerms}/>
             </Page>
         </Strip>
     )

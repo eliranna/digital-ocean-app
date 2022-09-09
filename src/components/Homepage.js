@@ -12,15 +12,16 @@ import Program from './Program'
 import Info from './Info'
 import Host from './Host'
 import RequestRegistration from './RequestRegistration'
-import RegistrationScreen from './RegistrationScreen'
+import Footer from './Footer'
 import FAQs from './FAQ';
 
 
 const Wrapper = styled.div`
-
 `;
 
 const Homepage = () => {
+
+    const [termsModalIsOpen, setTermsModalIsOpen] = useState(false)
 
     return (
         <Wrapper>
@@ -31,8 +32,9 @@ const Homepage = () => {
             <Program/>
             <Info/>
             <Host/>
-            <RequestRegistration/>
+            <RequestRegistration onShowTerms={() => setTermsModalIsOpen(true)}/>
             <FAQs/>
+            <Footer/>
         </Wrapper>
     )
 }

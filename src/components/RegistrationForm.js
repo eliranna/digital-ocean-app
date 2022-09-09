@@ -10,6 +10,9 @@ import DragDropFile from '../common/components/FileUploader';
 import axios from 'axios'
 import api from '../api';
 import MobileSpacer from '../common/components/MobileSpacer';
+import Modal from '../common/components/Modal';
+
+import PlanTerms from './Terms';
 
 const Wrapper = styled.div`
     padding: ${spacing.spacing16};
@@ -22,7 +25,13 @@ const FormSection = styled.div``
 const SectionTitle = styled.div``
 
 const Title = styled.div`
-    font-size: ${fontSize.fontSize25};
+    font-size: ${fontSize.fontSize21};
+    text-align: center;
+    font-weight: 600;
+`
+
+const FormTitle = styled.div`
+    font-size: ${fontSize.fontSize32};
     text-align: center;
     font-weight: 600;
 `
@@ -119,6 +128,38 @@ const SuccessInfo = styled.div`
     font-weight: 400;
 ` 
 
+const TermsCheckbox = styled.div`
+  font-size: ${fontSize.fontSize21};
+  max-width: 400px;
+  right: 0;
+  left: 0;
+  margin-left: auto;
+  margin-right: auto;
+  display: flex;
+
+` 
+
+const Checkbox = styled.div`
+   input {
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
+   }
+   margin-top: 2px;
+   margin-left: 5px;
+
+` 
+
+const CheckboxCaption = styled.div`
+   span {
+       text-decoration: underline; 
+       cursor: pointer;
+       :hover {
+           opacity: 80%;
+       }
+   }
+` 
+
 
 async function sendRegistrationForm(formData) {
     return axios({
@@ -149,22 +190,22 @@ function isEmailValid(email) {
       );
 };
 
-const RegistrationForm = ({onSuccess}) => {
+const RegistrationForm = ({onShowTerms}) => {
 
-    const [studentFirstName, setStudentFirstName] = useState();
-    const [studentLastName, setStudentLastName] = useState();
-    const [studentClass, setStudentClass] = useState();
+    const [studentFirstName, setStudentFirstName] = useState('רועי');
+    const [studentLastName, setStudentLastName] = useState('נתן');
     const [studentDiploma, setStudentDiploma] = useState();
-    const [requesterFirstName, setRequesterFirstName] = useState();
-    const [requesterLastName, setRequesterLastName] = useState();
-    const [requesterRelation, setRequesterRelation] = useState();
-    const [requesterPhoneNumber, setRequesterPhoneNumber] = useState();
-    const [requesterEmail, setRequesterEmail] = useState();
+    const [requesterFirstName, setRequesterFirstName] = useState('דודי');
+    const [requesterLastName, setRequesterLastName] = useState('אמסלם');
+    const [requesterPhoneNumber, setRequesterPhoneNumber] = useState('0584028332');
+    const [requesterEmail, setRequesterEmail] = useState('eliran.natan.87@gmail.com');
+    const [agreeTerms, setAgreeTerms] = useState(false);
 
     const [invalidForm, setInvalidForm] = useState();
     const [isSending, setIsSending] = useState(false);
     const [requestSentSuccessfully, setRequestSentSuccessfully] = useState(false);
     const [requestFailed, setRequestFailed] = useState(false);
+    const [termsModalIsOpen, setTermsModalIsOpen] = useState(false);
 
     const validateForm = () => {
         if (
@@ -189,6 +230,10 @@ const RegistrationForm = ({onSuccess}) => {
             setInvalidForm('כתובת האימייל אינה תקינה')
             return false
         }
+        if (!agreeTerms) {
+            setInvalidForm('יש לקרוא ולהסכים לתנאי תקנון השימוש')
+            return false
+        }
         return true;
     }
 
@@ -200,10 +245,8 @@ const RegistrationForm = ({onSuccess}) => {
         data.append('studentDiploma', studentDiploma)
         data.append('studentFirstName', studentFirstName)
         data.append('studentLastName', studentLastName)
-        data.append('studentClass', studentClass)
         data.append('requesterFirstName', requesterFirstName)
         data.append('requesterLastName', requesterLastName)
-        data.append('requesterRelation', requesterRelation)
         data.append('requesterPhoneNumber', requesterPhoneNumber)
         data.append('requesterEmail', requesterEmail)
         setIsSending(true)
@@ -220,7 +263,11 @@ const RegistrationForm = ({onSuccess}) => {
         <Wrapper>
             {!requestSentSuccessfully && (
             <>
-                <FormSection>
+                <FormTitle>
+                    בדיקת התאמה
+                </FormTitle>     
+                <Spacer height={spacing.spacing12}/>       
+                <FormSection>                  
                     <SectionTitle>
                         <Title>
                             פרטי התלמיד
@@ -252,7 +299,7 @@ const RegistrationForm = ({onSuccess}) => {
                 <FormSection>
                     <SectionTitle>
                         <Title>
-                            פרטי מגיש הבקשה
+                            פרטי מגיש הבדיקה
                         </Title>
                     </SectionTitle>
                     <Spacer height={spacing.spacing12}/>
@@ -281,6 +328,20 @@ const RegistrationForm = ({onSuccess}) => {
                     </SectionContent>
                 </FormSection>  
                 <Spacer height={spacing.spacing24}/> 
+                <FormSection>
+                    <TermsCheckbox>
+                        <Checkbox>
+                            <input type="checkbox" onChange={e => setAgreeTerms(e.target.value)}/>
+                        </Checkbox>
+                        <CheckboxCaption>
+                            אני מאשר כי קראתי את <span onClick={() => setTermsModalIsOpen(true)}>תקנון השימוש</span> ואני מסכים לתנאיו.
+                        </CheckboxCaption>
+                        <Modal show={termsModalIsOpen} onClose={() => setTermsModalIsOpen(false)}>
+                            <PlanTerms/>
+                        </Modal>
+                    </TermsCheckbox>
+                </FormSection>
+                <Spacer height={spacing.spacing24}/>
                 <FormSection>
                     <ButtonPanel>
                         <RequestRegistrationButton full onClick={handleSubmit}>

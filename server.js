@@ -34,9 +34,11 @@ app.post('/api/login', (req, res, next) => {
   });
 });
 
-app.server.listen(process.env.PORT || PORT, () => {
-  console.log(`App is running on port ${app.server.address().port}`);
+/*
+app.listen(process.env.PORT || 9090, () => {
+  console.log(`App is running on port 9090`);
 });
+*/
 
 
 //app.listen(8080, () => console.log('API is running on http://localhost:8080/login'))

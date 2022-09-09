@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
 import styled from 'styled-components/macro';
 import { colors } from './common/style';
-
+import { Route, Routes } from 'react-router-dom';
 import Navbar from './components/Navbar';
 import Homepage from './components/Homepage';
+import Admin from './components/Admin';
 
 const Wrapper = styled.div`
     display: flex;
@@ -11,64 +12,25 @@ const Wrapper = styled.div`
     color: ${colors.text};
 `;
 
-function App() {
-
+function LandingPage() {
   return (
+    <>
       <Wrapper>
         <Navbar/>
         <Homepage/>
       </Wrapper>
+    </>
   )
 }
 
-  /*
-
-  const [username, setUserName] = useState();
-  const [password, setPassword] = useState();
-
-  const handleSubmit = async e => {
-    e.preventDefault();
-    const token = await loginUser({
-      username,
-      password
-    });
-    console.log(token)
-    //setToken(token);
-  }
+function App() {
 
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-      <form onSubmit={handleSubmit}>
-        <label>
-          <p>Username</p>
-          <input type="text" onChange={e => setUserName(e.target.value)} />
-        </label>
-        <label>
-          <p>Password</p>
-          <input type="password" onChange={e => setPassword(e.target.value)} />
-        </label>
-        <div>
-          <button type="submit">Submit</button>
-        </div>
-      </form>      
-    </div>
-    
-  );
-  */
-
+    <Routes>
+      <Route path="/" element={<LandingPage />}/>
+      <Route path="/admin" element={<Admin />}/>
+    </Routes>
+  )
+}
 
 export default App;
