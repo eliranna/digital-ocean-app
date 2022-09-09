@@ -1,6 +1,6 @@
 import React, {useState} from 'react'
 import styled from "styled-components/macro"
-import { colors, spacing } from '../common/style';
+import { colors, spacing, device } from '../common/style';
 import Strip from '../common/components/Strip';
 import Page from '../common/components/Page';
 import Spacer from '../common/components/Spacer';
@@ -21,6 +21,10 @@ const FooterLinks = styled.div`
         :hover {
             text-decoration: underline;
         }
+    }
+    @media ${device.mobileL} {
+        padding-right: ${spacing.spacingPaddingMobile};
+        padding-left: ${spacing.spacingPaddingMobile};
     }
 `
 

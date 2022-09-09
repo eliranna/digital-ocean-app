@@ -3,7 +3,7 @@ import styled from "styled-components/macro"
 
 import Page from '../common/components/Page';
 import FeaturesPanel from '../common/components/FeaturePanel';
-import { colors, fontSize, spacing } from '../common/style';
+import { colors, fontSize, spacing, device } from '../common/style';
 import Strip from '../common/components/Strip';
 import Accordion from '../common/components/Accordion';
 import Spacer from '../common/components/Spacer';
@@ -83,11 +83,19 @@ const Title = styled.div`
     font-size: ${fontSize.fontSize32};
     font-weight: 500;
     text-align: right;
+    @media ${device.mobileL} {
+        padding-right: ${spacing.spacingPaddingMobile};
+        padding-left: ${spacing.spacingPaddingMobile};
+    }
 `;
 
 const List = styled.div`
     display: flex;
     flex-direction: column;
+    @media ${device.mobileL} {
+        padding-right: ${spacing.spacingPaddingMobile};
+        padding-left: ${spacing.spacingPaddingMobile};
+    }
 `;
 
 const Category = styled.div`
@@ -156,7 +164,7 @@ const FAQ = ({question, answare}) => {
                 </QuestionIcon>
             </Question>
             <Answare>
-                <Accordion open={isOpen} contentHeight={"300px"}>
+                <Accordion open={isOpen} contentHeight={"1700px"}>
                     <Spacer height={spacing.spacing6}/>
                     {answare}
                 </Accordion>
