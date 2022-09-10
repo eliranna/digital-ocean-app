@@ -80,7 +80,7 @@ const faqs = [
 
 const Title = styled.div`
     text-align: center;
-    font-size: ${fontSize.fontSize32};
+    font-size: ${fontSize.fontSize5};
     font-weight: 500;
     text-align: right;
     @media ${device.mobileL} {
@@ -106,7 +106,7 @@ const Category = styled.div`
 const CategoryTitle = styled.div`
     display: flex;
     flex-direction: column; 
-    font-size: ${fontSize.fontSize25};
+    font-size: ${fontSize.fontSize4};
     font-weight: 700;  
 `;
 
@@ -126,10 +126,11 @@ const Question = styled.div`
     display: flex;
     cursor: pointer;
     justify-content: space-between;
+    font-size: ${fontSize.fontSize3};
 `;
 
 const Answare = styled.div`
-    font-size: ${fontSize.fontSize21};
+    font-size: ${fontSize.fontSize2};
     margin-right: 27px;
 `;
 

@@ -3,7 +3,7 @@ import styled from "styled-components/macro"
 import { fontSize, pageWidth, spacing, colors, device } from '../common/style';
 
 import Spacer from '../common/components/Spacer';
-import ImageStrip from '../common/components/ImageStrip';
+import SectionTitle from '../common/components/SectionTitle';
 import Page from '../common/components/Page';
 import Strip from '../common/components/Strip';
 import MobileSpacer from '../common/components/MobileSpacer';
@@ -32,19 +32,14 @@ const Content = styled.div`
     }
 `;
 
-const Title = styled.div`
-    font-size: ${fontSize.fontSize32};
-    font-weight: 500;
-`;
-
 const Description = styled.div`
-    font-size: ${fontSize.fontSize21};
+    font-size: ${fontSize.fontSize3};
     font-weight: 500;
     max-width: 500px;
 `;
 
 const Quote = styled.div`
-    font-size: ${fontSize.fontSize21};
+    font-size: ${fontSize.fontSize3};
     font-weight: 500;
     border-right: 9px solid ${colors.accent};
     max-width: 500px;
@@ -92,9 +87,9 @@ const Overview = () => {
                 <Inner>
                     <Content>
                         <Pane>
-                            <Title>
+                            <SectionTitle right>
                                 {caption.TITLE}
-                            </Title>
+                            </SectionTitle>
                             <Spacer height={spacing.spacing16}/>
                             <Description>
                                 {caption.DESCRIPTION}

@@ -8,6 +8,7 @@ import Strip from '../common/components/Strip';
 import RegistrationScreen from '../components/RegistrationScreen';
 import { colors, spacing, fontSize, device } from '../common/style';
 import RegistrationForm from './RegistrationForm';
+import SectionTitle from '../common/components/SectionTitle';
 
 const caption = {
     TITLE: 'איך נרשמים?',
@@ -15,22 +16,9 @@ const caption = {
     DESC2: 'בתוך מספר ימים תקבלו מאיתנו תשובה במייל לגבי התאמתו של התלמיד לתוכנית. במידה והתקבלה תשובה חיובית, תקבלו קישור מאובטח להרשמה לתוכנית ולביצוע התשלום כרטיס אשראי.'
 }
 
-const Wrapper = styled.div`
-    width: 100%;
-    background-color: ${colors.accent};
-    color: ${colors.textOnAccent};
-    padding: ${spacing.spacing16} 0px;
-`;
-
-const Title = styled.div`
-    text-align: center;
-    font-size: ${fontSize.fontSize32};
-    font-weight: 500;
-`;
-
 const Description = styled.div`
     text-align: center;
-    font-size: ${fontSize.fontSize21};
+    font-size: ${fontSize.fontSize3};
     font-weight: 500;
     display: flex;
     justify-content: center;
@@ -48,43 +36,25 @@ const Description = styled.div`
     }
 `;
 
-const RequestRegistrationButton = styled(Button)`
-    border: none;
-    background: ${colors.accent};
-    color: ${colors.textOnAccent};
-    height: 55px;
-    max-width: 225px;
-    width: 100%;
-    font-size: ${fontSize.fontSize21};
-    font-weight: 500;
-    transition: all 400ms;
-    :hover {
-        opacity: 80%;
-    }
-`;
-
-const RequestRegistrationButtonPanel = styled.div`
-    display: flex;
-    justify-content: center;
-`;
-
 const DescriptionTitle = styled.div`
     display: flex;
     font-weight: 700;
+    font-size: ${fontSize.fontSize3};
     text-align: center;
 `;
 
 const DescriptionContent = styled.div`
     text-align: center;
+    font-size: ${fontSize.fontSize3};
 `;
 
 const RequestRegistration = ({onShowTerms}) => {
     return (
         <Strip id="google">
             <Page nerrow>
-                <Title>
+                <SectionTitle>
                     {caption.TITLE}
-                </Title>
+                </SectionTitle>
                 <Spacer height={spacing.spacing12}/>
                 <Description>
                     {caption.DESC}

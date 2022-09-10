@@ -25,13 +25,13 @@ const FormSection = styled.div``
 const SectionTitle = styled.div``
 
 const Title = styled.div`
-    font-size: ${fontSize.fontSize21};
+    font-size: ${fontSize.fontSize3};
     text-align: center;
     font-weight: 600;
 `
 
 const FormTitle = styled.div`
-    font-size: ${fontSize.fontSize32};
+    font-size: ${fontSize.fontSize5};
     text-align: center;
     font-weight: 600;
 `
@@ -59,6 +59,7 @@ const FileDropPanel = styled.div`
 
 const FileInstructions = styled.div`
     text-align: center;
+    font-size: ${fontSize.fontSize1};
 `
 
 const Error = styled.div`
@@ -78,7 +79,7 @@ const RequestRegistrationButton = styled(Button)`
     height: 55px;
     max-width: 225px;
     width: 100%;
-    font-size: ${fontSize.fontSize21};
+    font-size: ${fontSize.fontSize3};
     font-weight: 500;
     transition: all 400ms;
     align-text: center;
@@ -118,18 +119,18 @@ const SuccessIcon = styled.div`
 
 const SuccessNote = styled.div`
   text-align: center;
-  font-size: ${fontSize.fontSize21};
+  font-size: ${fontSize.fontSize3};
   font-weight: 600;
 `
 
 const SuccessInfo = styled.div`
     text-align: center;
-    font-size: ${fontSize.fontSize21};
+    font-size: ${fontSize.fontSize3};
     font-weight: 400;
 ` 
 
 const TermsCheckbox = styled.div`
-  font-size: ${fontSize.fontSize21};
+  font-size: ${fontSize.fontSize3};
   max-width: 400px;
   right: 0;
   left: 0;
@@ -141,8 +142,8 @@ const TermsCheckbox = styled.div`
 
 const Checkbox = styled.div`
    input {
-    width: 20px;
-    height: 20px;
+    width: 23px;
+    height: 23px;
     cursor: pointer;
    }
    margin-top: 2px;
@@ -264,9 +265,9 @@ const RegistrationForm = ({onShowTerms}) => {
             {!requestSentSuccessfully && (
             <>
                 <FormTitle>
-                    בדיקת התאמה
+                    בדיקת התאמה לתוכנית
                 </FormTitle>     
-                <Spacer height={spacing.spacing12}/>       
+                <Spacer height={spacing.spacing16}/>       
                 <FormSection>                  
                     <SectionTitle>
                         <Title>

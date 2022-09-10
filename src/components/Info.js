@@ -16,7 +16,7 @@ const info = [
     },
     {
         question: "מהו משך התוכנית?",
-        answare: "התוכנית כוללת שבעה מפגשי אונליין המתקיימים אחת לשבוע ב- Zoom, כאשר כל מפגש מורכב משיעור כיתתי (שעתיים) וסדנת תכנות (שעה). בנוסף לאלו, יתקיים מפגש אחד פיזי במשרד הייטק שאורכו ארבע שעות. העבודה על הפרוייקט האישי תתבצע מחוץ לזמן המפגשים."
+        answare: "התוכנית נפרשת על פני שמונה שבועות, כאשר בכל שבוע יתקיים מפגש כיתתי (מקוון) שמשכו שעתיים ומיד אחריו תתקיים סדנת תכנות שמשכה כשעה. בין המפגשים יעבדו התלמידים זה עם זה על הפרוייקט האישי שלהם. בנוסף, אחד מן המפגשים יהיה מפגש ההאקתון אשר יתקיים במשרדים וימשך כארבע שעות."
     },
     {
         question: "מהי עלות המסלול?",
@@ -38,7 +38,7 @@ const InfoBlockWrapper = styled.div`
 `;
 
 const Question = styled.div`
-    font-size: ${fontSize.fontSize32};
+    font-size: ${fontSize.fontSize5};
     color: ${colors.text};
     width: 150px;
     flex-shrink: 0;
@@ -50,7 +50,7 @@ const Question = styled.div`
 `;
 
 const Answare = styled.div`
-    font-size: ${fontSize.fontSize21};
+    font-size: ${fontSize.fontSize3};
     font-weight: 500;
     @media ${device.mobileL} {
         text-align: right;

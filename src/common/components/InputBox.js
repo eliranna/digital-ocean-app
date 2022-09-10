@@ -11,7 +11,7 @@ const InputBox = styled.input`
     border-radius: 8px;
     background: white;
     border: 1px solid gray;
-    font-size: ${fontSize.fontSize21};
+    font-size: ${fontSize.fontSize2};
     font-color: ${colors.text}; 
     padding: 16.5px 14px;
     font-family: ${fonts.main}, sans-serif;

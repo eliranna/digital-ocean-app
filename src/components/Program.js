@@ -8,6 +8,7 @@ import MobileOnly from '../common/components/MobileOnly';
 import NonMobileOnly from '../common/components/NonMobileOnly';
 import Strip from '../common/components/Strip';
 import MobileSpacer from '../common/components/MobileSpacer';
+import SectionTitle from '../common/components/SectionTitle';
 
 const caption = {
     TITLE: "איך לומדים?",
@@ -24,67 +25,10 @@ const caption = {
     PROJECT_ABOUT: "במהלך התוכנית ידרשו התלמידים להקדיש זמן מחוץ למפגשים לעבודה על הפרוייקט האישי תוך הסתייעות זה בזה. הפרוייקט האישי יבנה בהדרגה בהתאם לחומר הנלמד בכל שיעור, וישקף את התכנים שנלמדו בתוכנית, תוך שימת דגש מיוחד על שילובם של הרעיונות ליצירת מערכת תוכנה אחת."
 }
 
-const Wrapper = styled.div`
-    width: 100%:
-    display: flex;
-    justify-content: center; 
-    flex-direction: column;
-    background-color: ${colors.lightGrey};
-`;
-
 const Content = styled.div`
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-`;
-
-const Photo = styled.div`
-    width: 46.44%;
-    flex-shrink: 0;
-    height: 800px;
-    display: flex;
-    flex-direction: column;
-    background-image: url("./assets/company.jpg");
-    background-size: cover;
-    background-repeat: no-repeat;
-`;
-
-const Body = styled.div`
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    flex-direction: column;
-`;
-
-const Info = styled.div`
-    right: 0;
-    left: 0; 
-    margin-left: auto;
-    margin-right: auto;
-`;
-
-const Title = styled.div`
-    font-size: ${fontSize.fontSize32};
-    font-weight: 500;
-    @media ${device.mobileL} {
-        text-align: center;
-    }
-`;
-
-const Description = styled.div`
-    font-size: ${fontSize.fontSize3};
-    font-weight: 500;
-    max-width: 500px;
-`;
-
-const Quote = styled.div`
-    font-size: ${fontSize.fontSize3};
-    font-weight: 600;
-    border-right: 9px solid ${colors.accent};
-    max-width: 500px;
-    color: ${colors.accent};
-    padding-right: ${spacing.spacing6};
-    max-width: ${pageWidth.maxWidthLG};
 `;
 
 const Inner = styled.div`
@@ -128,12 +72,12 @@ const DescriptionBlock = styled.div`
 `;
 
 const DescriptionTitle = styled.div`
-    font-size: ${fontSize.fontSize25};
-    font-weight: 500;
+    font-size: ${fontSize.fontSize4};
+    font-weight: 600;
 `;
 
 const DescriptionContent = styled.div`
-    font-size: ${fontSize.fontSize21};
+    font-size: ${fontSize.fontSize3};
     font-weight: 500;
 `;
 
@@ -150,9 +94,16 @@ const Program = () => {
                 <Inner>
                     <Content>
                         <Pane>
-                            <Title>
-                                {caption.TITLE}
-                            </Title>
+                            <NonMobileOnly>
+                                <SectionTitle right>
+                                    {caption.TITLE}
+                                </SectionTitle>
+                            </NonMobileOnly>
+                            <MobileOnly>
+                                <SectionTitle>
+                                    {caption.TITLE}
+                                </SectionTitle>
+                            </MobileOnly>
                             <MobileOnly>
                                 <SpacerRigid height={spacing.spacing24}/>
                                 <Image>

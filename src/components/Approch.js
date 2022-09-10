@@ -9,6 +9,8 @@ import FeaturesPanel from '../common/components/FeaturePanel';
 import Button from '../common/components/Button';
 import Accordion from '../common/components/Accordion';
 import Strip from '../common/components/Strip';
+import SectionTitle from '../common/components/SectionTitle';
+import MobileSpacer from '../common/components/MobileSpacer';
 
 const features = [
     {
@@ -29,6 +31,44 @@ const features = [
     }
 ]
 
+const topics = {
+    git: {
+        icon: "./assets/git.svg",
+        title: 'סביבת הפיתוח המודרנית',
+        description: "הכרות והתנסות מעמיקה עם הכלים העדכניים והנדרשים ביותר (Bash ,Git) ע״י אגפי המחשוב הצבאיים ותעשיית ההייטק העולמית. תרגול מעשי של תכנות בשפה השימושית ביותר בעולם (Python)."        
+    },
+    python: {
+        icon: "./assets/py.svg",
+        title: 'מפתחים ב- Python',
+        description: "לומדים לפתח בשפת התכנות המבוקשת ביותר בעולם התוכנה. ידיעת השפה תשמש את התלמידים במהלך התוכנית ובכתיבת הפרוייקט האישי, וכמו כן, בהשתלבותם כמפתחים בחברות טכנולוגיה וביחידות הצבאיות."        
+    },
+    coding: {
+        icon: "./assets/coding.svg",
+        title: 'עקרונות של קוד איכותי',
+        description: "לומדים את העקרונות הבסיסיים של קוד נקי ואיכותי. רעיונות כגון כּימוּס (אֶנְקַפְּסוּלַצְיָה), מוֹדוּלָרִיּוּת, עקרון האחריות הבודדת,  ותכנות מונחה עצמים, וכללי אצבע שימושיים כגון KISS, DRY, ו- YAGNI הינם אבני דרך חשובים בתהליך כתיבת קוד מקצועי. כמו כן, נדגיש את ההבדל בין קוד סינכרוני לקוד אָסִינְכְרוֹנִיּ."        
+    },
+    dataStructures: {
+        icon: "./assets/ds.svg",
+        title: 'מבני נתונים',
+        description: "הכרת מבני הנתונים השונים ואת ההבדלים ביניהם הינה מהותית ביותר ליכולתו של מהנדס התוכנה לדון, לתכנן ולפתח אלגוריתמים באיכות גבוהה. אנו שמים דגש על המבנים השימושיים ביותר ועל ההבנה האינטואיטיבית של ההבדלים ביניהם."        
+    },
+    algo: {
+        icon: "./assets/alg.svg",
+        title: 'אלגוריתמים ומושג הסיבוכיות',
+        description: "הכרת אלגוריתמים נפוצים וההבדלים ביניהם הינה שימושית ביותר במלאכת תכנון ופיתוח של תוכנה איכותית. אנו שמים דגש על ההבנה האינטואיטיבית של האלגוריתמים ועל שילובם ליצירת פרוצדורה שלמה. כמו כן, התלמידים יכירו את הרעיון החשוב של סיבוכיות זמן וידעו לאמוד את סיבוכיותן של תוכניות פשוטות."        
+    },
+    databases: {
+        icon: "./assets/database.svg",
+        title: 'מסדי נתונים בענן',
+        description: "נכיר את תפקידו של מסד הנתונים (Database) כחלק מרכזי במערכות תוכנה, את סוגיהם השונים של מסדי הנתונים ואת ההבדלים העיקריים ביניהם. נדגיש את ההבדל בין מסד נתונים לבין זכרון זמן-ריצה. בהמשך, נכיר את הרעיון של ממשק תכנות יישומי (API) ונדגיש את חשיבותו."        
+    },
+    ai: {
+        icon: "./assets/ai.svg",
+        title: 'בינה מלאכותית (AI)',
+        description: "נחשף לרעיון של למידת מכונה (Machine Learning) ועל הדרכים ליישמו בתוכנה. נעמוד על ההבדל בין תוכנה קלאסית לבין תוכנה לומדת."        
+    }
+}
+
 const Wrapper = styled.div`
     display: flex;
     justify-content: center;
@@ -46,13 +86,13 @@ const Card = styled.div`
 
 const Title = styled.div`
     text-align: center;
-    font-size: ${fontSize.fontSize32};
+    font-size: ${fontSize.fontSize5};
     font-weight: 500;
 `;
 
 const Description = styled(Centered)`
     text-align: center;
-    font-size: ${fontSize.fontSize21};
+    font-size: ${fontSize.fontSize3};
     max-width: 500px;
     @media ${device.mobileL} {
         padding-right: ${spacing.spacingPaddingMobile};
@@ -90,8 +130,80 @@ const ToggleButtonPanel = styled.div`
 
 const TopicsPanel = styled.div`
     display: flex;
-    flex-direction: column;   
+    flex-direction: column; 
+    background-color: ${colors.lightGrey}; 
+    padding: ${spacing.spacing24} ${spacing.spacing24};
+    @media ${device.mobileL} {
+        padding-right: ${spacing.spacingPaddingMobile};
+        padding-left: ${spacing.spacingPaddingMobile};
+    }
 `
+const TopicsGrid = styled.div`
+    display: flex;
+    flex-direction: row; 
+    justify-content: space-between;
+    @media ${device.mobileL} {
+        flex-direction: column;
+    }
+`
+
+const TopicWrapper = styled.div`
+    display: flex;
+    flex-direction: column;
+    max-width: 300px;
+    @media ${device.mobileL} {
+        max-width: 100%;
+    }
+`
+
+const TopicIcon = styled.div`
+    display: flex;
+    img {
+        width: 75px;
+    }
+    @media ${device.mobileL} {
+        justify-content: center;
+    }
+`
+
+const TopicTitle = styled.div`
+    font-size: ${fontSize.fontSize3};
+    font-weight: 600;
+    @media ${device.mobileL} {
+        text-align: center;
+    }
+`
+
+const TopicDesc = styled.div`
+    font-size: ${fontSize.fontSize2};
+    font-weight: 500;
+    @media ${device.mobileL} {
+        text-align: center;
+    }
+`
+
+const Column = styled.div`
+    display: flex;
+    flex-direction: column;
+`
+
+const Topic = ({topic}) => {
+    return (
+        <TopicWrapper>
+            <TopicIcon>
+                <img src={topic.icon}/>
+            </TopicIcon>
+            <Spacer height={spacing.spacing2}/>
+            <TopicTitle>
+                <span>{topic.title}</span>
+            </TopicTitle>
+            <Spacer height={spacing.spacing4}/>
+            <TopicDesc>
+                <span>{topic.description}</span>
+            </TopicDesc>
+        </TopicWrapper>
+    )
+}
 
 const Approch = () => {
 
@@ -100,9 +212,9 @@ const Approch = () => {
     return (
         <Strip>
             <Page>
-                <Title>
+                <SectionTitle>
                     מה לומדים?
-                </Title>
+                </SectionTitle>
                 <Spacer height={spacing.spacing12}/>
                 <Description>
                     התוכנית משלבת יסודות של מדעי המחשב, עקרונות של פיתוח תוכנה, מיומנויות תכנות, והכרות עם כלי העבודה העדכניים והנפוצים ביותר לשימוש ע״י חברות ההייטק ויחידות המודיעין של צה״ל תוך שימת דגש מיוחדת על שילובם של הנושאים השונים זה עם זה.
@@ -110,17 +222,31 @@ const Approch = () => {
                 <Spacer height={spacing.spacing24}/>
                 <FeaturesPanel features={features} featureWidth={"30%"}/>
                 <Spacer height={spacing.spacing32}/>
-                <ToggleButtonPanel>
-                    <ToggleButton onClick={() => setTopicsPanelIsOpen(!topicsPanelIsOpen)} isOpen={topicsPanelIsOpen}>
-                        <span>פירוט נושאי הלימוד</span>
-                        <Spacer width={spacing.spacing2}/>
-                        <img src="./assets/arrowdown.svg"/>
-                    </ToggleButton>
-                </ToggleButtonPanel>
                 <TopicsPanel>
-                    <Accordion contentHeight={"200px"} open={topicsPanelIsOpen}>
-                        
-                    </Accordion>
+                    <Title>
+                        פירוט נושאי הלימוד
+                    </Title>
+                    <Spacer height={spacing.spacing24}/>
+                    <TopicsGrid>
+                        <Column>
+                            <Topic topic={topics.git}/>
+                            <Spacer height={spacing.spacing24}/>
+                            <Topic topic={topics.python}/>
+                            <Spacer height={spacing.spacing24}/>
+                            <Topic topic={topics.coding}/>
+                            <Spacer height={spacing.spacing24}/>
+                            <Topic topic={topics.dataStructures}/>
+                        </Column>
+                        <Column>
+                            <MobileSpacer height={spacing.spacing24}/>
+                            <Topic topic={topics.algo}/> 
+                            <Spacer height={spacing.spacing24}/>
+                            <Topic topic={topics.databases}/> 
+                            <Spacer height={spacing.spacing24}/>
+                            <Topic topic={topics.ai}/>                       
+                        </Column>
+
+                    </TopicsGrid>
                 </TopicsPanel>
             </Page>
         </Strip>

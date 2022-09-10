@@ -1,6 +1,6 @@
 import React from 'react'
 import styled from "styled-components/macro"
-import { fontSize, colors, spacing } from '../style';
+import { fontSize, colors, spacing, device } from '../style';
 import Button from './Button';
 import Spacer from './Spacer';
 
@@ -35,6 +35,11 @@ const Pane = styled.div`
     z-index: 999999;
     border-radius: 5px;
     border: none;
+    @media ${device.mobileL} {
+        width: 100%;
+        top: 0;
+        height: 100%;
+    }
 `;
 
 const Content = styled.div`
@@ -44,6 +49,9 @@ const Content = styled.div`
     padding: ${spacing.spacing20};
     padding-bottom: 0px;
     padding-top: 0px;
+    @media ${device.mobileL} {
+        padding: ${spacing.spacing6};
+    }
 `;
 
 const ButtonsBar = styled.div`
@@ -89,8 +97,8 @@ const Modal = ({children, show, onClose}) => {
         <>
         <Screen onClick={onClose}/>
         <Pane>
-            <CloseButtonX onClick={onClose}>
-                <img src={"/assets/close.svg"}/>
+            <CloseButtonX>
+                <img src={"/assets/close.svg"} onClick={onClose}/>
             </CloseButtonX>
             <Content>
                 {children}
