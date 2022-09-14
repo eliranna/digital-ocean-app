@@ -207,7 +207,7 @@ const QuestionIcon = styled.div`
         width: 27px;
         margin-top: ${props => (props.isOpen ? "0px" : "5px")};
         align-self: center;
-        rotate: ${props => (props.isOpen ? "180deg" : "0deg")};
+        transform: ${props => (props.isOpen ? "rotate(180deg)" : null)};
         transition: all 600ms ease-out;
     }
 `;

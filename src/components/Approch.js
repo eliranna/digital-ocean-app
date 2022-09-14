@@ -118,7 +118,7 @@ const ToggleButton = styled(Button)`
         margin-top: ${props => (props.isOpen ? "0px" : "5px")};
         margin-bottom: ${props => (props.isOpen ? "5px" : "0")};
         align-self: center;
-        rotate: ${props => (props.isOpen ? "180deg" : "0deg")};
+        transform: ${props => (props.isOpen ? "rotate(180deg)" : null)};
         transition: all 400ms;
     }
 `;
@@ -160,6 +160,8 @@ const TopicWrapper = styled.div`
 
 const TopicIcon = styled.div`
     display: flex;
+    flex-grow: 0;
+    flex-shrink: 0;
     img {
         width: 75px;
     }
@@ -171,6 +173,8 @@ const TopicIcon = styled.div`
 const TopicTitle = styled.div`
     font-size: ${fontSize.fontSize3};
     font-weight: 600;
+    flex-grow: 0;
+    flex-shrink: 0;
     @media ${device.mobileL} {
         text-align: center;
     }
@@ -179,6 +183,8 @@ const TopicTitle = styled.div`
 const TopicDesc = styled.div`
     font-size: ${fontSize.fontSize2};
     font-weight: 500;
+    flex-grow: 0;
+    flex-shrink: 0;
     @media ${device.mobileL} {
         text-align: center;
     }
@@ -187,6 +193,8 @@ const TopicDesc = styled.div`
 const Column = styled.div`
     display: flex;
     flex-direction: column;
+    flex-grow: 0;
+    flex-shrink: 0;
 `
 
 const Topic = ({topic}) => {
