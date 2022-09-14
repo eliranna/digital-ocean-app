@@ -203,6 +203,7 @@ const Answare = styled.div`
 const QuestionIcon = styled.div`
     display: flex;
     img {
+        display: inline-block;
         width: 27px;
         margin-top: ${props => (props.isOpen ? "0px" : "5px")};
         align-self: center;

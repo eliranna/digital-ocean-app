@@ -113,6 +113,7 @@ const ToggleButton = styled(Button)`
     font-weight: 700;
     height: 35px;
     img {
+        display: inline-block;
         width: 27px;
         margin-top: ${props => (props.isOpen ? "0px" : "5px")};
         margin-bottom: ${props => (props.isOpen ? "5px" : "0")};
@@ -150,6 +151,8 @@ const TopicWrapper = styled.div`
     display: flex;
     flex-direction: column;
     max-width: 300px;
+    flex-grow: 0;
+    flex-shrink: 0;
     @media ${device.mobileL} {
         max-width: 100%;
     }
