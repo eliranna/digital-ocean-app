@@ -197,6 +197,11 @@ const Column = styled.div`
     flex-shrink: 0;
 `
 
+const SpacerRigid = styled(Spacer)`
+    flex-shrink: 0;
+    flex-grow: 0;
+`;
+
 const Topic = ({topic}) => {
     return (
         <TopicWrapper>
@@ -239,24 +244,24 @@ const Approch = () => {
                     </ToggleButton>
                 </ToggleButtonPanel>
                 <Accordion open={topicsPanelIsOpen} contentHeight={"4000px"}>
-                    <Spacer height={spacing.spacing12}/>
+                    <SpacerRigid height={spacing.spacing12}/>
                     <TopicsPanel>
                         <TopicsGrid>
                             <Column>
                                 <Topic topic={topics.git}/>
-                                <Spacer height={spacing.spacing24}/>
+                                <SpacerRigid height={spacing.spacing24}/>
                                 <Topic topic={topics.python}/>
-                                <Spacer height={spacing.spacing24}/>
+                                <SpacerRigid height={spacing.spacing24}/>
                                 <Topic topic={topics.coding}/>
-                                <Spacer height={spacing.spacing24}/>
+                                <SpacerRigid height={spacing.spacing24}/>
                                 <Topic topic={topics.dataStructures}/>
                             </Column>
                             <Column>
                                 <MobileSpacer height={spacing.spacing24}/>
                                 <Topic topic={topics.algo}/> 
-                                <Spacer height={spacing.spacing24}/>
+                                <SpacerRigid height={spacing.spacing24}/>
                                 <Topic topic={topics.databases}/> 
-                                <Spacer height={spacing.spacing24}/>
+                                <SpacerRigid height={spacing.spacing24}/>
                                 <Topic topic={topics.ai}/>                       
                             </Column>
                         </TopicsGrid>
