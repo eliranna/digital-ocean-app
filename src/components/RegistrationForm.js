@@ -11,6 +11,7 @@ import axios from 'axios'
 import api from '../api';
 import MobileSpacer from '../common/components/MobileSpacer';
 import Modal from '../common/components/Modal';
+import Checkbox from '../common/components/Checkbox';
 
 import PlanTerms from './Terms';
 
@@ -127,28 +128,6 @@ const SuccessInfo = styled.div`
     text-align: center;
     font-size: ${fontSize.fontSize3};
     font-weight: 400;
-` 
-
-const TermsCheckbox = styled.div`
-  font-size: ${fontSize.fontSize3};
-  max-width: 400px;
-  right: 0;
-  left: 0;
-  margin-left: auto;
-  margin-right: auto;
-  display: flex;
-
-` 
-
-const Checkbox = styled.div`
-   input {
-    width: 23px;
-    height: 23px;
-    cursor: pointer;
-   }
-   margin-top: 2px;
-   margin-left: 5px;
-
 ` 
 
 const CheckboxCaption = styled.div`
@@ -330,17 +309,11 @@ const RegistrationForm = ({onShowTerms}) => {
                 </FormSection>  
                 <Spacer height={spacing.spacing24}/> 
                 <FormSection>
-                    <TermsCheckbox>
-                        <Checkbox>
-                            <input type="checkbox" onChange={e => setAgreeTerms(e.target.value)}/>
-                        </Checkbox>
+                    <Checkbox onChange={e => setAgreeTerms(e.target.value)}>
                         <CheckboxCaption>
                             אני מאשר כי קראתי את <span onClick={() => setTermsModalIsOpen(true)}>תקנון השימוש</span> ואני מסכים לתנאיו.
-                        </CheckboxCaption>
-                        <Modal show={termsModalIsOpen} onClose={() => setTermsModalIsOpen(false)}>
-                            <PlanTerms/>
-                        </Modal>
-                    </TermsCheckbox>
+                        </CheckboxCaption>    
+                    </Checkbox>
                 </FormSection>
                 <Spacer height={spacing.spacing24}/>
                 <FormSection>

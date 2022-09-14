@@ -5,6 +5,7 @@ import { Route, Routes } from 'react-router-dom';
 import Navbar from './components/Navbar';
 import Homepage from './components/Homepage';
 import Admin from './components/Admin';
+import RegistrationPage from './components/RegistrationPage';
 
 const Wrapper = styled.div`
     display: flex;
@@ -29,8 +30,11 @@ function App() {
     <Routes>
       <Route path="/" element={<LandingPage />}/>
       <Route path="/admin" element={<Admin />}/>
+      <Route path="/registration" element={<RegistrationPage />}/>
     </Routes>
   )
 }
 
 export default App;
+
+

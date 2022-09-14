@@ -5,7 +5,6 @@ import Button from '../common/components/Button';
 import Page from '../common/components/Page';
 import Spacer from '../common/components/Spacer';
 import Strip from '../common/components/Strip';
-import RegistrationScreen from '../components/RegistrationScreen';
 import { colors, spacing, fontSize, device } from '../common/style';
 import RegistrationForm from './RegistrationForm';
 import SectionTitle from '../common/components/SectionTitle';
