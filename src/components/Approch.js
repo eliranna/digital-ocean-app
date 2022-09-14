@@ -162,6 +162,7 @@ const TopicIcon = styled.div`
     display: flex;
     flex-grow: 0;
     flex-shrink: 0;
+    height: 75px;
     img {
         width: 75px;
     }
