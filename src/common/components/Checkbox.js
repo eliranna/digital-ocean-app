@@ -4,7 +4,6 @@ import { fontSize } from '../style';
 
 const CheckboxWrapper = styled.div`
   font-size: ${fontSize.fontSize3};
-  max-width: 400px;
   display: flex;
 
 ` 

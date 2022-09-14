@@ -14,6 +14,9 @@ import Modal from '../common/components/Modal';
 import Checkbox from '../common/components/Checkbox';
 
 import PlanTerms from './Terms';
+import TextArea from '../common/components/TextArea';
+import Terms from './Terms';
+import WebsiteConditions from './WebsiteConditions';
 
 const Wrapper = styled.div`
     padding: ${spacing.spacing16};
@@ -48,7 +51,7 @@ const Row = styled.div`
     }
 `
 const Cell = styled.div`
-    width: 300px;
+    width: ${props => props.single ? '100%' : '300px'};
     @media ${device.mobileL} {
         width: 100%;
     }
@@ -131,14 +134,16 @@ const SuccessInfo = styled.div`
 ` 
 
 const CheckboxCaption = styled.div`
-   span {
-       text-decoration: underline; 
-       cursor: pointer;
-       :hover {
-           opacity: 80%;
-       }
-   }
-` 
+
+`
+
+const Link = styled.span`
+    text-decoration: underline; 
+    cursor: pointer;
+    :hover {
+        opacity: 80%;
+    }
+`
 
 
 async function sendRegistrationForm(formData) {
@@ -172,20 +177,23 @@ function isEmailValid(email) {
 
 const RegistrationForm = ({onShowTerms}) => {
 
-    const [studentFirstName, setStudentFirstName] = useState('רועי');
-    const [studentLastName, setStudentLastName] = useState('נתן');
+    const [studentFirstName, setStudentFirstName] = useState();
+    const [studentLastName, setStudentLastName] = useState();
     const [studentDiploma, setStudentDiploma] = useState();
-    const [requesterFirstName, setRequesterFirstName] = useState('דודי');
-    const [requesterLastName, setRequesterLastName] = useState('אמסלם');
-    const [requesterPhoneNumber, setRequesterPhoneNumber] = useState('0584028332');
-    const [requesterEmail, setRequesterEmail] = useState('eliran.natan.87@gmail.com');
+    const [notes, setNotes] = useState();
+    const [requesterFirstName, setRequesterFirstName] = useState();
+    const [requesterLastName, setRequesterLastName] = useState();
+    const [requesterPhoneNumber, setRequesterPhoneNumber] = useState();
+    const [requesterEmail, setRequesterEmail] = useState();
     const [agreeTerms, setAgreeTerms] = useState(false);
 
     const [invalidForm, setInvalidForm] = useState();
     const [isSending, setIsSending] = useState(false);
     const [requestSentSuccessfully, setRequestSentSuccessfully] = useState(false);
     const [requestFailed, setRequestFailed] = useState(false);
+
     const [termsModalIsOpen, setTermsModalIsOpen] = useState(false);
+    const [websiteConditionsModalIsOpen, setWebsiteConditionsModalIsOpen] = useState(false);
 
     const validateForm = () => {
         if (
@@ -225,6 +233,7 @@ const RegistrationForm = ({onShowTerms}) => {
         data.append('studentDiploma', studentDiploma)
         data.append('studentFirstName', studentFirstName)
         data.append('studentLastName', studentLastName)
+        data.append('notes', notes)
         data.append('requesterFirstName', requesterFirstName)
         data.append('requesterLastName', requesterLastName)
         data.append('requesterPhoneNumber', requesterPhoneNumber)
@@ -273,6 +282,12 @@ const RegistrationForm = ({onShowTerms}) => {
                                 יש לצרף קובץ יחיד בפורמט PDF או קובץ תמונה.
                             </FileInstructions>
                         </FileDropPanel>
+                        <Spacer height={spacing.spacing12}/>
+                        <Row>
+                            <Cell single>
+                                <TextArea type="text" onChange={e => setNotes(e.target.value)} placeholder={"הערות לגבי גיליון הציונים (לא חובה)"} />
+                            </Cell>
+                        </Row>
                     </SectionContent>
                 </FormSection> 
                 <Spacer height={spacing.spacing16}/> 
@@ -311,9 +326,35 @@ const RegistrationForm = ({onShowTerms}) => {
                 <FormSection>
                     <Checkbox onChange={e => setAgreeTerms(e.target.value)}>
                         <CheckboxCaption>
-                            אני מאשר כי קראתי את <span onClick={() => setTermsModalIsOpen(true)}>תקנון השימוש</span> ואני מסכים לתנאיו.
+                            <span>
+                                <span>
+                                    אני מאשר כי קראתי את
+                                </span>
+                                &nbsp;
+                                <span>
+                                    <Link onClick={() => setWebsiteConditionsModalIsOpen(true)}>תקנון השימוש</Link>
+                                </span>
+                                &nbsp;
+                                <span>
+                                    ואת
+                                </span>
+                                &nbsp;
+                                <span>
+                                    <Link onClick={() => setTermsModalIsOpen(true)}>תקנון התוכנית</Link>
+                                </span>
+                                &nbsp;
+                                <span>
+                                    ואני מסכים לתנאיהם.
+                                </span>
+                            </span>
                         </CheckboxCaption>    
                     </Checkbox>
+                    <Modal show={termsModalIsOpen} onClose={() => setTermsModalIsOpen(false)}>
+                        <Terms/>
+                    </Modal>
+                    <Modal show={websiteConditionsModalIsOpen} onClose={() => setWebsiteConditionsModalIsOpen(false)}>
+                        <WebsiteConditions/>
+                    </Modal>
                 </FormSection>
                 <Spacer height={spacing.spacing24}/>
                 <FormSection>

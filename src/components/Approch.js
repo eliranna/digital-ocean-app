@@ -103,7 +103,7 @@ const Description = styled(Centered)`
 const ToggleButton = styled(Button)`
     align-self: center;
     border-radius: 24px;
-    border: 1px solid ${colors.text};
+    border: none;
     color: ${colors.text};
     outline: none;
     background: none;
@@ -116,7 +116,6 @@ const ToggleButton = styled(Button)`
         width: 27px;
         margin-top: ${props => (props.isOpen ? "0px" : "5px")};
         margin-bottom: ${props => (props.isOpen ? "5px" : "0")};
-        //filter: invert(1);
         align-self: center;
         rotate: ${props => (props.isOpen ? "180deg" : "0deg")};
         transition: all 400ms;
@@ -222,32 +221,36 @@ const Approch = () => {
                 <Spacer height={spacing.spacing24}/>
                 <FeaturesPanel features={features} featureWidth={"30%"}/>
                 <Spacer height={spacing.spacing32}/>
-                <TopicsPanel>
-                    <Title>
-                        פירוט נושאי הלימוד
-                    </Title>
-                    <Spacer height={spacing.spacing24}/>
-                    <TopicsGrid>
-                        <Column>
-                            <Topic topic={topics.git}/>
-                            <Spacer height={spacing.spacing24}/>
-                            <Topic topic={topics.python}/>
-                            <Spacer height={spacing.spacing24}/>
-                            <Topic topic={topics.coding}/>
-                            <Spacer height={spacing.spacing24}/>
-                            <Topic topic={topics.dataStructures}/>
-                        </Column>
-                        <Column>
-                            <MobileSpacer height={spacing.spacing24}/>
-                            <Topic topic={topics.algo}/> 
-                            <Spacer height={spacing.spacing24}/>
-                            <Topic topic={topics.databases}/> 
-                            <Spacer height={spacing.spacing24}/>
-                            <Topic topic={topics.ai}/>                       
-                        </Column>
-
-                    </TopicsGrid>
-                </TopicsPanel>
+                <ToggleButtonPanel>
+                    <ToggleButton onClick={() => setTopicsPanelIsOpen(!topicsPanelIsOpen)} isOpen={topicsPanelIsOpen}>
+                        <span>פירוט נושאי הלימוד</span>
+                        <img src="/assets/arrowdown.svg"/>
+                    </ToggleButton>
+                </ToggleButtonPanel>
+                <Accordion open={topicsPanelIsOpen} contentHeight={"4000px"}>
+                    <Spacer height={spacing.spacing12}/>
+                    <TopicsPanel>
+                        <TopicsGrid>
+                            <Column>
+                                <Topic topic={topics.git}/>
+                                <Spacer height={spacing.spacing24}/>
+                                <Topic topic={topics.python}/>
+                                <Spacer height={spacing.spacing24}/>
+                                <Topic topic={topics.coding}/>
+                                <Spacer height={spacing.spacing24}/>
+                                <Topic topic={topics.dataStructures}/>
+                            </Column>
+                            <Column>
+                                <MobileSpacer height={spacing.spacing24}/>
+                                <Topic topic={topics.algo}/> 
+                                <Spacer height={spacing.spacing24}/>
+                                <Topic topic={topics.databases}/> 
+                                <Spacer height={spacing.spacing24}/>
+                                <Topic topic={topics.ai}/>                       
+                            </Column>
+                        </TopicsGrid>
+                    </TopicsPanel>
+                </Accordion>
             </Page>
         </Strip>
     )
