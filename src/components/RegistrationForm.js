@@ -334,17 +334,18 @@ const RegistrationForm = ({onShowTerms}) => {
                                 <span>
                                     <Link onClick={() => setWebsiteConditionsModalIsOpen(true)}>תקנון השימוש</Link>
                                 </span>
+                                {false && <>
+                                    <span>
+                                        ואת
+                                    </span>
+                                    &nbsp;
+                                    <span>
+                                        <Link onClick={() => setTermsModalIsOpen(true)}>תקנון התוכנית</Link>
+                                    </span>
+                                </>}
                                 &nbsp;
                                 <span>
-                                    ואת
-                                </span>
-                                &nbsp;
-                                <span>
-                                    <Link onClick={() => setTermsModalIsOpen(true)}>תקנון התוכנית</Link>
-                                </span>
-                                &nbsp;
-                                <span>
-                                    ואני מסכים לתנאיהם.
+                                    ואני מסכים לתנאיו.
                                 </span>
                             </span>
                         </CheckboxCaption>    

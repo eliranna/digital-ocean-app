@@ -48,10 +48,14 @@ const Footer = () => {
                       תנאי שימוש באתר
                   </span>
                   &nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
-                  <span onClick={() => {setContent(<Terms/>); setIsModalShowen(true)}}>
-                      תקנון התוכנית
-                  </span>
-                  &nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
+                  {false &&
+                    <>
+                        <span onClick={() => {setContent(<Terms/>); setIsModalShowen(true)}}>
+                            תקנון התוכנית
+                        </span>
+                        &nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
+                    </>
+                  }
                   <span>
                       צור קשר
                   </span>

@@ -18,21 +18,18 @@ const courses = [
         id: 1,
         title: "אוקטובר — נובמבר",
         description: "המפגש הראשון יתקיים ביום חמישי, 03 לאוקטובר 2022",
-        priceLabel: "₪8,250",
         freeSpots: 0
     },
     {
         id: 2,
         title: "דצמבר — ינואר",
         description: "המפגש הראשון יתקיים ביום חמישי, 03 לדצמבר 2022",
-        priceLabel: "₪8,250",
         freeSpots: 2
     },
     {
         id: 3,
         title: "פברואר — מרץ",
         description: "המפגש הראשון יתקיים ביום חמישי, 03 לפברואר 2023",
-        priceLabel: "₪8,250",
         freeSpots: 5
     }
 ]

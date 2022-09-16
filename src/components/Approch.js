@@ -35,7 +35,7 @@ const topics = {
     git: {
         icon: "./assets/git.svg",
         title: 'סביבת הפיתוח המודרנית',
-        description: "הכרות והתנסות מעמיקה עם הכלים העדכניים והנדרשים ביותר (Bash ,Git) ע״י אגפי המחשוב הצבאיים ותעשיית ההייטק העולמית. תרגול מעשי של תכנות בשפה השימושית ביותר בעולם (Python)."        
+        description: "הכרות והתנסות מעמיקה עם הכלים העדכניים והנדרשים ביותר (Bash ,Git) ע״י אגפי המחשוב הצבאיים ותעשיית ההייטק העולמית."      
     },
     python: {
         icon: "./assets/py.svg",
@@ -103,13 +103,13 @@ const Description = styled(Centered)`
 const ToggleButton = styled(Button)`
     align-self: center;
     border-radius: 24px;
-    border: none;
+    border: 1px solid ${colors.text};
     color: ${colors.text};
     outline: none;
     background: none;
     display: flex;
     justify-content: center;
-    font-size: ${fontSize.fontSize1};
+    font-size: ${fontSize.fontSize2};
     font-weight: 700;
     height: 35px;
     img {
