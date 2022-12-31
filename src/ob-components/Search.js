@@ -14,6 +14,15 @@ const CAPTION_ALL_CATEGORIES = "בחר קטגוריות";
 const CAPTION_ALL_PRICES = "הכנס תקציב";
 const CAPTION_ALL_LOCATIONS = "חפש יישובים";
 
+const LOCATIONS = [
+    'תל אביב',
+    'ירושלים',
+    'חיפה',
+    'חולון',
+    'חיטו',
+    'ירופי'
+]
+
 const Wrapper = styled.div`
     background-color: #ffffff;
     border: 1px solid #dddddd;
@@ -135,6 +144,7 @@ const Search = () => {
     const [isLocationDialogOpen, openLocationDialog] = useState(false)
     const [selectedLocation, setSelectedLocation] = useState(null)
     const [selectedLocationCaption, setSelectedLocationCaption] = useState(CAPTION_ALL_LOCATIONS)
+    const [locationSuggestions, setLocationSuggestions] = useState([])
 
     const showCategoriesDialog = () => {
         openCategoriesDialog(true)
@@ -157,7 +167,7 @@ const Search = () => {
     }
 
     const closeLocationDialog = () => {
-        openLocationDialog(false)
+        setLocationSuggestions([])
     } 
 
     const computeCategoriesString = (categoriesTitles) => {
@@ -187,8 +197,15 @@ const Search = () => {
         setSelectedPriceCaption(computePriceCaption(value))
     }
 
-    const updateLocationSelection = (value) => {
-        console.log('location changed')
+    const handleLocationSelection = (value) => {
+        closeLocationDialog()
+        setSelectedLocation(value)
+        locationInputRef.current.value = value
+    }
+
+    const getLocationSuggestions = (term) => {
+        const suggestions = LOCATIONS.filter(location => location.startsWith(term)).slice(0, 5);
+        setLocationSuggestions(suggestions)
     }
 
     return (
@@ -227,11 +244,11 @@ const Search = () => {
                         אזור מכירה
                     </CellTitle>
                     <CellValue>
-                        <InvisibleInput ref={locationInputRef} type="text" placeholder={selectedLocationCaption}/>
+                        <InvisibleInput ref={locationInputRef} type="text" placeholder={selectedLocationCaption} onChange={e => getLocationSuggestions(e.target.value)}/>
                     </CellValue>  
                 </CellContent> 
-                <BubblePanel show={isLocationDialogOpen} onClickOutside={closeLocationDialog} width={"431px"}>
-                    <LocationSelectionPanel initialSelectedLocation={selectedLocation} onChange={updateLocationSelection}/>
+                <BubblePanel show={locationSuggestions.length > 0} onClickOutside={closeLocationDialog} width={"350px"}>
+                    <LocationSelectionPanel suggestions={locationSuggestions} onSelect={handleLocationSelection}/>
                 </BubblePanel>
             </Cell>
             <SearchCell>

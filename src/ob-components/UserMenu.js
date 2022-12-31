@@ -27,6 +27,7 @@ const UserAvaterPanel = styled.div`
     img {
         width: 30px;
         height: 30px;
+        filter: opacity(0.5);
     }
 `
 
@@ -39,6 +40,7 @@ const UserMenuPanel = styled.div`
         width: 16px;
         height: 16px;
         stroke-width: 3;
+        filter: opacity(0.8);
     }
 `
 
