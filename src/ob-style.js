@@ -3,7 +3,8 @@ const maxWidth = {
 }
 
 const breakpoints = {
-    desktop: 'min-width: 950px'
+    desktop: 'min-width: 950px',
+    tablet: 'min-width: 745px',
 }
 
 const spacing = {

@@ -2,14 +2,24 @@ import React from 'react'
 import styled from "styled-components/macro"
 
 import { maxWidth, breakpoints } from '../ob-style';
+import {useViewport} from '../ViewportProvider';
+
 import Search from './Search';
+import MobileSearch from './MobileSearch';
 import UserMenu from './UserMenu';
 
-const TopbarWrapper = styled.div`
+const DesktopTopbarWrapper = styled.div`
     width: 100%;
     box-shadow: rgb(0 0 0 / 8%) 0 1px 0;
-    height: 100px;
     z-index: 1;
+    height: 100px;
+`
+
+const MobileTopbarWrapper = styled.div`
+    width: 100%;
+    box-shadow: rgb(0 0 0 / 16%) 0 0 6px;
+    z-index: 1;
+    height: 100px;
 `
 
 const Wrapper = styled.div`
@@ -25,36 +35,73 @@ const Wrapper = styled.div`
     flex-direction: row;
     height: 100%;
     position: relative;
-    width: 100%;
-    padding-inline-end: 80px;
-    padding-inline-start: 80px;
+    width: 100%;       
+    @media (${breakpoints.desktop}) {
+        padding-inline-end: 80px;
+        padding-inline-start: 80px;        
+    }
 `;
 
 const LogoSection = styled.div`
-    @media (${breakpoints.desktop}) {
-        flex: 1 0 140px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    img {
+        width: 55px;
     }
 `
 
 const SearchSection = styled.div`
-    flex: 0 1 auto;
     min-width: 348px;
     padding: 0 24px;
 `
 
 const UserSection = styled.div`
-    flex: 1 0 140px;
     flex-direction: row;
     display: flex;
     justify-content: flex-end;
+    align-items: center;
 `
 
-const Topbar = () => {
+const TabletTopbarWrapper = styled.div`
+    width: 100%;
+    box-shadow: rgb(0 0 0 / 8%) 0 1px 0;
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding-inline-end: 24px;
+    padding-inline-start: 24px; 
+`
 
+const Row = styled.div`
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    padding-bottom: 20px;
+`
+
+const RowUpper = styled.div`
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    height: 70px;
+`
+
+const MobileTopbar = () => {
     return (
-        <TopbarWrapper>
+        <MobileTopbarWrapper>
+            <MobileSearch/>
+        </MobileTopbarWrapper>
+    )
+}
+
+const DesktopTopbar = () => {
+    return (
+        <DesktopTopbarWrapper>
             <Wrapper>
                 <LogoSection>
+                    <img src="/assets/otoboto/logo.svg"/>
                 </LogoSection>   
                 <SearchSection>
                     <Search/>
@@ -63,8 +110,33 @@ const Topbar = () => {
                     <UserMenu/>
                 </UserSection>      
             </Wrapper>
-        </TopbarWrapper>
+        </DesktopTopbarWrapper>
     )
+}
+
+const TabletTopbar = () => {
+    return (
+        <TabletTopbarWrapper>
+            <RowUpper>
+                <LogoSection>
+                    <img src="/assets/otoboto/logo.svg"/>
+                </LogoSection>  
+                <UserSection>
+                    <UserMenu/>
+                </UserSection>   
+            </RowUpper>
+            <Row>
+                <SearchSection>
+                    <Search/>
+                </SearchSection> 
+            </Row>
+        </TabletTopbarWrapper>
+    )
+}
+
+const Topbar = () => {
+    const { isDesktop, isTablet } = useViewport();
+    return isDesktop() ? <DesktopTopbar/> : (isTablet() ? <TabletTopbar/> : <MobileTopbar/>) 
 }
 
 export default Topbar;

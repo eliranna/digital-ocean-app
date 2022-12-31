@@ -2,6 +2,7 @@ import React, {useState, useRef} from 'react'
 import styled from "styled-components/macro"
 
 import { maxWidth, fontSize, spacing } from '../ob-style';
+import {useViewport} from '../ViewportProvider';
 
 import BubblePanel from './BubblePanel';
 import Spacer from './Spacer'
@@ -125,6 +126,23 @@ const InvisibleInput = styled.input`
     padding: 0px;
 `
 
+const BubblePanelInnerPane = styled.div`
+    display: flex;
+    flex-direction: column;
+    text-align: right; 
+`
+
+const BubblePanelTitle = styled.div`
+    font-size: ${fontSize.fontSize1};
+    font-weight: 600;
+`
+
+const BubblePanelDescription = styled.div`
+    font-size: ${fontSize.fontSiz1};
+    font-weight: 400;
+    color: #717171;
+`
+
 const Search = () => {
 
     const MAX_PRICE = 250;
@@ -132,6 +150,7 @@ const Search = () => {
     const DEF_PRICE = 30;
 
     const locationInputRef = useRef(null);
+    const { isDesktop, isTablet } = useViewport();
 
     const [isCategoriesDialogOpen, openCategoriesDialog] = useState(false)
     const [selectedCategoriesIds, setSelectedCategoriesIds] = useState([])
@@ -208,6 +227,11 @@ const Search = () => {
         setLocationSuggestions(suggestions)
     }
 
+    const handleLocationClick = () => {
+        locationInputRef.current.focus()
+        setLocationSuggestions(LOCATIONS.slice(0, 5))
+    }
+
     return (
         <Wrapper>
             <Cell>
@@ -220,7 +244,16 @@ const Search = () => {
                     </CellValue>
                 </CellContent>
                 <BubblePanel show={isCategoriesDialogOpen} onClickOutside={closeCategoriesDialog} width={"431px"}>
-                    <CategoriesSelectionPanel initialSelectedCategories={selectedCategoriesIds} onCategoriesChange={updateCategoriesSelection}/>
+                    <BubblePanelInnerPane>
+                        <BubblePanelTitle>
+                            בחר את קטגוריית הרכב
+                        </BubblePanelTitle>
+                        <Spacer height={spacing.spacing1}/>
+                        <BubblePanelDescription>
+                            ניתן לבחור מספר קטגוריות
+                        </BubblePanelDescription>
+                        <CategoriesSelectionPanel initialSelectedCategories={selectedCategoriesIds} onCategoriesChange={updateCategoriesSelection}/>
+                    </BubblePanelInnerPane>
                 </BubblePanel>
             </Cell>
             <Seperator/>
@@ -239,7 +272,7 @@ const Search = () => {
             </CellWide>
             <Seperator/>
             <Cell>
-                <CellContent onClick={() => locationInputRef.current.focus()}>
+                <CellContent onClick={handleLocationClick}>
                     <CellTitle>
                         אזור מכירה
                     </CellTitle>
@@ -247,7 +280,7 @@ const Search = () => {
                         <InvisibleInput ref={locationInputRef} type="text" placeholder={selectedLocationCaption} onChange={e => getLocationSuggestions(e.target.value)}/>
                     </CellValue>  
                 </CellContent> 
-                <BubblePanel show={locationSuggestions.length > 0} onClickOutside={closeLocationDialog} width={"350px"}>
+                <BubblePanel show={locationSuggestions.length > 0} onClickOutside={closeLocationDialog} width={"350px"} xloc={isTablet() ? ['-149px', '237px'] : null}>
                     <LocationSelectionPanel suggestions={locationSuggestions} onSelect={handleLocationSelection}/>
                 </BubblePanel>
             </Cell>

@@ -97,18 +97,7 @@ const CategoryImage = styled.div`
 `
 
 const CategoryTitle = styled.div`
-
-`
-
-const Title = styled.div`
-    font-size: ${fontSize.fontSize1};
-    font-weight: 600;
-`
-
-const Description = styled.div`
-    font-size: ${fontSize.fontSiz1};
-    font-weight: 400;
-    color: #717171;
+    text-align: center;
 `
 
 const CategoriesSelectionPanel = ({initialSelectedCategories, onCategoriesChange}) => {
@@ -134,26 +123,19 @@ const CategoriesSelectionPanel = ({initialSelectedCategories, onCategoriesChange
 
     return (
         <Wrapper>
-            <Title>
-                בחר את קטגוריית הרכב
-            </Title>
-            <Spacer height={spacing.spacing1}/>
-            <Description>
-                ניתן לבחור מספר קטגוריות
-            </Description>
             <CategoriesTabel>            
-            {categories.sort((a,b) => a.order - b.order).map((category, index) => {
-                return (
-                    <Category key={category.id} onClick={() => toggleCategory(category.id)}>
-                        <CategoryImage>
-                            <img src={isCategorySelected(category.id) ? category.iconChecked : category.icon}/>
-                        </CategoryImage>
-                        <CategoryTitle>
-                            <span>{category.title}</span>
-                        </CategoryTitle>
-                    </Category>
-                )
-            })} 
+                {categories.sort((a,b) => a.order - b.order).map((category, index) => {
+                    return (
+                        <Category key={category.id} onClick={() => toggleCategory(category.id)}>
+                            <CategoryImage>
+                                <img src={isCategorySelected(category.id) ? category.iconChecked : category.icon}/>
+                            </CategoryImage>
+                            <CategoryTitle>
+                                <span>{category.title}</span>
+                            </CategoryTitle>
+                        </Category>
+                    )
+                })} 
             </CategoriesTabel>           
         </Wrapper>
     )
