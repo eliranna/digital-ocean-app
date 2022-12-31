@@ -111,7 +111,7 @@ const Description = styled.div`
     color: #717171;
 `
 
-const CategoriesPanel = ({initialSelectedCategories, onCategoriesChange}) => {
+const CategoriesSelectionPanel = ({initialSelectedCategories, onCategoriesChange}) => {
 
     const [selectedCategories, setSelectedCategories] = useState(initialSelectedCategories)
 
@@ -159,4 +159,4 @@ const CategoriesPanel = ({initialSelectedCategories, onCategoriesChange}) => {
     )
 }
 
-export default CategoriesPanel; 
+export default CategoriesSelectionPanel; 

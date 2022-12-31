@@ -1,15 +1,18 @@
-import React, {useState} from 'react'
+import React, {useState, useRef} from 'react'
 import styled from "styled-components/macro"
 
-import { maxWidth } from '../ob-style';
+import { maxWidth, fontSize, spacing } from '../ob-style';
 
 import BubblePanel from './BubblePanel';
+import Spacer from './Spacer'
 
-import CategoriesPanel from './CategoriesPanel';
+import CategoriesSelectionPanel from './CategoriesSelectionPanel';
 import PriceSelectionPanel from './PriceSelectionPanel';
+import LocationSelectionPanel from './LocationSelectionPanel'
 
-const CAPTION_ALL_CATEGORIES = "כל הרכבים";
-const CAPTION_ALL_PRICES = "כל המחירים";
+const CAPTION_ALL_CATEGORIES = "בחר קטגוריות";
+const CAPTION_ALL_PRICES = "הכנס תקציב";
+const CAPTION_ALL_LOCATIONS = "חפש יישובים";
 
 const Wrapper = styled.div`
     background-color: #ffffff;
@@ -17,7 +20,7 @@ const Wrapper = styled.div`
     border-radius: 40px;
     box-shadow: 0 1px 2px rgb(0 0 0 / 8%), 0 4px 12px rgb(0 0 0 / 5%);
     transition: box-shadow 0.2s ease;
-    height: 48px;
+    height: 66px;
     display: flex;
     justify-content: space-between; 
     :hover {
@@ -39,7 +42,11 @@ const Cell = styled.div`
     display: flex;
     flex-direction: column;
     justify-content: center;
-    min-width: 150px;
+    min-width: 170px;
+`
+
+const CellWide = styled(Cell)`
+    min-width: 200px;
 `
 
 const SearchCell = styled(Cell)`
@@ -59,9 +66,9 @@ const SearchButton = styled.div`
     background-color: #FF385C;
     margin: 7px 0 7px 7px;
     border-radius: 50%;
-    padding: 10px;
-    height: 32px;
-    width: 32px;
+    padding: 16px;
+    height: 48px;
+    width: 48px;
     color: white;
     transition: all 0.2s cubic-bezier(0.35,0,0.65,1);
     :hover {
@@ -70,12 +77,13 @@ const SearchButton = styled.div`
     img {
         display: block;
         fill: none;
-        height: 12px;
-        width: 12px;
+        height: 16px;
+        width: 16px;
         stroke: currentcolor;
-        stroke-width: 5.33333;
+        stroke-width: 4;
         overflow: visible;
         filter: invert(1);
+        line-height: 16px;
     }
 `
 
@@ -84,9 +92,37 @@ const CellContent = styled.div`
     display: flex;
     flex-direction: column;
     justify-content: center;
+    text-align: right;
+    padding-right: 36px;
+`
+
+const CellTitle = styled.div`
+    font-size: ${fontSize.fontSize0};
+    font-weight: 700;
+`
+
+const CellValue = styled.div`
+    font-size: ${fontSize.fontSize1};
+    font-weight: 500;
+    color: ${props => props.empty ? 'gray' : null}
+`
+
+const InvisibleInput = styled.input`
+    width: 100%;
+    border: none;
+    outline: none;
+    font-size: ${fontSize.fontSize1};
+    font-weight: 500;
+    padding: 0px;
 `
 
 const Search = () => {
+
+    const MAX_PRICE = 250;
+    const MIN_PRICE = 5;
+    const DEF_PRICE = 30;
+
+    const locationInputRef = useRef(null);
 
     const [isCategoriesDialogOpen, openCategoriesDialog] = useState(false)
     const [selectedCategoriesIds, setSelectedCategoriesIds] = useState([])
@@ -95,6 +131,10 @@ const Search = () => {
     const [isPriceDialogOpen, openPriceDialog] = useState(false)
     const [selectedPrice, setSelectedPrice] = useState(null)
     const [selectedPriceCaption, setSelectedPriceCaption] = useState(CAPTION_ALL_PRICES)
+
+    const [isLocationDialogOpen, openLocationDialog] = useState(false)
+    const [selectedLocation, setSelectedLocation] = useState(null)
+    const [selectedLocationCaption, setSelectedLocationCaption] = useState(CAPTION_ALL_LOCATIONS)
 
     const showCategoriesDialog = () => {
         openCategoriesDialog(true)
@@ -112,6 +152,14 @@ const Search = () => {
         openPriceDialog(false)
     }
 
+    const showLocationDialog = () => {
+        openLocationDialog(true)
+    }
+
+    const closeLocationDialog = () => {
+        openLocationDialog(false)
+    } 
+
     const computeCategoriesString = (categoriesTitles) => {
         if (categoriesTitles.length === 0) {
             return CAPTION_ALL_CATEGORIES
@@ -123,6 +171,9 @@ const Search = () => {
     }
 
     const computePriceCaption = (price) => {
+        if (price === MAX_PRICE) {
+            return `${price} אלף שקלים ומעלה`
+        }
         return `כ- ${price} אלף שקלים`
     }
 
@@ -136,28 +187,52 @@ const Search = () => {
         setSelectedPriceCaption(computePriceCaption(value))
     }
 
+    const updateLocationSelection = (value) => {
+        console.log('location changed')
+    }
+
     return (
         <Wrapper>
             <Cell>
                 <CellContent onClick={showCategoriesDialog}>
-                    {selectedCategoriesCaption}
+                    <CellTitle>
+                        סוג הרכב
+                    </CellTitle>
+                    <CellValue empty={selectedCategoriesIds.length === 0}>
+                        {selectedCategoriesCaption}
+                    </CellValue>
                 </CellContent>
                 <BubblePanel show={isCategoriesDialogOpen} onClickOutside={closeCategoriesDialog} width={"431px"}>
-                    <CategoriesPanel initialSelectedCategories={selectedCategoriesIds} onCategoriesChange={updateCategoriesSelection}/>
+                    <CategoriesSelectionPanel initialSelectedCategories={selectedCategoriesIds} onCategoriesChange={updateCategoriesSelection}/>
                 </BubblePanel>
             </Cell>
             <Seperator/>
-            <Cell>
+            <CellWide>
                 <CellContent onClick={showPriceDialog}>
-                    {selectedPriceCaption}
+                    <CellTitle>
+                        מחיר משוער
+                    </CellTitle>
+                    <CellValue empty={!selectedPrice}>
+                        {selectedPriceCaption}
+                    </CellValue>                    
                 </CellContent>
                 <BubblePanel show={isPriceDialogOpen} onClickOutside={closePriceDialog} width={"431px"}>
-                    <PriceSelectionPanel initialSelectedPrice={selectedPrice} onPriceChange={updatePriceSelection} onChange={updatePriceSelection}/>
+                    <PriceSelectionPanel maxPrice={MAX_PRICE} minPrice={MIN_PRICE} initialSelectedPrice={selectedPrice} onChange={updatePriceSelection}/>
                 </BubblePanel>
-            </Cell>
+            </CellWide>
             <Seperator/>
             <Cell>
-                מיקום
+                <CellContent onClick={() => locationInputRef.current.focus()}>
+                    <CellTitle>
+                        אזור מכירה
+                    </CellTitle>
+                    <CellValue>
+                        <InvisibleInput ref={locationInputRef} type="text" placeholder={selectedLocationCaption}/>
+                    </CellValue>  
+                </CellContent> 
+                <BubblePanel show={isLocationDialogOpen} onClickOutside={closeLocationDialog} width={"431px"}>
+                    <LocationSelectionPanel initialSelectedLocation={selectedLocation} onChange={updateLocationSelection}/>
+                </BubblePanel>
             </Cell>
             <SearchCell>
                 <SearchButton>

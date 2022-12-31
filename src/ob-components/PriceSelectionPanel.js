@@ -11,11 +11,11 @@ const Wrapper = styled.div`
 `
 
 const RangeSliderPanel = styled.div`
-    margin-bottom: 35px;
+
 `
 
 const ValueDisplay = styled.div`
-    font-size: ${fontSize.fontSize2};
+    font-size: ${fontSize.fontSize1};
     text-align: center;
     font-weight: 600;
 `
@@ -31,13 +31,20 @@ const Description = styled.div`
     color: #717171;
 `
 
-const PriceSelectionPanel = ({initialSelectedPrice, onChange}) => {
+const PriceSelectionPanel = ({initialSelectedPrice, minPrice, maxPrice, onChange}) => {
 
     const [price, setPrice] = useState(initialSelectedPrice || 30)
 
     const updateRange = value => {
         setPrice(value)
         onChange(value)
+    }
+
+    const valueLabelFormat = value => {
+        if (value < 250) {
+            return `${value} אלף שקלים`
+        }
+        return `${value}+ אלף שקלים`
     }
 
     return (
@@ -50,13 +57,13 @@ const PriceSelectionPanel = ({initialSelectedPrice, onChange}) => {
                 נציג בפנייך רק רכבים שמחירם קרוב לתקציבך
             </Description>
             <Spacer height={spacing.spacing10}/>
+            <RangeSliderPanel>
+                <RangeSlider min={minPrice} max={maxPrice} defaultValue={price} valueLabelFormat={valueLabelFormat} onValueChange={e => updateRange(e.target.value)}/>
+            </RangeSliderPanel>
+            <Spacer height={spacing.spacing2}/>
             <ValueDisplay>
                כ- {price} אלף שקלים 
             </ValueDisplay>
-            <Spacer height={spacing.spacing8}/>
-            <RangeSliderPanel>
-                <RangeSlider min={5} max={250} defaultValue={price} valueLabelFormat={x => `${x} אלף שקלים`} onValueChange={e => updateRange(e.target.value)}/>
-            </RangeSliderPanel>
         </Wrapper>
     )
 }
