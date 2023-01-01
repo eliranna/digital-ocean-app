@@ -81,19 +81,24 @@ const Wrapper = styled.div`
     display: flex;
     flex-direction: column;
     text-align: right; 
+    direction: rtl;
 `
 
 const CategoriesTabel = styled.div`
     display: flex;
     flex-wrap: wrap;
+    justify-content: space-between;
 `
 
 const Category = styled.div`
-    margin: 15px;
+    margin-bottom: 30px;
+    margin-left: 15px;
+    width: 60px;
 `
 
 const CategoryImage = styled.div`
-
+    display: flex;
+    justify-content: center;
 `
 
 const CategoryTitle = styled.div`

@@ -8,7 +8,7 @@ import BubblePanel from './BubblePanel';
 import Spacer from './Spacer'
 
 import CategoriesSelectionPanel from './CategoriesSelectionPanel';
-import PriceSelectionPanel from './PriceSelectionPanel';
+import BudgetSelectionPanel from './BudgetSelectionPanel';
 import LocationSelectionPanel from './LocationSelectionPanel'
 
 const CAPTION_ALL_CATEGORIES = "בחר קטגוריות";
@@ -25,6 +25,7 @@ const LOCATIONS = [
 ]
 
 const Wrapper = styled.div`
+    direction: rtl;
     background-color: #ffffff;
     border: 1px solid #dddddd;
     border-radius: 40px;
@@ -135,12 +136,14 @@ const BubblePanelInnerPane = styled.div`
 const BubblePanelTitle = styled.div`
     font-size: ${fontSize.fontSize1};
     font-weight: 600;
+    text-align: right;
 `
 
 const BubblePanelDescription = styled.div`
     font-size: ${fontSize.fontSiz1};
     font-weight: 400;
     color: #717171;
+    text-align: right;
 `
 
 const Search = () => {
@@ -267,7 +270,15 @@ const Search = () => {
                     </CellValue>                    
                 </CellContent>
                 <BubblePanel show={isPriceDialogOpen} onClickOutside={closePriceDialog} width={"431px"}>
-                    <PriceSelectionPanel maxPrice={MAX_PRICE} minPrice={MIN_PRICE} initialSelectedPrice={selectedPrice} onChange={updatePriceSelection}/>
+                    <BubblePanelTitle>
+                        מהו התקציב המשוער?
+                    </BubblePanelTitle>
+                    <Spacer height={spacing.spacing1}/>
+                    <BubblePanelDescription>
+                        נציג בפניכם רק רכבים שמחירם קרוב לתקציבכם
+                    </BubblePanelDescription> 
+                    <Spacer height={spacing.spacing8}/>                   
+                    <BudgetSelectionPanel maxPrice={MAX_PRICE} minPrice={MIN_PRICE} initialSelectedPrice={selectedPrice} onChange={updatePriceSelection}/>
                 </BubblePanel>
             </CellWide>
             <Seperator/>

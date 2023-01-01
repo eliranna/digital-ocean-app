@@ -31,7 +31,7 @@ const Description = styled.div`
     color: #717171;
 `
 
-const PriceSelectionPanel = ({initialSelectedPrice, minPrice, maxPrice, onChange}) => {
+const BudgetSelectionPanel = ({initialSelectedPrice, minPrice, maxPrice, onChange}) => {
 
     const [price, setPrice] = useState(initialSelectedPrice || 30)
 
@@ -49,14 +49,6 @@ const PriceSelectionPanel = ({initialSelectedPrice, minPrice, maxPrice, onChange
 
     return (
         <Wrapper>
-            <Title>
-                תקציבך המשוער
-            </Title>
-            <Spacer height={spacing.spacing1}/>
-            <Description>
-                נציג בפנייך רק רכבים שמחירם קרוב לתקציבך
-            </Description>
-            <Spacer height={spacing.spacing10}/>
             <RangeSliderPanel>
                 <RangeSlider min={minPrice} max={maxPrice} defaultValue={price} valueLabelFormat={valueLabelFormat} onValueChange={e => updateRange(e.target.value)}/>
             </RangeSliderPanel>
@@ -68,4 +60,4 @@ const PriceSelectionPanel = ({initialSelectedPrice, minPrice, maxPrice, onChange
     )
 }
 
-export default PriceSelectionPanel;
+export default BudgetSelectionPanel;

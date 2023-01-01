@@ -13,6 +13,7 @@ const DesktopTopbarWrapper = styled.div`
     box-shadow: rgb(0 0 0 / 8%) 0 1px 0;
     z-index: 1;
     height: 100px;
+    direction: rtl;
 `
 
 const MobileTopbarWrapper = styled.div`
@@ -20,6 +21,7 @@ const MobileTopbarWrapper = styled.div`
     box-shadow: rgb(0 0 0 / 16%) 0 0 6px;
     z-index: 1;
     height: 100px;
+    direction: rtl;
 `
 
 const Wrapper = styled.div`
@@ -72,6 +74,7 @@ const TabletTopbarWrapper = styled.div`
     justify-content: flex-end;
     padding-inline-end: 24px;
     padding-inline-start: 24px; 
+    direction: rtl;
 `
 
 const Row = styled.div`
