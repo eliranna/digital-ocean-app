@@ -11,18 +11,12 @@ import CategoriesSelectionPanel from './CategoriesSelectionPanel';
 import BudgetSelectionPanel from './BudgetSelectionPanel';
 import LocationSelectionPanel from './LocationSelectionPanel'
 
+import {LOCATIONS} from '../locations';
+
 const CAPTION_ALL_CATEGORIES = "בחר קטגוריות";
 const CAPTION_ALL_PRICES = "הכנס תקציב";
 const CAPTION_ALL_LOCATIONS = "חפש יישובים";
 
-const LOCATIONS = [
-    'תל אביב',
-    'ירושלים',
-    'חיפה',
-    'חולון',
-    'חיטו',
-    'ירופי'
-]
 
 const Wrapper = styled.div`
     direction: rtl;

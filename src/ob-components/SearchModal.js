@@ -11,6 +11,8 @@ import MobilePopupPane from './MobilePopupPane'
 import Spacer from './Spacer'
 import LocationSelectionPanel from './LocationSelectionPanel';
 
+import {LOCATIONS} from '../locations';
+
 const Topbar = styled.div`
     padding-bottom: 16px;
 `
@@ -32,7 +34,7 @@ const ArrowBack = styled.div`
 const SelectionSection = styled.div`
     //box-shadow: 0 0 0 1px rgb(0 0 0 / 4%), 0 6px 20px rgb(0 0 0 / 20%);
     border-radius: 24px;
-    padding: 24px;
+    margin-top: 42px;
     transition: max-height 0.5s ease-out;
     direction: rtl;
 `
@@ -144,6 +146,29 @@ const BudgetSelectionPanelPane = styled.div`
     
 `
 
+const LocationInputPane = styled.div`
+    
+`
+
+const LocationInput = styled.input`
+    -webkit-box-align: center !important;
+    flex: 1 1 0% !important;
+    overflow: hidden !important;
+    align-items: center !important;
+    display: flex !important;
+    margin: 0px !important;
+    padding: 0px 20px !important;
+    white-space: nowrap !important;
+    height: 60px !important;
+    border-radius: 12px !important;
+    border: 1px solid rgb(176, 176, 176) !important;
+    background: rgb(255, 255, 255) !important;
+    color: rgb(34, 34, 34) !important;
+    font-size: 14px;
+    font-weight: 600;
+    width: 100%;
+`
+
 const StageIndicator = styled.div`
     width: 50px;
     height: 50px;
@@ -158,20 +183,32 @@ const StageIndicator = styled.div`
     cursor: pointer;
     img {
         width: 25px;
+        margin-right: 3px;
+        margin-top: 4px;
     }
 `
 
 const SearchModal = ({isOpen, onClose}) => {
 
+    const locationInputRef = useRef(null);
+
     const [stage, setStage] = useState(2)
-    const [locationSuggestions, setLocationSuggestions] = useState([])
+    const [locationSuggestions, setLocationSuggestions] = useState(LOCATIONS.slice(0,5))
+    const [selectedLocation, setSelectedLocation] = useState(null)
 
     const onTouchStart = (e) => {
         e.stopPropagation()
     }
 
     const handleLocationSelection = (value) => {
+        setSelectedLocation(value)
+        locationInputRef.current.value = value
+        setLocationSuggestions([])
+    }
 
+    const getLocationSuggestions = (term) => {
+        const suggestions = LOCATIONS.filter(location => location.startsWith(term)).slice(0, 5);
+        setLocationSuggestions(suggestions)
     }
 
     return (
@@ -188,7 +225,7 @@ const SearchModal = ({isOpen, onClose}) => {
                       renderIndicator={(onClickHandler, isSelected, index, label) => {
                         return (
                           <StageIndicator
-                            style={{}}
+                            style={{border: isSelected ? '2px solid #FF385C' : 'none'}}
                             onClick={onClickHandler}
                             onKeyDown={onClickHandler}
                             value={index}
@@ -206,26 +243,29 @@ const SearchModal = ({isOpen, onClose}) => {
                     <CategoriesSelectionSection>
                         <SelectionSectionBody>
                             <SectionTitle>
-                                מה המיקום?
+                                היכן תרצו לחפש?
                             </SectionTitle>
                             <Spacer height={spacing.spacing1}/>
                             <SectionDescription>
-                                ניתן לבחור מספר קטגוריות
+                                נציג בפניכם רכבים שאזור מכירתם קרוב אליכם
                             </SectionDescription> 
-                            <Spacer height={spacing.spacing4}/>               
-                            <LocationSelectionPanel suggestions={locationSuggestions} onSelect={handleLocationSelection}/>
+                            <Spacer height={spacing.spacing8}/> 
+                            <LocationInputPane>
+                                <LocationInput ref={locationInputRef} type="text" placeholder={"חפשו יישובים"} onChange={e => getLocationSuggestions(e.target.value)}/>
+                            </LocationInputPane>              
+                            <LocationSelectionPanel suggestions={locationSuggestions} onSelect={handleLocationSelection} />
                         </SelectionSectionBody>
                     </CategoriesSelectionSection>
                     <CategoriesSelectionSection>
                         <SelectionSectionBody>
                             <SectionTitle>
-                                מה התקציב?
+                                מהו תקציבכם המשוער?
                             </SectionTitle>
                             <Spacer height={spacing.spacing1}/>
                             <SectionDescription>
                                 ניתן לבחור מספר קטגוריות
                             </SectionDescription> 
-                            <Spacer height={spacing.spacing4}/>    
+                            <Spacer height={spacing.spacing8}/>    
                             <BudgetSelectionPanelPane onTouchStart={onTouchStart}>
                                 <BudgetSelectionPanel initialSelectedPrice={30} minPrice={5} maxPrice={250} onChange={()=>{}}/>
                             </BudgetSelectionPanelPane>
@@ -240,7 +280,7 @@ const SearchModal = ({isOpen, onClose}) => {
                             <SectionDescription>
                                 ניתן לבחור מספר קטגוריות
                             </SectionDescription> 
-                            <Spacer height={spacing.spacing4}/>               
+                            <Spacer height={spacing.spacing8}/>               
                             <CategoriesSelectionPanel initialSelectedCategories={[]} onCategoriesChange={() => {}}/>
                         </SelectionSectionBody>
                     </CategoriesSelectionSection>  
