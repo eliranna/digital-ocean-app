@@ -145,7 +145,13 @@ const SearchButton = styled(FullButton)`
 `
 
 const BudgetSelectionPanelPane = styled.div`
-    
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-right: 60px;
+    margin-left: 60px;
 `
 
 const LocationInputPane = styled.div`
@@ -244,18 +250,18 @@ const stages = [
     }
 ]
 
-const SearchModal = ({isOpen, onClose, onSearch}) => {
+const SearchModal = ({isOpen, searchParams, onClose, onSearch}) => {
 
     const locationInputRef = useRef(null);
 
     const [stage, setStage] = useState(2)
 
-    const [selectedCategories, setSelectedCategories] = useState([])
-    const [selectedBudget, setSelectedBudget] = useState(null)
+    const [selectedCategories, setSelectedCategories] = useState(searchParams && searchParams.categories || [])
+    const [selectedBudget, setSelectedBudget] = useState(searchParams && searchParams.budget)
+    const [selectedLocation, setSelectedLocation] = useState(searchParams && searchParams.location)
 
     const [locationSuggestions, setLocationSuggestions] = useState(LOCATIONS.slice(0,5))
-    const [selectedLocation, setSelectedLocation] = useState(null)
-
+    
     const onTouchStart = (e) => {
         e.stopPropagation()
     }
@@ -315,7 +321,7 @@ const SearchModal = ({isOpen, onClose, onSearch}) => {
                             </SectionDescription> 
                             <Spacer height={spacing.spacing8}/>    
                             <BudgetSelectionPanelPane onTouchStart={onTouchStart}>
-                                <BudgetSelectionPanel initialSelectedPrice={30} minPrice={5} maxPrice={250} onChange={(value)=>{setSelectedBudget(value)}}/>
+                                <BudgetSelectionPanel budget={selectedBudget} minPrice={5} maxPrice={250} onChange={(value)=>{setSelectedBudget(value)}}/>
                             </BudgetSelectionPanelPane>
                         </SelectionSectionBody>
                     </CategoriesSelectionSection>
@@ -329,7 +335,7 @@ const SearchModal = ({isOpen, onClose, onSearch}) => {
                                 ניתן לבחור מספר קטגוריות
                             </SectionDescription> 
                             <Spacer height={spacing.spacing8}/>               
-                            <CategoriesSelectionPanel initialSelectedCategories={[]} onCategoriesChange={(selectedCategories) => {setSelectedCategories(selectedCategories)}}/>
+                            <CategoriesSelectionPanel initialSelectedCategories={selectedCategories} onCategoriesChange={(selectedCategories) => {setSelectedCategories(selectedCategories)}}/>
                         </SelectionSectionBody>
                     </CategoriesSelectionSection>  
                 </Carousel>            

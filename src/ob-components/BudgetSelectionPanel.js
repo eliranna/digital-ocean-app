@@ -8,6 +8,7 @@ import Spacer from './Spacer'
 
 const Wrapper = styled.div`
     text-align: right;
+    width: 100%;
 `
 
 const RangeSliderPanel = styled.div`
@@ -18,6 +19,7 @@ const ValueDisplay = styled.div`
     font-size: ${fontSize.fontSize1};
     text-align: center;
     font-weight: 600;
+    user-select: none;
 `
 
 const Title = styled.div`
@@ -31,14 +33,24 @@ const Description = styled.div`
     color: #717171;
 `
 
-const BudgetSelectionPanel = ({initialSelectedPrice, minPrice, maxPrice, onChange}) => {
+const ClearButton = styled.div`
+    visibility: ${props => props.visible ? 'visible' : 'hidden'};
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    text-decoration: underline;
+`
 
-    const [price, setPrice] = useState(initialSelectedPrice || 30)
+const Comment = styled.div`
+    color: #717171;
+`
 
-    const updateRange = value => {
-        setPrice(value)
-        onChange(value)
-    }
+const BudgetSelectionPanel = ({budget, minPrice, maxPrice, onChange}) => {
+
+    const [clickedOnClear, setClickedOnClear] = useState(false)
 
     const valueLabelFormat = value => {
         if (value < 250) {
@@ -47,14 +59,30 @@ const BudgetSelectionPanel = ({initialSelectedPrice, minPrice, maxPrice, onChang
         return `${value}+ אלף שקלים`
     }
 
+    const computeBudgetCaption = value => {
+        if (value === 250) {
+            return `250 אלף ש״ח ומעלה`
+        } else {
+            return `כ- ${value} אלף שקלים`
+        }
+    }
+
+    const handleClear = () => {
+        setClickedOnClear(true)
+        onChange(null)
+    }
+
     return (
         <Wrapper>
             <RangeSliderPanel>
-                <RangeSlider min={minPrice} max={maxPrice} defaultValue={price} valueLabelFormat={valueLabelFormat} onValueChange={e => updateRange(e.target.value)}/>
+                <RangeSlider min={minPrice} max={maxPrice} value={budget} valueLabelFormat={valueLabelFormat} onValueChange={e => onChange(e.target.value)}/>
             </RangeSliderPanel>
-            <Spacer height={spacing.spacing2}/>
+            <Spacer height={spacing.spacing4}/>
             <ValueDisplay>
-               כ- {price} אלף שקלים 
+                <Spacer height={spacing.spacing3}/>
+                {budget ? computeBudgetCaption(budget) : (clickedOnClear ? <Comment>נציג בפניכם רכבים בכל התקציבים</Comment> : null)}
+                <Spacer height={spacing.spacing2}/>
+                <ClearButton visible={budget && 'visible'} onClick={handleClear}>נקה</ClearButton>
             </ValueDisplay>
         </Wrapper>
     )

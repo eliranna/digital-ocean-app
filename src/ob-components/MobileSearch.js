@@ -56,7 +56,8 @@ const FiltersButton = styled.div`
 const SearchBoxInput = styled.div`
     display: flex;
     flex-direction: column;
-    justify-content: center;  
+    justify-content: center;
+    width: 100%;  
 `
 
 const SearchIcon = styled.div`
@@ -76,6 +77,10 @@ const SearchIcon = styled.div`
 const SearchBoxInputMainCaption = styled.div`
     font-size: 14px;
     font-weight: 700;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+    width: 180px; 
 
 `
 
@@ -83,13 +88,17 @@ const SearchBoxInputDescCaption = styled.div`
     font-size: 14px;
     color: #717171;
     font-weight: 600;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+    width: 180px; 
 `
 
 
-const MobileSearch = ({onSearch}) => {
+const MobileSearch = ({initialSearchParams, onSearch}) => {
 
     const [isSearchModalOpen, openSearchModal] = useState(false)
-    const [searchParams, setSearchParams] = useState(null)
+    const [searchParams, setSearchParams] = useState(initialSearchParams)
 
     const handleSearch = searchParams => {
         openSearchModal(false)
@@ -98,15 +107,21 @@ const MobileSearch = ({onSearch}) => {
     }
 
     const composeSearchCategoriesCaption = categories => {
-        return categories.length === 0 ? 'כל סוגי הרכבים' : categories.map(category => category.title).join(', ');
+        if (categories.length === 0) {
+            return 'כל סוגי הרכבים';
+        } else if (categories.length > 2) {
+            return `${categories[0].title} ועוד ${categories.length-1} קטגוריות`;
+        } else {
+            return categories.map(category => category.title).join(', ');
+        }
     }
 
     const composeSearchBudgetAndLocationCaption = (budget, location) => {
         let around; 
         let price;
-        if (!location) {around = 'בכל הארץ'} else {around = `באזור ${location}`}
-        if (!budget) {price = 'בכל תקציב'} else {price = `בסביבות ${budget} אלף שקלים`}
-        return `${price} ו${around}`;
+        if (!location) {around = 'בכל הארץ'} else {around = `סביב ${location}`}
+        if (!budget) {price = 'בכל תקציב'} else {price = `כ- ${budget} אלף שקלים`}
+        return `${price}, ${around}`;
     }
 
     return (
@@ -129,7 +144,7 @@ const MobileSearch = ({onSearch}) => {
                     </FiltersButton>
                 </FiltersCell>
             </SearchBox>
-            <SearchModal isOpen={isSearchModalOpen} onClose={() => openSearchModal(false)} onSearch={handleSearch}/>
+            <SearchModal isOpen={isSearchModalOpen} searchParams={searchParams} onClose={() => openSearchModal(false)} onSearch={handleSearch}/>
         </Wrapper>
     )
 

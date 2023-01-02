@@ -140,6 +140,13 @@ const BubblePanelDescription = styled.div`
     text-align: right;
 `
 
+const BudgetSelectionPanelPane = styled.div`
+    padding-right: 48px;
+    padding-left: 48px;
+    display: flex;
+    justify-content: center;
+`
+
 const Search = () => {
 
     const MAX_PRICE = 250;
@@ -197,6 +204,9 @@ const Search = () => {
     }
 
     const computePriceCaption = (price) => {
+        if (!price) {
+            return 'הכנס תקציב'
+        }
         if (price === MAX_PRICE) {
             return `${price} אלף שקלים ומעלה`
         }
@@ -271,8 +281,10 @@ const Search = () => {
                     <BubblePanelDescription>
                         נציג בפניכם רק רכבים שמחירם קרוב לתקציבכם
                     </BubblePanelDescription> 
-                    <Spacer height={spacing.spacing8}/>                   
-                    <BudgetSelectionPanel maxPrice={MAX_PRICE} minPrice={MIN_PRICE} initialSelectedPrice={selectedPrice} onChange={updatePriceSelection}/>
+                    <Spacer height={spacing.spacing8}/>
+                    <BudgetSelectionPanelPane>
+                        <BudgetSelectionPanel maxPrice={MAX_PRICE} minPrice={MIN_PRICE} budget={selectedPrice} onChange={updatePriceSelection}/>
+                    </BudgetSelectionPanelPane>                   
                 </BubblePanel>
             </CellWide>
             <Seperator/>

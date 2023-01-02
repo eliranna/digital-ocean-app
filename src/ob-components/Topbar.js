@@ -91,15 +91,11 @@ const RowUpper = styled.div`
     height: 70px;
 `
 
-const MobileTopbar = () => {
-
-    const handleSearch = searchParams => {
-        console.log('search', searchParams)
-    }
+const MobileTopbar = ({searchParams, onSearch}) => {
 
     return (
         <MobileTopbarWrapper>
-            <MobileSearch onSearch={handleSearch}/>
+            <MobileSearch initialSearchParams={searchParams} onSearch={onSearch}/>
         </MobileTopbarWrapper>
     )
 }
@@ -142,9 +138,15 @@ const TabletTopbar = () => {
     )
 }
 
-const Topbar = () => {
+const Topbar = ({searchParams}) => {
+
     const { isDesktop, isTablet } = useViewport();
-    return isDesktop() ? <DesktopTopbar/> : (isTablet() ? <TabletTopbar/> : <MobileTopbar/>) 
+
+    const handleSearch = (searchParams) => {
+        console.log(searchParams)
+    }
+
+    return isDesktop() ? <DesktopTopbar/> : (isTablet() ? <TabletTopbar/> : <MobileTopbar searchParams={searchParams} onSearch={handleSearch}/>) 
 }
 
 export default Topbar;
