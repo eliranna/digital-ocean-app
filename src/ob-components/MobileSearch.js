@@ -98,11 +98,15 @@ const MobileSearch = ({onSearch}) => {
     }
 
     const composeSearchCategoriesCaption = categories => {
-        return categories.map(category => category.title).join(', ')
+        return categories.length === 0 ? 'כל סוגי הרכבים' : categories.map(category => category.title).join(', ');
     }
 
     const composeSearchBudgetAndLocationCaption = (budget, location) => {
-        return `בסביבות ${budget} אלף שקלים ובאזור ${location}`
+        let around; 
+        let price;
+        if (!location) {around = 'בכל הארץ'} else {around = `באזור ${location}`}
+        if (!budget) {price = 'בכל תקציב'} else {price = `בסביבות ${budget} אלף שקלים`}
+        return `${price} ו${around}`;
     }
 
     return (

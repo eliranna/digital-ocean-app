@@ -56,11 +56,13 @@ const BudgetSelectionSection = styled(SelectionSection)`
 const SectionTitle = styled.div`
     font-size: 22px;
     font-weight: 700;
+    user-select: none;
 `
 
 const SectionDescription = styled.div`
     color: #717171;
     font-weight: 500;
+    user-select: none;
 `
 
 const Content = styled.div`
@@ -150,6 +152,17 @@ const LocationInputPane = styled.div`
     
 `
 
+const StageIndicatorWrapper = styled.div`
+    display: flex;
+    flex-direction: column;
+`
+
+const StageIndicatorLabel = styled.div`
+    font-size: 12px;
+    font-weight: 600;
+    color: #717171;
+`
+
 const LocationInput = styled.input`
     -webkit-box-align: center !important;
     flex: 1 1 0% !important;
@@ -175,18 +188,61 @@ const StageIndicator = styled.div`
     border-radius: 100%;
     margin-right: 15px;
     margin-left: 15px;
-    box-shadow: 0 0 0 1px rgb(0 0 0 / 4%), 0 6px 20px rgb(0 0 0 / 20%);
+    //box-shadow: 0 0 0 1px rgb(0 0 0 / 4%), 0 6px 20px rgb(0 0 0 / 20%);
+    border: 1px solid #dddddd;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     cursor: pointer;
     img {
-        width: 25px;
+        width: 30px;
+        height: 30px;
         margin-right: 3px;
         margin-top: 4px;
     }
 `
+
+const StageIndicatorWithIcon = ({label, icon, onClickHandler, isSelected, index}) => {
+    return (
+        <StageIndicatorWrapper>
+            <StageIndicator
+            style={{border: isSelected ? '2px solid #FF385C' : '1px solid #dddddd'}}
+            onClick={onClickHandler}
+            onKeyDown={onClickHandler}
+            value={index}
+            key={index}
+            role="button"
+            tabIndex={0}
+            aria-label={`${label} ${index + 1}`}
+            >
+            <img src={icon}/>
+            </StageIndicator>
+            <Spacer height={spacing.spacing2}/>
+            <StageIndicatorLabel>
+                {label}
+            </StageIndicatorLabel>
+        </StageIndicatorWrapper>
+      );
+}
+
+const stages = [
+    {
+        label: 'קטגוריה',
+        icon: '/assets/otoboto/logo.svg',
+        index: 2
+    },
+    {
+        label: 'תקציב',
+        icon: '/assets/otoboto/shekel.svg',
+        index: 1
+    },
+    {
+        label: 'מיקום',
+        icon: '/assets/otoboto/location.svg',
+        index: 0
+    }
+]
 
 const SearchModal = ({isOpen, onClose, onSearch}) => {
 
@@ -229,22 +285,8 @@ const SearchModal = ({isOpen, onClose, onSearch}) => {
                       swipeable={false}
                       onChange={(index) => setStage(index)}
                       renderIndicator={(onClickHandler, isSelected, index, label) => {
-                        return (
-                          <StageIndicator
-                            style={{border: isSelected ? '2px solid #FF385C' : 'none'}}
-                            onClick={onClickHandler}
-                            onKeyDown={onClickHandler}
-                            value={index}
-                            key={index}
-                            role="button"
-                            tabIndex={0}
-                            aria-label={`${label} ${index + 1}`}
-                          >
-                            {index === 2 && (<img src="/assets/otoboto/logo.svg"/>)}
-                            {index === 1 && (<img src="/assets/otoboto/shekel.svg"/>)}
-                            {index === 0 && (<img src="/assets/otoboto/location.svg"/>)}
-                          </StageIndicator>
-                        );
+                        let stage = stages.find(stage => stage.index === index);
+                        return <StageIndicatorWithIcon onClickHandler={onClickHandler} isSelected={isSelected} index={index} label={stage.label} icon={stage.icon}/>
                       }}>
                     <CategoriesSelectionSection>
                         <SelectionSectionBody>
