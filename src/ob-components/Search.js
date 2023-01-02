@@ -76,14 +76,17 @@ const SearchButton = styled.div`
     width: 48px;
     color: white;
     transition: all 0.2s cubic-bezier(0.35,0,0.65,1);
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    display: flex;
     :hover {
         background-color: #E00B41;
     }
     img {
         display: block;
         fill: none;
-        height: 16px;
-        width: 16px;
+        width: 25px;
         stroke: currentcolor;
         stroke-width: 4;
         overflow: visible;

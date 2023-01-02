@@ -26,7 +26,7 @@ const useViewport = () => {
   const { width, height } = React.useContext(viewportContext);
   const isDesktop = () => width >= 950;
   const isTablet = () => !isDesktop() && width >= 745;
-  const isMobile = () => !isDesktop && !isTablet;
+  const isMobile = () => !isDesktop() && !isTablet();
   return { isDesktop, isTablet, isMobile };
 };
 

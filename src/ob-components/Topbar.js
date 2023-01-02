@@ -1,12 +1,13 @@
 import React from 'react'
 import styled from "styled-components/macro"
 
-import { maxWidth, breakpoints } from '../ob-style';
+import { maxWidth, padding } from '../ob-style';
 import {useViewport} from '../ViewportProvider';
 
 import Search from './Search';
 import MobileSearch from './MobileSearch';
 import UserMenu from './UserMenu';
+import { Link } from 'react-router-dom';
 
 const DesktopTopbarWrapper = styled.div`
     width: 100%;
@@ -24,8 +25,8 @@ const MobileTopbarWrapper = styled.div`
     direction: rtl;
 `
 
-const Wrapper = styled.div`
-    max-width: ${maxWidth.xxLarge};
+const DesktopWrapper = styled.div`
+    max-width: ${maxWidth.page};
     width: 100%;
     right: 0;
     left: 0;
@@ -36,12 +37,9 @@ const Wrapper = styled.div`
     display: flex;
     flex-direction: row;
     height: 100%;
-    position: relative;
-    width: 100%;       
-    @media (${breakpoints.desktop}) {
-        padding-inline-end: 80px;
-        padding-inline-start: 80px;        
-    }
+    position: relative;      
+    padding-inline-end: ${padding.pageDesktop};
+    padding-inline-start: ${padding.pageDesktop}; 
 `;
 
 const LogoSection = styled.div`
@@ -72,8 +70,8 @@ const TabletTopbarWrapper = styled.div`
     display: flex;
     flex-direction: column;
     justify-content: flex-end;
-    padding-inline-end: 24px;
-    padding-inline-start: 24px; 
+    padding-inline-end: ${padding.pageTablet};
+    padding-inline-start: ${padding.pageTablet}; 
     direction: rtl;
 `
 
@@ -89,9 +87,15 @@ const RowUpper = styled.div`
     flex-direction: row;
     justify-content: space-between;
     height: 70px;
+    a {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
 `
 
-const MobileTopbar = ({searchParams, onSearch}) => {
+const MobileTopbar = ({allowSearch, searchParams, onSearch}) => {
 
     return (
         <MobileTopbarWrapper>
@@ -100,45 +104,53 @@ const MobileTopbar = ({searchParams, onSearch}) => {
     )
 }
 
-const DesktopTopbar = () => {
+const LogoComponent = () => {
+    return (
+        <Link to={'/'}>
+            <LogoSection>
+                <img src="/assets/otoboto/logo.svg"/>
+            </LogoSection>  
+        </Link>       
+    )
+}
+
+const DesktopTopbar = ({allowSearch}) => {
     return (
         <DesktopTopbarWrapper>
-            <Wrapper>
-                <LogoSection>
-                    <img src="/assets/otoboto/logo.svg"/>
-                </LogoSection>   
+            <DesktopWrapper>
+                <LogoComponent/>
                 <SearchSection>
-                    <Search/>
+                    {allowSearch && (<Search/>)}
                 </SearchSection> 
                 <UserSection>
                     <UserMenu/>
                 </UserSection>      
-            </Wrapper>
+            </DesktopWrapper>
         </DesktopTopbarWrapper>
     )
 }
 
-const TabletTopbar = () => {
+const TabletTopbar = ({allowSearch}) => {
     return (
         <TabletTopbarWrapper>
             <RowUpper>
-                <LogoSection>
-                    <img src="/assets/otoboto/logo.svg"/>
-                </LogoSection>  
+                <LogoComponent/> 
                 <UserSection>
                     <UserMenu/>
                 </UserSection>   
             </RowUpper>
-            <Row>
-                <SearchSection>
-                    <Search/>
-                </SearchSection> 
-            </Row>
+            {allowSearch && (
+                <Row>
+                    <SearchSection>
+                        <Search/>
+                    </SearchSection> 
+                </Row>
+            )}
         </TabletTopbarWrapper>
     )
 }
 
-const Topbar = ({searchParams}) => {
+const Topbar = ({searchParams, allowSearch, showTopbarOnMobile}) => {
 
     const { isDesktop, isTablet } = useViewport();
 
@@ -146,7 +158,7 @@ const Topbar = ({searchParams}) => {
         console.log(searchParams)
     }
 
-    return isDesktop() ? <DesktopTopbar/> : (isTablet() ? <TabletTopbar/> : <MobileTopbar searchParams={searchParams} onSearch={handleSearch}/>) 
+    return isDesktop() ? <DesktopTopbar allowSearch={allowSearch}/> : (isTablet() ? <TabletTopbar allowSearch={allowSearch}/> : (showTopbarOnMobile && <MobileTopbar allowSearch={allowSearch} searchParams={searchParams} onSearch={handleSearch}/>)) 
 }
 
 export default Topbar;
