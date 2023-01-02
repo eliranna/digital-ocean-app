@@ -164,7 +164,7 @@ const LocationInput = styled.input`
     border: 1px solid rgb(176, 176, 176) !important;
     background: rgb(255, 255, 255) !important;
     color: rgb(34, 34, 34) !important;
-    font-size: 14px;
+    font-size: 16px;
     font-weight: 600;
     width: 100%;
 `
@@ -221,6 +221,8 @@ const SearchModal = ({isOpen, onClose}) => {
                       showArrows={false}
                       showStatus={false}
                       selectedItem={stage}
+                      swipeScrollTolerance={50}
+                      swipeable={false}
                       onChange={(index) => setStage(index)}
                       renderIndicator={(onClickHandler, isSelected, index, label) => {
                         return (
