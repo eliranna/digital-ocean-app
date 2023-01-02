@@ -6,6 +6,9 @@ import SearchModal from './SearchModal'
 import { maxWidth, fontSize, spacing } from '../ob-style';
 import {useViewport} from '../ViewportProvider';
 
+const SEARCH_INPUT_MAIN_CAPTION = 'חפשו רכבים'
+const SEARCH_INPUT_DESC_CAPTION = 'בחרו קטגוריה, תקציב ואזור מכירה'
+
 const Wrapper = styled.div`
     width: 100%;
     padding: 14px 24px 0 24px;
@@ -83,9 +86,24 @@ const SearchBoxInputDescCaption = styled.div`
 `
 
 
-const MobileSearch = () => {
+const MobileSearch = ({onSearch}) => {
 
     const [isSearchModalOpen, openSearchModal] = useState(false)
+    const [searchParams, setSearchParams] = useState(null)
+
+    const handleSearch = searchParams => {
+        openSearchModal(false)
+        setSearchParams(searchParams)
+        onSearch(searchParams)
+    }
+
+    const composeSearchCategoriesCaption = categories => {
+        return categories.map(category => category.title).join(', ')
+    }
+
+    const composeSearchBudgetAndLocationCaption = (budget, location) => {
+        return `בסביבות ${budget} אלף שקלים ובאזור ${location}`
+    }
 
     return (
         <Wrapper>
@@ -95,10 +113,10 @@ const MobileSearch = () => {
                 </SearchIcon>
                 <SearchBoxInput>
                     <SearchBoxInputMainCaption>
-                        חפשו רכב
+                        {searchParams ? composeSearchCategoriesCaption(searchParams.categories) : SEARCH_INPUT_MAIN_CAPTION}
                     </SearchBoxInputMainCaption>
                     <SearchBoxInputDescCaption>
-                        בחרו קטגוריה, תקציב ואזור מכירה
+                        {searchParams ? composeSearchBudgetAndLocationCaption(searchParams.budget, searchParams.location) : SEARCH_INPUT_DESC_CAPTION}
                     </SearchBoxInputDescCaption>
                 </SearchBoxInput>
                 <FiltersCell>
@@ -107,7 +125,7 @@ const MobileSearch = () => {
                     </FiltersButton>
                 </FiltersCell>
             </SearchBox>
-            <SearchModal isOpen={isSearchModalOpen} onClose={() => openSearchModal(false)}/>
+            <SearchModal isOpen={isSearchModalOpen} onClose={() => openSearchModal(false)} onSearch={handleSearch}/>
         </Wrapper>
     )
 

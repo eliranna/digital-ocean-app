@@ -188,11 +188,15 @@ const StageIndicator = styled.div`
     }
 `
 
-const SearchModal = ({isOpen, onClose}) => {
+const SearchModal = ({isOpen, onClose, onSearch}) => {
 
     const locationInputRef = useRef(null);
 
     const [stage, setStage] = useState(2)
+
+    const [selectedCategories, setSelectedCategories] = useState([])
+    const [selectedBudget, setSelectedBudget] = useState(null)
+
     const [locationSuggestions, setLocationSuggestions] = useState(LOCATIONS.slice(0,5))
     const [selectedLocation, setSelectedLocation] = useState(null)
 
@@ -269,7 +273,7 @@ const SearchModal = ({isOpen, onClose}) => {
                             </SectionDescription> 
                             <Spacer height={spacing.spacing8}/>    
                             <BudgetSelectionPanelPane onTouchStart={onTouchStart}>
-                                <BudgetSelectionPanel initialSelectedPrice={30} minPrice={5} maxPrice={250} onChange={()=>{}}/>
+                                <BudgetSelectionPanel initialSelectedPrice={30} minPrice={5} maxPrice={250} onChange={(value)=>{setSelectedBudget(value)}}/>
                             </BudgetSelectionPanelPane>
                         </SelectionSectionBody>
                     </CategoriesSelectionSection>
@@ -283,7 +287,7 @@ const SearchModal = ({isOpen, onClose}) => {
                                 ניתן לבחור מספר קטגוריות
                             </SectionDescription> 
                             <Spacer height={spacing.spacing8}/>               
-                            <CategoriesSelectionPanel initialSelectedCategories={[]} onCategoriesChange={() => {}}/>
+                            <CategoriesSelectionPanel initialSelectedCategories={[]} onCategoriesChange={(selectedCategories) => {setSelectedCategories(selectedCategories)}}/>
                         </SelectionSectionBody>
                     </CategoriesSelectionSection>  
                 </Carousel>            
@@ -298,7 +302,7 @@ const SearchModal = ({isOpen, onClose}) => {
                     </NextButton>
                 )}
                 {(stage==0) && (
-                    <SearchButton>
+                    <SearchButton onClick={() => onSearch({categories: selectedCategories, budget: selectedBudget, location: selectedLocation})}>
                         חפש
                     </SearchButton>
                 )}                

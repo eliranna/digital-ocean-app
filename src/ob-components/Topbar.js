@@ -92,9 +92,14 @@ const RowUpper = styled.div`
 `
 
 const MobileTopbar = () => {
+
+    const handleSearch = searchParams => {
+        console.log('search', searchParams)
+    }
+
     return (
         <MobileTopbarWrapper>
-            <MobileSearch/>
+            <MobileSearch onSearch={handleSearch}/>
         </MobileTopbarWrapper>
     )
 }
