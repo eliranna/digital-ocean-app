@@ -6,7 +6,7 @@ import Page from '../ob-components/Page'
 const Explore = () => {
     return (
         <Page>
-            Explore Page          
+                
         </Page>
     )
 }

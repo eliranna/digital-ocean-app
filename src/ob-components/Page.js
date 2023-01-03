@@ -8,7 +8,7 @@ const Wrapper = styled.div`
     max-width: ${maxWidth.page};
     margin-left: auto;
     margin-right: auto;
-    padding: 0px ${props => props.isTablet ? padding.pageTablet : (props.isMobile ? padding.pageMobile : padding.pageDesktop)};
+    padding: 32px ${props => props.isTablet ? padding.pageTablet : (props.isMobile ? padding.pageMobile : padding.pageDesktop)};
 `;
 
 const Page = ({children}) => {

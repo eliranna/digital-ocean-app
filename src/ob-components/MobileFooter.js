@@ -43,6 +43,7 @@ const NavItem = styled.div`
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    user-select: none;
     a {
         text-decoration: none;
     }
@@ -89,12 +90,14 @@ const MobileFooter = ({}) => {
                 </Link>
             </NavItem>
             <NavItem>
-                <NavItemIcon>
-                    <img src="/assets/otoboto/profile.svg"/>
-                </NavItemIcon>
-                <NavItemTitle>
-                    פרופיל
-                </NavItemTitle>
+                <Link to={'/profile'}>
+                    <NavItemIcon>
+                        <img src="/assets/otoboto/profile.svg"/>
+                    </NavItemIcon>
+                    <NavItemTitle>
+                        פרופיל
+                    </NavItemTitle>
+                </Link>
             </NavItem>
         </Wrapper>
     ) : null;

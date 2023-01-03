@@ -94,6 +94,7 @@ const Category = styled.div`
     margin-bottom: 30px;
     margin-left: 15px;
     width: 60px;
+    cursor: pointer;
 `
 
 const CategoryImage = styled.div`

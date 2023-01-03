@@ -6,7 +6,7 @@ import Page from '../ob-components/Page'
 const Liked = () => {
     return (
         <Page>
-            liked page            
+            
         </Page>
     )
 }

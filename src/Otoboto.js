@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import { Route, Routes } from 'react-router-dom';
 import styled from "styled-components/macro"
 import { useLocation } from 'react-router-dom'
@@ -10,6 +10,7 @@ import MobileFooter from './ob-components/MobileFooter';
 
 import Explore from './ob-pages/Explore'
 import Liked from './ob-pages/Liked';
+import Profile from './ob-pages/Profile';
 
 const Wrapper = styled.div``
 
@@ -18,6 +19,8 @@ function Otoboto() {
   const location = useLocation();
   const isInSearchMode = location.pathname === '/';
 
+  const [user, setUser] = useState(null)
+
   return (
     <ViewportProvider>
       <Wrapper>
@@ -25,6 +28,7 @@ function Otoboto() {
           <Routes>
               <Route path="/" element={<Explore />}/>
               <Route path="/liked" element={<Liked />}/>
+              <Route path="/profile" element={<Profile user={user}/>}/>
           </Routes>
           <MobileFooter/>
       </Wrapper>

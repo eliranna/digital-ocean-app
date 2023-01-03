@@ -1,11 +1,12 @@
-import React from 'react'
+import React, {useState} from 'react'
 import styled from "styled-components/macro"
 
 import { maxWidth, breakpoints } from '../ob-style';
+import BubblePanel from './BubblePanel';
+import Login from './Login';
 
 const Wrapper = styled.div`
     background: transparent;
-    cursor: pointer;
     margin: 0;
     text-align: inherit;
     background-color: #ffffff;
@@ -44,16 +45,32 @@ const UserMenuPanel = styled.div`
     }
 `
 
+const UserMenuButton = styled.div`
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 100%;
+    cursor: pointer;
+`
+
+
 const UserMenu = () => {
+
+    const [isUserMenuOpen, openUserMenu] = useState(false)
 
     return (
         <Wrapper>
-            <UserMenuPanel>
-                <img src="/assets/otoboto/menu.svg"/>
-            </UserMenuPanel>
-            <UserAvaterPanel>
-                <img src="/assets/otoboto/user.svg"/>
-            </UserAvaterPanel>
+            <UserMenuButton onClick={() => openUserMenu(true)}>
+                <UserMenuPanel>
+                    <img src="/assets/otoboto/menu.svg"/>
+                </UserMenuPanel>
+                <UserAvaterPanel>
+                    <img src="/assets/otoboto/user.svg"/>
+                </UserAvaterPanel>
+            </UserMenuButton>
+            <BubblePanel show={isUserMenuOpen} width={"300px"} xloc={['38px','68px']} left={true} onClickOutside={() => openUserMenu(false)}>
+                <Login/>
+            </BubblePanel>
         </Wrapper>
     )
 }

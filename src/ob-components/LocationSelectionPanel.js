@@ -16,6 +16,7 @@ const Location = styled.div`
     flex-direction: column;
     justify-content: center;
     padding: 8px 24px 8px 32px;
+    cursor: pointer;
     :hover {
         background-color: rgb(247,247,247);
         border-color: rgb(247,247,247);
