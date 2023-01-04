@@ -109,7 +109,7 @@ const userSection = (
     </UserSection> 
 )
 
-const Topbar = ({searchParams, onSearchParamsUpdate, onSearch, allowSearch}) => {
+const Topbar = ({searchParams, onSearchParamsUpdate, onSearch, allowSearch, isVisibleOnMobile}) => {
 
     const { isDesktop, isTablet } = useViewport();
 
@@ -143,7 +143,7 @@ const Topbar = ({searchParams, onSearchParamsUpdate, onSearch, allowSearch}) => 
                 </Row>
             )}
         </TabletTopbarWrapper>   
-    ) : (
+    ) : isVisibleOnMobile && (
         <MobileTopbarWrapper>
             <MobileSearch {...props}/>
         </MobileTopbarWrapper>
