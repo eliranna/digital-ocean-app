@@ -75,12 +75,12 @@ const BudgetSelectionPanel = ({budget, minPrice, maxPrice, onChange}) => {
     return (
         <Wrapper>
             <RangeSliderPanel>
-                <RangeSlider min={minPrice} max={maxPrice} value={budget} valueLabelFormat={valueLabelFormat} onValueChange={e => onChange(e.target.value)}/>
+                <RangeSlider min={minPrice || 5} max={maxPrice || 250} value={budget || 5} valueLabelFormat={valueLabelFormat} onValueChange={e => onChange(e.target.value)}/>
             </RangeSliderPanel>
             <Spacer height={spacing.spacing4}/>
             <ValueDisplay>
                 <Spacer height={spacing.spacing3}/>
-                {budget ? computeBudgetCaption(budget) : (clickedOnClear ? <Comment>נציג בפניכם רכבים בכל התקציבים</Comment> : null)}
+                {budget ? computeBudgetCaption(budget) : (clickedOnClear ? <Comment>נציג בפניכם רכבים מכל המחירים</Comment> : null)}
                 <Spacer height={spacing.spacing2}/>
                 <ClearButton visible={budget && 'visible'} onClick={handleClear}>נקה</ClearButton>
             </ValueDisplay>

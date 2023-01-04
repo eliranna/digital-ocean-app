@@ -1,4 +1,4 @@
-import React, {useState, useRef} from 'react'
+import React, {useState, useRef, useEffect} from 'react'
 import styled from "styled-components/macro"
 
 import { maxWidth, fontSize, spacing } from '../ob-style';
@@ -11,7 +11,8 @@ import CategoriesSelectionPanel from './CategoriesSelectionPanel';
 import BudgetSelectionPanel from './BudgetSelectionPanel';
 import LocationSelectionPanel from './LocationSelectionPanel'
 
-import {LOCATIONS} from '../locations';
+import { LOCATIONS } from '../locations';
+import { CATEGORIES } from '../categories';
 
 const CAPTION_ALL_CATEGORIES = "בחר קטגוריות";
 const CAPTION_ALL_PRICES = "הכנס תקציב";
@@ -150,27 +151,19 @@ const BudgetSelectionPanelPane = styled.div`
     justify-content: center;
 `
 
-const Search = () => {
-
-    const MAX_PRICE = 250;
-    const MIN_PRICE = 5;
-    const DEF_PRICE = 30;
+const DesktopSearch = ({searchParams, onSearchParamsUpdate, onSearch}) => {
 
     const locationInputRef = useRef(null);
-    const { isDesktop, isTablet } = useViewport();
+    const { isTablet } = useViewport();
 
     const [isCategoriesDialogOpen, openCategoriesDialog] = useState(false)
-    const [selectedCategoriesIds, setSelectedCategoriesIds] = useState([])
-    const [selectedCategoriesCaption, setSelectedCategoriesCaption] = useState(CAPTION_ALL_CATEGORIES)
-
     const [isPriceDialogOpen, openPriceDialog] = useState(false)
-    const [selectedPrice, setSelectedPrice] = useState(null)
-    const [selectedPriceCaption, setSelectedPriceCaption] = useState(CAPTION_ALL_PRICES)
-
-    const [isLocationDialogOpen, openLocationDialog] = useState(false)
-    const [selectedLocation, setSelectedLocation] = useState(null)
-    const [selectedLocationCaption, setSelectedLocationCaption] = useState(CAPTION_ALL_LOCATIONS)
     const [locationSuggestions, setLocationSuggestions] = useState([])
+    const [locationInputValue, setLocationInputValue] = useState(searchParams?.location || "")
+
+    useEffect(() => {
+        setLocationInputValue(searchParams?.location || "")
+    }, [searchParams])
 
     const showCategoriesDialog = () => {
         openCategoriesDialog(true)
@@ -188,15 +181,12 @@ const Search = () => {
         openPriceDialog(false)
     }
 
-    const showLocationDialog = () => {
-        openLocationDialog(true)
-    }
-
     const closeLocationDialog = () => {
         setLocationSuggestions([])
     } 
 
-    const computeCategoriesString = (categoriesTitles) => {
+    const computeCategoriesString = (categories) => {
+        const categoriesTitles = CATEGORIES.filter(category => categories.indexOf(category.id) != -1).map(category => category.title);
         if (categoriesTitles.length === 0) {
             return CAPTION_ALL_CATEGORIES
         } else if (categoriesTitles.length === 1) {
@@ -206,30 +196,28 @@ const Search = () => {
         }
     }
 
-    const computePriceCaption = (price) => {
+    const computeBudgetCaption = (price) => {
         if (!price) {
             return 'הכנס תקציב'
         }
-        if (price === MAX_PRICE) {
+        if (price === 250) {
             return `${price} אלף שקלים ומעלה`
         }
         return `כ- ${price} אלף שקלים`
     }
 
     const updateCategoriesSelection = (categories) => {
-        setSelectedCategoriesIds(categories.map(category => category.id))
-        setSelectedCategoriesCaption(computeCategoriesString(categories.map(category => category.title)))
+        onSearchParamsUpdate({...searchParams, categories})
     }
 
-    const updatePriceSelection = (value) => {
-        setSelectedPrice(value)
-        setSelectedPriceCaption(computePriceCaption(value))
+    const updateBudgetSelection = (budget) => {
+        onSearchParamsUpdate({...searchParams, budget})
     }
 
-    const handleLocationSelection = (value) => {
+    const handleLocationSelection = (location) => {
         closeLocationDialog()
-        setSelectedLocation(value)
-        locationInputRef.current.value = value
+        onSearchParamsUpdate({...searchParams, location})
+        setLocationInputValue(location)
     }
 
     const getLocationSuggestions = (term) => {
@@ -249,8 +237,8 @@ const Search = () => {
                     <CellTitle>
                         סוג הרכב
                     </CellTitle>
-                    <CellValue empty={selectedCategoriesIds.length === 0}>
-                        {selectedCategoriesCaption}
+                    <CellValue empty={!searchParams?.categories || searchParams?.categories.length === 0}>
+                        {computeCategoriesString(searchParams?.categories || [])}
                     </CellValue>
                 </CellContent>
                 <BubblePanel show={isCategoriesDialogOpen} onClickOutside={closeCategoriesDialog} width={"431px"}>
@@ -262,7 +250,7 @@ const Search = () => {
                         <BubblePanelDescription>
                             ניתן לבחור מספר קטגוריות
                         </BubblePanelDescription>
-                        <CategoriesSelectionPanel initialSelectedCategories={selectedCategoriesIds} onCategoriesChange={updateCategoriesSelection}/>
+                        <CategoriesSelectionPanel initialSelectedCategories={searchParams?.categories} onCategoriesChange={updateCategoriesSelection}/>
                     </BubblePanelInnerPane>
                 </BubblePanel>
             </Cell>
@@ -272,8 +260,8 @@ const Search = () => {
                     <CellTitle>
                         מחיר משוער
                     </CellTitle>
-                    <CellValue empty={!selectedPrice}>
-                        {selectedPriceCaption}
+                    <CellValue empty={!searchParams?.budget}>
+                        {computeBudgetCaption(searchParams?.budget)}
                     </CellValue>                    
                 </CellContent>
                 <BubblePanel show={isPriceDialogOpen} onClickOutside={closePriceDialog} width={"431px"}>
@@ -286,7 +274,7 @@ const Search = () => {
                     </BubblePanelDescription> 
                     <Spacer height={spacing.spacing8}/>
                     <BudgetSelectionPanelPane>
-                        <BudgetSelectionPanel maxPrice={MAX_PRICE} minPrice={MIN_PRICE} budget={selectedPrice} onChange={updatePriceSelection}/>
+                        <BudgetSelectionPanel budget={searchParams?.budget} onChange={updateBudgetSelection}/>
                     </BudgetSelectionPanelPane>                   
                 </BubblePanel>
             </CellWide>
@@ -297,7 +285,7 @@ const Search = () => {
                         אזור מכירה
                     </CellTitle>
                     <CellValue>
-                        <InvisibleInput ref={locationInputRef} type="text" placeholder={selectedLocationCaption} onChange={e => getLocationSuggestions(e.target.value)}/>
+                        <InvisibleInput ref={locationInputRef} type="text" value={locationInputValue} placeholder={CAPTION_ALL_LOCATIONS} onChange={e => {setLocationInputValue(e.target.value); getLocationSuggestions(e.target.value)}}/>
                     </CellValue>  
                 </CellContent> 
                 <BubblePanel show={locationSuggestions.length > 0} onClickOutside={closeLocationDialog} width={"350px"} xloc={isTablet() ? ['-149px', '237px'] : null}>
@@ -305,7 +293,7 @@ const Search = () => {
                 </BubblePanel>
             </Cell>
             <SearchCell>
-                <SearchButton>
+                <SearchButton onClick={onSearch}>
                     <img src="/assets/otoboto/search.svg"/>
                 </SearchButton>
             </SearchCell>
@@ -313,4 +301,4 @@ const Search = () => {
     )
 }
 
-export default Search;
+export default DesktopSearch;

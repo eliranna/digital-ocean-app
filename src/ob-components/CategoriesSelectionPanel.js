@@ -2,80 +2,7 @@ import React, {useState, useEffect} from 'react'
 import styled from "styled-components/macro"
 import {fontSize, spacing} from '../ob-style'
 import Spacer from './Spacer'
-
-const categoriesIconsPath = '/assets/otoboto/categories'
-const categories = [
-    {
-        id: 1,
-        title: 'קטנים',
-        icon: `${categoriesIconsPath}/1.svg`,
-        iconChecked: `${categoriesIconsPath}/1-checked.svg`,
-        order: 1
-    },
-    {
-        id: 2,
-        title: 'משפחתיים',
-        icon: `${categoriesIconsPath}/2.svg`,
-        iconChecked: `${categoriesIconsPath}/2-checked.svg`,
-        order: 2
-    },
-    {
-        id: 3,
-        title: 'מנהלים',
-        icon: `${categoriesIconsPath}/3.svg`,
-        iconChecked: `${categoriesIconsPath}/3-checked.svg`,
-        order: 4
-    },
-    {
-        id: 4,
-        title: 'ספורטיביים',
-        icon: `${categoriesIconsPath}/4.svg`,
-        iconChecked: `${categoriesIconsPath}/4-checked.svg`,
-        order: 5
-    },
-    {
-        id: 5,
-        title: 'ג׳יפים',
-        icon: `${categoriesIconsPath}/5.svg`,
-        iconChecked: `${categoriesIconsPath}/5-checked.svg`,
-        order: 7
-    },
-    {
-        id: 6,
-        title: 'טנדרים',
-        icon: `${categoriesIconsPath}/6.svg`,
-        iconChecked: `${categoriesIconsPath}/6-checked.svg`,
-        order: 10
-    },
-    {
-        id: 7,
-        title: 'מסחריים',
-        icon: `${categoriesIconsPath}/7.svg`,
-        iconChecked: `${categoriesIconsPath}/7-checked.svg`,
-        order: 9
-    },
-    {
-        id: 8,
-        title: 'יוקרה',
-        icon: `${categoriesIconsPath}/8.svg`,
-        iconChecked: `${categoriesIconsPath}/8-checked.svg`,
-        order: 6
-    },
-    {
-        id: 9,
-        title: 'מיניוואנים',
-        icon: `${categoriesIconsPath}/9.svg`,
-        iconChecked: `${categoriesIconsPath}/9-checked.svg`,
-        order: 8
-    },
-    {
-        id: 10,
-        title: 'קרוסאוברים',
-        icon: `${categoriesIconsPath}/10.svg`,
-        iconChecked: `${categoriesIconsPath}/10-checked.svg`,
-        order: 3
-    }
-]
+import {CATEGORIES} from '../categories'
 
 const Wrapper = styled.div`
     display: flex;
@@ -108,11 +35,11 @@ const CategoryTitle = styled.div`
 
 const CategoriesSelectionPanel = ({initialSelectedCategories, onCategoriesChange}) => {
 
-    const [selectedCategories, setSelectedCategories] = useState(initialSelectedCategories)
+    const [selectedCategories, setSelectedCategories] = useState(initialSelectedCategories || [])
 
     useEffect(() => {
-        const selectedCategoriesList = categories.filter(category => selectedCategories.indexOf(category.id) !== -1)
-        onCategoriesChange(selectedCategoriesList)
+        const selectedCategoriesList = CATEGORIES.filter(category => selectedCategories.indexOf(category.id) !== -1)
+        onCategoriesChange(selectedCategoriesList.map(item => item.id))
     }, [selectedCategories])
 
     const toggleCategory = (id) => {
@@ -130,7 +57,7 @@ const CategoriesSelectionPanel = ({initialSelectedCategories, onCategoriesChange
     return (
         <Wrapper>
             <CategoriesTabel>            
-                {categories.sort((a,b) => a.order - b.order).map((category, index) => {
+                {CATEGORIES.sort((a,b) => a.order - b.order).map((category, index) => {
                     return (
                         <Category key={category.id} onClick={() => toggleCategory(category.id)}>
                             <CategoryImage>

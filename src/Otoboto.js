@@ -20,11 +20,16 @@ function Otoboto() {
   const isInSearchMode = location.pathname === '/';
 
   const [user, setUser] = useState(null)
+  const [searchParams, setSearchParams] = useState(null)
+
+  const handleSearch = () => {
+    console.log(searchParams)
+  }
 
   return (
     <ViewportProvider>
       <Wrapper>
-          <Topbar allowSearch={isInSearchMode} showTopbarOnMobile={isInSearchMode}/>
+          <Topbar allowSearch={isInSearchMode} searchParams={searchParams} onSearchParamsUpdate={searchParams => setSearchParams(searchParams)} onSearch={handleSearch}/>
           <Routes>
               <Route path="/" element={<Explore />}/>
               <Route path="/liked" element={<Liked />}/>

@@ -1,4 +1,4 @@
-import React, {useState, useRef} from 'react'
+import React, {useState, useRef, useEffect} from 'react'
 import styled from "styled-components/macro"
 import {Carousel} from 'react-responsive-carousel';
 import "react-responsive-carousel/lib/styles/carousel.min.css";
@@ -250,31 +250,39 @@ const stages = [
     }
 ]
 
-const SearchModal = ({isOpen, searchParams, onClose, onSearch}) => {
+const SearchModal = ({isOpen, searchParams, onSearchParamsUpdate, onClose, onSearch}) => {
 
-    const locationInputRef = useRef(null);
+    const locationInputRef = useRef(null)
 
     const [stage, setStage] = useState(2)
-
-    const [selectedCategories, setSelectedCategories] = useState(searchParams && searchParams.categories || [])
-    const [selectedBudget, setSelectedBudget] = useState(searchParams && searchParams.budget)
-    const [selectedLocation, setSelectedLocation] = useState(searchParams && searchParams.location)
-
     const [locationSuggestions, setLocationSuggestions] = useState(LOCATIONS.slice(0,5))
+    const [locationInputValue, setLocationInputValue] = useState(searchParams?.location || "")
+
+    useEffect(() => {
+        setStage(2)
+    },[isOpen])
+
+    useEffect(() => {
+        setLocationInputValue(searchParams?.location || "")
+    }, [searchParams])
     
     const onTouchStart = (e) => {
         e.stopPropagation()
     }
 
     const handleLocationSelection = (value) => {
-        setSelectedLocation(value)
-        locationInputRef.current.value = value
+        updateInputValue(value)
         setLocationSuggestions([])
+        onSearchParamsUpdate({...searchParams, location: value})
     }
 
     const getLocationSuggestions = (term) => {
         const suggestions = LOCATIONS.filter(location => location.startsWith(term)).slice(0, 5);
         setLocationSuggestions(suggestions)
+    }
+
+    const updateInputValue = (value) => {
+        setLocationInputValue(value)
     }
 
     return (
@@ -286,6 +294,7 @@ const SearchModal = ({isOpen, searchParams, onClose, onSearch}) => {
                 <Carousel
                       showArrows={false}
                       showStatus={false}
+                      showThumbs={false}
                       selectedItem={stage}
                       swipeScrollTolerance={50}
                       swipeable={false}
@@ -305,7 +314,7 @@ const SearchModal = ({isOpen, searchParams, onClose, onSearch}) => {
                             </SectionDescription> 
                             <Spacer height={spacing.spacing8}/> 
                             <LocationInputPane>
-                                <LocationInput ref={locationInputRef} type="text" placeholder={"חפשו יישובים"} onChange={e => getLocationSuggestions(e.target.value)}/>
+                                <LocationInput type="text" ref={locationInputRef} value={locationInputValue} placeholder={"חפשו יישובים"} onChange={(e)=>{updateInputValue(e.target.value); getLocationSuggestions(e.target.value)}}/>
                             </LocationInputPane>              
                             <LocationSelectionPanel suggestions={locationSuggestions} onSelect={handleLocationSelection} />
                         </SelectionSectionBody>
@@ -321,7 +330,7 @@ const SearchModal = ({isOpen, searchParams, onClose, onSearch}) => {
                             </SectionDescription> 
                             <Spacer height={spacing.spacing8}/>    
                             <BudgetSelectionPanelPane onTouchStart={onTouchStart}>
-                                <BudgetSelectionPanel budget={selectedBudget} minPrice={5} maxPrice={250} onChange={(value)=>{setSelectedBudget(value)}}/>
+                                <BudgetSelectionPanel budget={searchParams?.budget} onChange={(value)=>{onSearchParamsUpdate({...searchParams, budget: value})}}/>
                             </BudgetSelectionPanelPane>
                         </SelectionSectionBody>
                     </CategoriesSelectionSection>
@@ -335,7 +344,7 @@ const SearchModal = ({isOpen, searchParams, onClose, onSearch}) => {
                                 ניתן לבחור מספר קטגוריות
                             </SectionDescription> 
                             <Spacer height={spacing.spacing8}/>               
-                            <CategoriesSelectionPanel initialSelectedCategories={selectedCategories} onCategoriesChange={(selectedCategories) => {setSelectedCategories(selectedCategories)}}/>
+                            <CategoriesSelectionPanel initialSelectedCategories={searchParams?.categories} onCategoriesChange={(selectedCategories) => {onSearchParamsUpdate({...searchParams, categories:selectedCategories})}}/>
                         </SelectionSectionBody>
                     </CategoriesSelectionSection>  
                 </Carousel>            
@@ -350,7 +359,7 @@ const SearchModal = ({isOpen, searchParams, onClose, onSearch}) => {
                     </NextButton>
                 )}
                 {(stage==0) && (
-                    <SearchButton onClick={() => onSearch({categories: selectedCategories, budget: selectedBudget, location: selectedLocation})}>
+                    <SearchButton onClick={onSearch}>
                         חפש
                     </SearchButton>
                 )}                

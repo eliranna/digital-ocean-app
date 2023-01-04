@@ -1,5 +1,6 @@
 import React, {useState, useRef} from 'react'
 import styled from "styled-components/macro"
+import {CATEGORIES} from '../categories'
 
 import SearchModal from './SearchModal'
 
@@ -95,24 +96,24 @@ const SearchBoxInputDescCaption = styled.div`
 `
 
 
-const MobileSearch = ({initialSearchParams, onSearch}) => {
+const MobileSearch = ({searchParams, onSearchParamsUpdate, onSearch}) => {
 
     const [isSearchModalOpen, openSearchModal] = useState(false)
-    const [searchParams, setSearchParams] = useState(initialSearchParams)
 
     const handleSearch = searchParams => {
         openSearchModal(false)
-        setSearchParams(searchParams)
         onSearch(searchParams)
     }
 
     const composeSearchCategoriesCaption = categories => {
         if (categories.length === 0) {
             return 'כל סוגי הרכבים';
-        } else if (categories.length > 2) {
-            return `${categories[0].title} ועוד ${categories.length-1} קטגוריות`;
+        } 
+        const categoriesTitles = categories.map(categoryId => CATEGORIES.find(item => item.id === categoryId).title)
+        if (categoriesTitles.length > 2) {
+            return `${categoriesTitles[0]} ועוד ${categories.length-1} קטגוריות`;
         } else {
-            return categories.map(category => category.title).join(', ');
+            return categoriesTitles.join(', ');
         }
     }
 
@@ -144,7 +145,7 @@ const MobileSearch = ({initialSearchParams, onSearch}) => {
                     </FiltersButton>
                 </FiltersCell>
             </SearchBox>
-            <SearchModal isOpen={isSearchModalOpen} searchParams={searchParams} onClose={() => openSearchModal(false)} onSearch={handleSearch}/>
+            <SearchModal isOpen={isSearchModalOpen} searchParams={searchParams} onSearchParamsUpdate={onSearchParamsUpdate} onClose={() => openSearchModal(false)} onSearch={handleSearch}/>
         </Wrapper>
     )
 
