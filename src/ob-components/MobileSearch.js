@@ -7,6 +7,8 @@ import SearchModal from './SearchModal'
 import { maxWidth, fontSize, spacing } from '../ob-style';
 import {useViewport} from '../ViewportProvider';
 
+import SearchIcon from '@mui/icons-material/Search';
+
 const SEARCH_INPUT_MAIN_CAPTION = 'חפשו רכבים'
 const SEARCH_INPUT_DESC_CAPTION = 'בחרו קטגוריה, תקציב ואזור מכירה'
 
@@ -61,7 +63,7 @@ const SearchBoxInput = styled.div`
     width: 100%;  
 `
 
-const SearchIcon = styled.div`
+const SearchIconBox = styled.div`
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -128,9 +130,9 @@ const MobileSearch = ({searchParams, onSearchParamsUpdate, onSearch}) => {
     return (
         <Wrapper>
             <SearchBox onClick={() => openSearchModal(true)}>
-                <SearchIcon>
-                    <img src="/assets/otoboto/search.svg"/>
-                </SearchIcon>
+                <SearchIconBox>
+                    <SearchIcon fontSize="small"/>
+                </SearchIconBox>
                 <SearchBoxInput>
                     <SearchBoxInputMainCaption>
                         {searchParams ? composeSearchCategoriesCaption(searchParams.categories) : SEARCH_INPUT_MAIN_CAPTION}

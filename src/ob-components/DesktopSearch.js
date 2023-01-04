@@ -14,6 +14,8 @@ import LocationSelectionPanel from './LocationSelectionPanel'
 import { LOCATIONS } from '../locations';
 import { CATEGORIES } from '../categories';
 
+import SearchIcon from '@mui/icons-material/Search';
+
 const CAPTION_ALL_CATEGORIES = "בחר קטגוריות";
 const CAPTION_ALL_PRICES = "הכנס תקציב";
 const CAPTION_ALL_LOCATIONS = "חפש יישובים";
@@ -250,6 +252,7 @@ const DesktopSearch = ({searchParams, onSearchParamsUpdate, onSearch}) => {
                         <BubblePanelDescription>
                             ניתן לבחור מספר קטגוריות
                         </BubblePanelDescription>
+                        <Spacer height={spacing.spacing4}/>
                         <CategoriesSelectionPanel initialSelectedCategories={searchParams?.categories} onCategoriesChange={updateCategoriesSelection}/>
                     </BubblePanelInnerPane>
                 </BubblePanel>
@@ -294,7 +297,7 @@ const DesktopSearch = ({searchParams, onSearchParamsUpdate, onSearch}) => {
             </Cell>
             <SearchCell>
                 <SearchButton onClick={onSearch}>
-                    <img src="/assets/otoboto/search.svg"/>
+                    <SearchIcon/>
                 </SearchButton>
             </SearchCell>
         </Wrapper>

@@ -1,12 +1,16 @@
 import React, {useState, useEffect} from 'react'
 import styled from "styled-components/macro"
-import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 
 import {useViewport, ViewportProvider} from '../ViewportProvider'
 
 import {fontSize, spacing} from '../ob-style'
 
 import Spacer from './Spacer'
+
+import SearchIcon from '@mui/icons-material/Search';
+import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
+import AccountCircleOutlinedIcon from '@mui/icons-material/AccountCircleOutlined';
 
 const Wrapper = styled.div`
     -webkit-box-align: center !important;
@@ -66,39 +70,52 @@ const NavItemTitle = styled.div`
 const MobileFooter = ({}) => {
 
     const { isMobile } = useViewport();
+    const iconStyle = (isActive) => { return isActive ? {color: 'rgb(255, 56, 92)'} : {color: 'rgb(176, 176, 176)'} }
 
     return isMobile() ? (
         <Wrapper>
             <NavItem>
-                <Link to={'/'}>
-                    <NavItemIcon>
-                        <img src="/assets/otoboto/search.svg"/>
-                    </NavItemIcon>
-                    <NavItemTitle>
-                        חפש
-                    </NavItemTitle>
-                </Link>
-            </NavItem>
+                <NavLink to={'/'}>
+                    {({ isActive }) => (
+                    <>
+                        <NavItemIcon>
+                            <SearchIcon sx={iconStyle(isActive)}/>
+                        </NavItemIcon>
+                        <NavItemTitle>
+                            חיפוש
+                        </NavItemTitle>
+                    </>
+                    )}                    
+                </NavLink>
+            </NavItem>   
             <NavItem>
-                <Link to={'/liked'}>
-                    <NavItemIcon>
-                        <img src="/assets/otoboto/likes.svg"/>
-                    </NavItemIcon>
-                    <NavItemTitle>
-                        מועדפים
-                    </NavItemTitle>
-                </Link>
-            </NavItem>
+                <NavLink to={'/liked'}>
+                    {({ isActive }) => (
+                    <>
+                        <NavItemIcon>
+                            <FavoriteBorderIcon sx={iconStyle(isActive)}/>
+                        </NavItemIcon>
+                        <NavItemTitle>
+                            מועדפים
+                        </NavItemTitle>
+                    </>
+                    )}                    
+                </NavLink>
+            </NavItem> 
             <NavItem>
-                <Link to={'/profile'}>
-                    <NavItemIcon>
-                        <img src="/assets/otoboto/profile.svg"/>
-                    </NavItemIcon>
-                    <NavItemTitle>
-                        פרופיל
-                    </NavItemTitle>
-                </Link>
-            </NavItem>
+                <NavLink to={'/profile'}>
+                    {({ isActive }) => (
+                    <>
+                        <NavItemIcon>
+                            <AccountCircleOutlinedIcon sx={iconStyle(isActive)}/>
+                        </NavItemIcon>
+                        <NavItemTitle>
+                            פרופיל
+                        </NavItemTitle>
+                    </>
+                    )}                    
+                </NavLink>
+            </NavItem> 
         </Wrapper>
     ) : null;
 }
