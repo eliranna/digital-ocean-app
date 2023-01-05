@@ -6,6 +6,7 @@ import "react-responsive-carousel/lib/styles/carousel.min.css";
 import { maxWidth, fontSize, spacing } from '../ob-style'
 import CategoriesSelectionPanel from './CategoriesSelectionPanel'
 import BudgetSelectionPanel from './BudgetSelectionPanel'
+import ClearOutlinedIcon from '@mui/icons-material/ClearOutlined';
 
 import MobilePopupPane from './MobilePopupPane'
 import Spacer from './Spacer'
@@ -155,7 +156,22 @@ const BudgetSelectionPanelPane = styled.div`
 `
 
 const LocationInputPane = styled.div`
-    
+    position: relative;
+`
+
+const ClearInputButton = styled.div`
+    border-radius: 50%;
+    width: 24px;
+    height: 24px;
+    transition: transform 0.25s ease;
+    border-radius: 50%;
+    border: 0;
+    background-color: #EBEBEB;
+    cursor: pointer;
+    position: absolute;
+    left: 18px;
+    top: 18px;
+    line-height: 27px;
 `
 
 const StageIndicatorWrapper = styled.div`
@@ -285,6 +301,12 @@ const SearchModal = ({isOpen, searchParams, onSearchParamsUpdate, onClose, onSea
         setLocationInputValue(value)
     }
 
+    const handleClear = () => {
+        updateInputValue("")
+        getLocationSuggestions("")
+        onSearchParamsUpdate({...searchParams, location: ""})
+    }
+
     return (
         <MobilePopupPane isOpen={isOpen}>
             <ArrowBack onClick={onClose}>
@@ -315,7 +337,9 @@ const SearchModal = ({isOpen, searchParams, onSearchParamsUpdate, onClose, onSea
                             <Spacer height={spacing.spacing8}/> 
                             <LocationInputPane>
                                 <LocationInput type="text" ref={locationInputRef} value={locationInputValue} placeholder={"חפשו יישובים"} onChange={(e)=>{updateInputValue(e.target.value); getLocationSuggestions(e.target.value)}}/>
-                            </LocationInputPane>              
+                                {locationInputValue && (<ClearInputButton onClick={handleClear}><ClearOutlinedIcon sx={{ fontSize: 16 }}/></ClearInputButton>)}
+                            </LocationInputPane> 
+                            <Spacer height={spacing.spacing4}/>             
                             <LocationSelectionPanel suggestions={locationSuggestions} onSelect={handleLocationSelection} />
                         </SelectionSectionBody>
                     </CategoriesSelectionSection>

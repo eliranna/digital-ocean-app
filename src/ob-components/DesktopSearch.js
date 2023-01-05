@@ -7,9 +7,10 @@ import {useViewport} from '../ViewportProvider';
 import BubblePanel from './BubblePanel';
 import Spacer from './Spacer'
 
-import CategoriesSelectionPanel from './CategoriesSelectionPanel';
+import CategoriesSelectionPanel from './CategoriesSelectionPanel'
 import BudgetSelectionPanel from './BudgetSelectionPanel';
 import LocationSelectionPanel from './LocationSelectionPanel'
+import ClearOutlinedIcon from '@mui/icons-material/ClearOutlined'
 
 import { LOCATIONS } from '../locations';
 import { CATEGORIES } from '../categories';
@@ -98,6 +99,23 @@ const SearchButton = styled.div`
     }
 `
 
+const ClearInputButton = styled.div`
+    border-radius: 50%;
+    width: 24px;
+    height: 24px;
+    transition: transform 0.25s ease;
+    border-radius: 50%;
+    border: 0;
+    background-color: #EBEBEB;
+    cursor: pointer;
+    position: absolute;
+    left: 29px;
+    top: 20px;
+    text-align: center;
+    line-height: 27px;
+    display: none;
+`
+
 const CellContent = styled.div`
     height: 100%;
     display: flex;
@@ -105,6 +123,10 @@ const CellContent = styled.div`
     justify-content: center;
     text-align: right;
     padding-right: 36px;
+    position: relative;
+    &:hover ${ClearInputButton} {
+        display: block;
+    }
 `
 
 const CellTitle = styled.div`
@@ -186,6 +208,11 @@ const DesktopSearch = ({searchParams, onSearchParamsUpdate, onSearch}) => {
     const closeLocationDialog = () => {
         setLocationSuggestions([])
     } 
+
+    const handleClear = () => {
+        onSearchParamsUpdate({...searchParams, location: ""})
+        setLocationInputValue("")
+    }
 
     const computeCategoriesString = (categories) => {
         const categoriesTitles = CATEGORIES.filter(category => categories.indexOf(category.id) != -1).map(category => category.title);
@@ -290,6 +317,7 @@ const DesktopSearch = ({searchParams, onSearchParamsUpdate, onSearch}) => {
                     <CellValue>
                         <InvisibleInput ref={locationInputRef} type="text" value={locationInputValue} placeholder={CAPTION_ALL_LOCATIONS} onChange={e => {setLocationInputValue(e.target.value); getLocationSuggestions(e.target.value)}}/>
                     </CellValue>  
+                    {locationInputValue && (<ClearInputButton onClick={handleClear}><ClearOutlinedIcon sx={{ fontSize: 16 }}/></ClearInputButton>)}
                 </CellContent> 
                 <BubblePanel show={locationSuggestions.length > 0} onClickOutside={closeLocationDialog} width={"350px"} xloc={isTablet() ? ['-149px', '237px'] : null}>
                     <LocationSelectionPanel suggestions={locationSuggestions} onSelect={handleLocationSelection}/>
