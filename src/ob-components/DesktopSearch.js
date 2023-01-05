@@ -131,7 +131,7 @@ const CellContent = styled.div`
 
 const CellTitle = styled.div`
     font-size: ${fontSize.fontSize0};
-    font-weight: 700;
+    font-weight: 700; 
 `
 
 const CellValue = styled.div`
