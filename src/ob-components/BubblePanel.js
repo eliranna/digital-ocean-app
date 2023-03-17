@@ -4,8 +4,10 @@ import styled from "styled-components/macro"
 const Wrapper = styled.div`
     background: gray;
     position: absolute;
-    cursor:pointer;
+    cursor: default!important;
     width: ${props => props.width ? props.width : '100%'};
+    right: ${props => props.left ? null : (props.xloc ? props.xloc[0] : null)};
+    left: ${props => props.left ? props.xloc[0] : null};
     border-radius:10px;
     top: 80px;
     background: white;
@@ -15,11 +17,13 @@ const Wrapper = styled.div`
     padding: 24px 32px;
     display: flex;
     flex-direction: column;
+    z-index: 99999;
     :before {
         content: "";
         position: absolute;
         bottom: calc(100% - 9px);
-        right: 80px;
+        right: ${props => props.left ? null : (props.xloc ? props.xloc[1] : '80px')};
+        left: ${props => props.left ? props.xloc[1] : null};
         height: 20px;
         width: 20px;
         background: white;
@@ -33,7 +37,7 @@ const Wrapper = styled.div`
 `
 
 
-const BubblePanel = ({children, onClickOutside, show, width}) => {
+const BubblePanel = ({children, onClickOutside, show, width, xloc, left}) => {
 
     const ref = useRef(null);
   
@@ -53,7 +57,7 @@ const BubblePanel = ({children, onClickOutside, show, width}) => {
       return null;
 
     return (
-        <Wrapper ref={ref} width={width}>
+        <Wrapper ref={ref} width={width} xloc={xloc} left={left}>
             {children}
         </Wrapper>
     )

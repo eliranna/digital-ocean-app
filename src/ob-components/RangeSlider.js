@@ -44,16 +44,27 @@ function AirbnbThumbComponent(props) {
   );
 }
 
-const RangeSlider = ({max, min, defaultValue, valueLabelFormat, onValueChange}) => {
-
+const RangeSlider = ({max, min, defaultValue, value, valueLabelFormat, onValueChange}) => {
+    const marks = [
+      {
+        value: 5,
+        label: '5000 ש״ח',
+      },
+      {
+        value: 250,
+        label: '250+ אלף ש״ח',
+      }
+    ];
     return (
         <AirbnbSlider
             slots={{ thumb: AirbnbThumbComponent }}
             getAriaLabel={(index) => (index === 0 ? 'Minimum price' : 'Maximum price')}
             defaultValue={defaultValue}
+            value={value}
             valueLabelDisplay="auto"
             max={max}
             min={min}
+            marks={marks}
             valueLabelFormat={valueLabelFormat}
             onChange={onValueChange}
         />

@@ -1,9 +1,16 @@
 const maxWidth = {
-    xxLarge: '2520px'
+    page: '1440px'
+}
+
+const padding = {
+    pageDesktop: '80px',
+    pageTablet: '40px',
+    pageMobile: '24px'
 }
 
 const breakpoints = {
-    desktop: 'min-width: 950px'
+    desktop: 'min-width: 950px',
+    tablet: 'min-width: 745px',
 }
 
 const spacing = {
@@ -40,5 +47,6 @@ export {
     maxWidth,
     breakpoints,
     spacing,
-    fontSize
+    fontSize,
+    padding
 }

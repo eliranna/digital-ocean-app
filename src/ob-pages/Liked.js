@@ -1,16 +1,13 @@
 import React from 'react'
 import styled from "styled-components/macro"
 
-const Wrapper = styled.div``;
+import Page from '../ob-components/Page'
 
 const Liked = () => {
-
     return (
-        <Wrapper>
-
-            liked page            
-
-        </Wrapper>
+        <Page>
+            
+        </Page>
     )
 }
 

@@ -1,32 +1,43 @@
-import React from 'react';
+import React, {useState} from 'react';
 import { Route, Routes } from 'react-router-dom';
 import styled from "styled-components/macro"
+import { useLocation } from 'react-router-dom'
+
+import {useViewport, ViewportProvider} from './ViewportProvider'
 
 import Topbar from './ob-components/Topbar';
+import MobileFooter from './ob-components/MobileFooter';
+
 import Explore from './ob-pages/Explore'
 import Liked from './ob-pages/Liked';
+import Profile from './ob-pages/Profile';
 
 const Wrapper = styled.div``
 
-const TopbarWrapper = styled.div`
-    width: 100%;
-    box-shadow: rgb(0 0 0 / 8%) 0 1px 0;
-    height: 80px;
-    z-index: 1;
-`
-
 function Otoboto() {
 
+  const location = useLocation();
+  const isInSearchMode = location.pathname === '/';
+
+  const [user, setUser] = useState(null)
+  const [searchParams, setSearchParams] = useState(null)
+
+  const handleSearch = () => {
+    console.log(searchParams)
+  }
+
   return (
-    <Wrapper>
-        <TopbarWrapper>
-            <Topbar/>
-        </TopbarWrapper>
-        <Routes>
-            <Route path="/" element={<Explore />}/>
-            <Route path="/liked" element={<Liked />}/>
-        </Routes>
-    </Wrapper>
+    <ViewportProvider>
+      <Wrapper>
+          <Topbar allowSearch={isInSearchMode} isVisibleOnMobile={isInSearchMode} searchParams={searchParams} onSearchParamsUpdate={searchParams => setSearchParams(searchParams)} onSearch={handleSearch}/>
+          <Routes>
+              <Route path="/" element={<Explore />}/>
+              <Route path="/liked" element={<Liked />}/>
+              <Route path="/profile" element={<Profile user={user}/>}/>
+          </Routes>
+          <MobileFooter/>
+      </Wrapper>
+    </ViewportProvider>
   )
 }
 
