@@ -40,6 +40,13 @@ const PriceSelectionPanel = ({initialSelectedPrice, onChange}) => {
         onChange(value)
     }
 
+    const valueLabelFormat = value => {
+        if (value < 250) {
+            return `${x} אלף שקלים`
+        }
+        return `+${x} אלף שקלים`
+    }
+
     return (
         <Wrapper>
             <Title>

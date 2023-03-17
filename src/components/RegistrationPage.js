@@ -1,7 +1,7 @@
 import React, {useState} from 'react'
 import { useSearchParams } from 'react-router-dom'
 import styled from "styled-components/macro"
-import { spacing, fontSize, colors, device } from '../common/style'
+import { spacing, fontSize, colors, device, pageWidth } from '../common/style'
 
 import Button from '../common/components/Button'
 import InputBox from '../common/components/InputBox'
@@ -10,6 +10,7 @@ import RegistrationForm from './RegistrationForm';
 import RequestRegistration from './RequestRegistration'
 import SectionTitle from '../common/components/SectionTitle'
 import Page from '../common/components/Page'
+import Strip from '../common/components/Strip';
 import MobileSpacer from '../common/components/MobileSpacer'
 import TextArea from '../common/components/TextArea'
 import Checkbox from '../common/components/Checkbox'
@@ -39,13 +40,6 @@ const SpacerRigid = styled(Spacer)`
     flex-shrink: 0;
 `;
 
-const Wrapper = styled.div`
-    display: flex;
-    flex-direction: column;
-    color: ${colors.text};
-    padding-top: ${spacing.spacing32};
-    padding-bottom: ${spacing.spacing32};
-`;
 
 const Header = styled.div`
     font-size: ${fontSize.fontSize7};
@@ -60,7 +54,7 @@ const StepWrapper = styled.div`
 `;
 
 const StepTitle = styled.div`
-    font-size: ${fontSize.fontSize4};
+    font-size: ${fontSize.fontSize3};
     text-align: right;
     font-weight: 600;
 `;
@@ -85,7 +79,7 @@ const CourseOptionWrapper = styled.div`
     padding: ${spacing.spacing5};
     cursor: ${props => (props.fade ? "default" : "pointer")};
     pointer-events: ${props => (props.fade ? "none" : "default")};
-    flex-shrink: 0;
+    flex-shrink: 1;
     flex-grow: 0;
     width: 33%;
     opacity: ${props => (props.fade ? "0.5" : "1")};
@@ -146,6 +140,18 @@ const CellNote = styled.div`
     
 `
 
+const FormTitle = styled.div`
+    font-size: ${fontSize.fontSize5};
+    text-align: center;
+    font-weight: 600;
+`
+
+const Wrapper = styled.div`
+    padding: ${spacing.spacing16};
+    background-color: ${colors.lightGrey};
+    max-width: ${pageWidth.maxWidth2XL};
+`
+
 const RegistrationButton = styled(Button)`
     border: none;
     background: ${colors.accent};
@@ -161,6 +167,13 @@ const RegistrationButton = styled(Button)`
         opacity: 80%;
     }
 `;
+
+const PageBox = styled(Page)`
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+`
 
 const CourseOption = ({title, description, isSelected, freeSpots, onClick}) => {
 
@@ -204,115 +217,114 @@ const RegistrationPage = () => {
     }
 
     return (
-        <Wrapper>
-            <Page nerrow>
-                <Header>
-                    <span>
-                    שביטים — <b>הרשמה לתוכנית</b>                
-                    </span>
-                </Header>
-                <Spacer height={spacing.spacing32}/>
-                <StepWrapper>
-                    <StepTitle>
-                        שלב א׳ — בחירת קבוצת הלימוד
-                    </StepTitle>
-                    <Spacer height={spacing.spacing8}/>
-                    <StepExplenation>
-                        התוכנית נפתחת במועדים שונים במהלך השנה. יש לבחור את המועד אליו תרצו להצטרף. מהלך התוכנית ותכניה זהים בכל המועדים.
-                    </StepExplenation>
-                    <Spacer height={spacing.spacing12}/>
-                    <CoursesSelectionPanel>
-                        {courses.map((course, index) => {
-                            return (
-                                <React.Fragment key={course.id}>
-                                    <CourseOption title={course.title} description={course.description} freeSpots={course.freeSpots} onClick={() => handleCourseSelection(index)} isSelected={selectedCourseIndex === index}/>
-                                    {(index != courses.length-1) && <SpacerRigid width={spacing.spacing8}/>}
-                                </React.Fragment>
-                            )
-                        })}
-                    </CoursesSelectionPanel>                    
-                </StepWrapper>
-                <Spacer height={spacing.spacing32}/>
-                <StepWrapper>
-                    <StepTitle>
-                        שלב ב׳ — מילוי פרטי התלמיד
-                    </StepTitle>
-                    <Spacer height={spacing.spacing12}/>   
-                    <FormSection>                  
-                        <SectionContent>
-                            <Row>
-                                <Cell>
-                                    <InputBox type="text" value={studentFirstName} onChange={e => setStudentFirstName(e.target.value)} placeholder={"שם פרטי"} />
-                                </Cell>
-                                <Spacer width={spacing.spacing6}/>
-                                <MobileSpacer height={spacing.spacing6}/>
-                                <Cell>
-                                    <InputBox type="text" value={studentLastName} onChange={e => setStudentLastName(e.target.value)} placeholder={"שם משפחה"}/> 
-                                </Cell>
-                            </Row>
-                            <Spacer height={spacing.spacing8}/>
-                            <Row>
-                                <Cell single>
-                                    <InputBox left type="text" onChange={e => setStudentEmail(e.target.value)} placeholder={"כתובת דואר אלקטרוני"}/> 
-                                    <Spacer height={spacing.spacing3}/>
-                                    <CellNote>
-                                        כתובת דוא״ל זו תשמש את התלמיד במהלך התוכנית.
-                                    </CellNote>
-                                </Cell>
-                            </Row>
-                            <Spacer height={spacing.spacing8}/>
-                            <Row>
-                                <TextArea placeholder={"הערות מיוחדות בנוגע לתלמיד"}/>
-                            </Row>
-                        </SectionContent>
-                    </FormSection>                                    
-                </StepWrapper>
-                <Spacer height={spacing.spacing32}/>
-                <StepWrapper>
-                    <StepTitle>
-                        שלב ג׳ — מילוי פרטי האפוטרופוס (הורה או אחר)
-                    </StepTitle>
-                    <Spacer height={spacing.spacing12}/>   
-                    <Checkbox onChange={() => setIsSelfRegister(!isSelfRegister)}>
-                        אני תלמיד הרושם את עצמו לתוכנית
-                    </Checkbox>
-                    <Spacer height={spacing.spacing12}/> 
-                    <FormSection disabled={isSelfRegister} blocked={isSelfRegister}>                  
-                        <SectionContent>
-                            <Row>
-                                <Cell>
-                                    <InputBox type="text" disabled={isSelfRegister} onChange={e => setParentFirstName(e.target.value)} placeholder={"שם פרטי"}/>
-                                </Cell>
-                                <Spacer width={spacing.spacing6}/>
-                                <MobileSpacer height={spacing.spacing6}/>
-                                <Cell>
-                                    <InputBox type="text" disabled={isSelfRegister} onChange={e => setParentLastName(e.target.value)} placeholder={"שם משפחה"}/> 
-                                </Cell>
-                            </Row>
-                            <Spacer height={spacing.spacing8}/>
-                            <Row>
-                                <Cell single>
-                                    <InputBox left type="text" disabled={isSelfRegister} onChange={e => setParentEmail(e.target.value)} placeholder={"כתובת דואר אלקטרוני"}/> 
-                                </Cell>
-                            </Row>
-                        </SectionContent>
-                    </FormSection>                                    
-                </StepWrapper>
-                <Spacer height={spacing.spacing20}/>
-                <StepWrapper>
-                    <RegistrationButton>
-                        המשך לביצוע התשלום
-                    </RegistrationButton>                                  
-                </StepWrapper>
+        <Strip>
+            <PageBox>
+                <Wrapper>
+                    <FormTitle>
+                        הרשמה לתוכנית
+                    </FormTitle>     
+                    <Spacer height={spacing.spacing16}/>  
+                    <StepWrapper>
+                        <StepTitle>
+                            שלב א׳ — בחירת קבוצת הלימוד
+                        </StepTitle>
+                        <Spacer height={spacing.spacing8}/>
+                        <StepExplenation>
+                            התוכנית נפתחת במועדים שונים במהלך השנה. יש לבחור את המועד אליו תרצו להצטרף. מהלך התוכנית ותכניה זהים בכל המועדים.
+                        </StepExplenation>
+                        <Spacer height={spacing.spacing12}/>
+                        <CoursesSelectionPanel>
+                            {courses.map((course, index) => {
+                                return (
+                                    <React.Fragment key={course.id}>
+                                        <CourseOption title={course.title} description={course.description} freeSpots={course.freeSpots} onClick={() => handleCourseSelection(index)} isSelected={selectedCourseIndex === index}/>
+                                        {(index != courses.length-1) && <SpacerRigid width={spacing.spacing8}/>}
+                                    </React.Fragment>
+                                )
+                            })}
+                        </CoursesSelectionPanel>                    
+                    </StepWrapper>
+                    <Spacer height={spacing.spacing32}/>
+                    <StepWrapper>
+                        <StepTitle>
+                            שלב ב׳ — מילוי פרטי התלמיד
+                        </StepTitle>
+                        <Spacer height={spacing.spacing12}/>   
+                        <FormSection>                  
+                            <SectionContent>
+                                <Row>
+                                    <Cell>
+                                        <InputBox type="text" value={studentFirstName} onChange={e => setStudentFirstName(e.target.value)} placeholder={"שם פרטי"} />
+                                    </Cell>
+                                    <Spacer width={spacing.spacing6}/>
+                                    <MobileSpacer height={spacing.spacing6}/>
+                                    <Cell>
+                                        <InputBox type="text" value={studentLastName} onChange={e => setStudentLastName(e.target.value)} placeholder={"שם משפחה"}/> 
+                                    </Cell>
+                                </Row>
+                                <Spacer height={spacing.spacing8}/>
+                                <Row>
+                                    <Cell single>
+                                        <InputBox left type="text" onChange={e => setStudentEmail(e.target.value)} placeholder={"כתובת דואר אלקטרוני"}/> 
+                                        <Spacer height={spacing.spacing3}/>
+                                        <CellNote>
+                                            כתובת דוא״ל זו תשמש את התלמיד במהלך התוכנית.
+                                        </CellNote>
+                                    </Cell>
+                                </Row>
+                                <Spacer height={spacing.spacing8}/>
+                                <Row>
+                                    <TextArea placeholder={"הערות מיוחדות בנוגע לתלמיד (אם ישנן)"}/>
+                                </Row>
+                            </SectionContent>
+                        </FormSection>                                    
+                    </StepWrapper>
+                    <Spacer height={spacing.spacing32}/>
+                    <StepWrapper>
+                        <StepTitle>
+                            שלב ג׳ — מילוי פרטי האפוטרופוס (הורה או אחר)
+                        </StepTitle>
+                        <Spacer height={spacing.spacing12}/>   
+                        <Checkbox onChange={() => setIsSelfRegister(!isSelfRegister)}>
+                            אני תלמיד הרושם את עצמו לתוכנית
+                        </Checkbox>
+                        <Spacer height={spacing.spacing12}/> 
+                        <FormSection disabled={isSelfRegister} blocked={isSelfRegister}>                  
+                            <SectionContent>
+                                <Row>
+                                    <Cell>
+                                        <InputBox type="text" disabled={isSelfRegister} onChange={e => setParentFirstName(e.target.value)} placeholder={"שם פרטי"}/>
+                                    </Cell>
+                                    <Spacer width={spacing.spacing6}/>
+                                    <MobileSpacer height={spacing.spacing6}/>
+                                    <Cell>
+                                        <InputBox type="text" disabled={isSelfRegister} onChange={e => setParentLastName(e.target.value)} placeholder={"שם משפחה"}/> 
+                                    </Cell>
+                                </Row>
+                                <Spacer height={spacing.spacing8}/>
+                                <Row>
+                                    <Cell single>
+                                        <InputBox left type="text" disabled={isSelfRegister} onChange={e => setParentEmail(e.target.value)} placeholder={"כתובת דואר אלקטרוני"}/> 
+                                    </Cell>
+                                </Row>
+                            </SectionContent>
+                        </FormSection>                                    
+                    </StepWrapper>
+                    <Spacer height={spacing.spacing20}/>
+                    <StepWrapper>
+                        <RegistrationButton>
+                            המשך לביצוע התשלום
+                        </RegistrationButton>                                  
+                    </StepWrapper>
+                </Wrapper>
 
 
-
-            </Page>
+            </PageBox>
 
 
             
 
-        </Wrapper>
+        </Strip>
     )
 }
 

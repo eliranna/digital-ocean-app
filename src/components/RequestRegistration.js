@@ -51,24 +51,6 @@ const RequestRegistration = ({onShowTerms}) => {
     return (
         <Strip id="google">
             <Page nerrow>
-                <SectionTitle>
-                    {caption.TITLE}
-                </SectionTitle>
-                <Spacer height={spacing.spacing12}/>
-                <Description>
-                    {caption.DESC}
-                </Description>
-                <Spacer height={spacing.spacing16}/>
-                <Description>
-                    <DescriptionTitle>
-                        ומה הלאה?
-                    </DescriptionTitle>
-                    <Spacer height={spacing.spacing3}/>
-                    <DescriptionContent>
-                        {caption.DESC2}
-                    </DescriptionContent>
-                </Description> 
-                <Spacer height={spacing.spacing16}/>
                 <RegistrationForm onShowTerms={onShowTerms}/>
             </Page>
         </Strip>

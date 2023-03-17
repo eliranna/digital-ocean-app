@@ -253,7 +253,7 @@ const RegistrationForm = ({onShowTerms}) => {
             {!requestSentSuccessfully && (
             <>
                 <FormTitle>
-                    בדיקת התאמה לתוכנית
+                    הרשמה לתוכנית
                 </FormTitle>     
                 <Spacer height={spacing.spacing16}/>       
                 <FormSection>                  
@@ -275,26 +275,30 @@ const RegistrationForm = ({onShowTerms}) => {
                             </Cell>
                         </Row>
                         <Spacer height={spacing.spacing12}/>
-                        <FileDropPanel>
-                            <DragDropFile onUplode={file => setStudentDiploma(file)}/> 
-                            <Spacer height={spacing.spacing2}/>
-                            <FileInstructions>
-                                יש לצרף קובץ יחיד בפורמט PDF או קובץ תמונה.
-                            </FileInstructions>
-                        </FileDropPanel>
-                        <Spacer height={spacing.spacing12}/>
-                        <Row>
-                            <Cell single>
-                                <TextArea type="text" onChange={e => setNotes(e.target.value)} placeholder={"הערות לגבי גיליון הציונים (לא חובה)"} />
-                            </Cell>
-                        </Row>
+                        {false && (
+                            <>
+                                <FileDropPanel>
+                                    <DragDropFile onUplode={file => setStudentDiploma(file)}/> 
+                                    <Spacer height={spacing.spacing2}/>
+                                    <FileInstructions>
+                                        יש לצרף קובץ יחיד בפורמט PDF או קובץ תמונה.
+                                    </FileInstructions>
+                                </FileDropPanel>
+                                <Spacer height={spacing.spacing12}/>
+                                <Row>
+                                    <Cell single>
+                                        <TextArea type="text" onChange={e => setNotes(e.target.value)} placeholder={"הערות לגבי גיליון הציונים (לא חובה)"} />
+                                    </Cell>
+                                </Row>
+                            </>
+                        )}
                     </SectionContent>
                 </FormSection> 
                 <Spacer height={spacing.spacing16}/> 
                 <FormSection>
                     <SectionTitle>
                         <Title>
-                            פרטי מגיש הבדיקה
+                            פרטי מבצע ההרשמה
                         </Title>
                     </SectionTitle>
                     <Spacer height={spacing.spacing12}/>

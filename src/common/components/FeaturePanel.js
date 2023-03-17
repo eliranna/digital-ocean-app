@@ -8,7 +8,7 @@ import Spacer from './Spacer';
 const Wrapper = styled.div`
     width: 100%;
     display: flex;
-    justify-content: space-between; 
+    justify-content: ${props => props.align ? props.align : 'space-between'};
     flex-direction: row;
     @media ${device.mobileL} {
         flex-direction: column;
@@ -80,9 +80,10 @@ const Feature = ({icon, title, description, invertColors, featureWidth}) => {
     )
 }
 
-const FeaturesPanel = ({features, invertColors, featureWidth}) => {
+const FeaturesPanel = ({features, invertColors, featureWidth, align}) => {
+    console.log(align)
     return (
-        <Wrapper>
+        <Wrapper align={align}>
             {features.map((feature, index) => {
                 return (
                     <>

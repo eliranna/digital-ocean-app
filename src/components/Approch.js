@@ -31,6 +31,51 @@ const features = [
     }
 ]
 
+const features2 = [
+    {
+        icon: "./assets/git.svg",
+        title: 'סביבת הפיתוח המודרנית',
+        description: "הכרות והתנסות מעמיקה עם הכלים העדכניים והנדרשים ביותר (Bash ,Git) ע״י אגפי המחשוב הצבאיים ותעשיית ההייטק העולמית."   
+    },
+    {
+        icon: "./assets/py.svg",
+        title: 'מפתחים ב- Python',
+        description: "לומדים לפתח בשפת התכנות המבוקשת ביותר בעולם התוכנה. ידיעת השפה תשמש את התלמידים במהלך התוכנית ובכתיבת הפרוייקט האישי, וכמו כן, בהשתלבותם כמפתחים בחברות טכנולוגיה וביחידות הצבאיות." 
+    },
+    {
+        icon: "./assets/coding.svg",
+        title: 'עקרונות של תכנות מקצועי',
+        description: "לומדים את העקרונות הבסיסיים של קוד מקצועי ואיכותי. כּימוּס, מוֹדוּלָרִיּוּת ותכנות מונחה עצמים מהווים רעיונות מרכזיים בתהליך הפיתוח. נעניק דגש מיוחד למושג האסיכרוניות."      
+    }
+]
+
+const features3 = [
+    {
+        icon: "./assets/ds.svg",
+        title: 'מבני נתונים',
+        description: "הכרת מבני הנתונים השונים ואת ההבדלים ביניהם הינה מהותית ביותר ליכולתו של מהנדס התוכנה לדון, לתכנן ולפתח אלגוריתמים באיכות גבוהה. אנו שמים דגש על המבנים השימושיים ביותר ועל ההבנה האינטואיטיבית של ההבדלים ביניהם."        
+    },
+    {
+        icon: "./assets/alg.svg",
+        title: 'אלגוריתמים ומושג הסיבוכיות',
+        description: "הכרת אלגוריתמים נפוצים וההבדלים ביניהם הינה שימושית ביותר במלאכת תכנון ופיתוח של תוכנה איכותית. אנו שמים דגש על ההבנה האינטואיטיבית של האלגוריתמים ועל שילובם ליצירת פרוצדורה שלמה. כמו כן, התלמידים יכירו את הרעיון החשוב של סיבוכיות זמן וידעו לאמוד את סיבוכיותן של תוכניות פשוטות."        
+    },
+
+]
+
+const features4 = [
+    {
+        icon: "./assets/database.svg",
+        title: 'מסדי נתונים בענן',
+        description: "נכיר את תפקידו של מסד הנתונים (Database) כחלק מרכזי במערכות תוכנה, את סוגיהם השונים של מסדי הנתונים ואת ההבדלים העיקריים ביניהם. נדגיש את ההבדל בין מסד נתונים לבין זכרון זמן-ריצה. בהמשך, נכיר את הרעיון של ממשק תכנות יישומי (API) ונדגיש את חשיבותו."        
+    },
+    {
+        icon: "./assets/ai.svg",
+        title: 'בינה מלאכותית (AI)',
+        description: "נחשף לרעיון של למידת מכונה (Machine Learning) ועל הדרכים ליישמו בתוכנה. נעמוד על ההבדל בין תוכנה קלאסית לבין תוכנה לומדת."        
+    }
+]
+
 const topics = {
     git: {
         icon: "./assets/git.svg",
@@ -236,38 +281,45 @@ const Approch = () => {
                     התוכנית משלבת יסודות של מדעי המחשב, עקרונות של פיתוח תוכנה, מיומנויות תכנות, והכרות עם כלי העבודה העדכניים והנפוצים ביותר לשימוש ע״י חברות ההייטק ויחידות המודיעין של צה״ל תוך שימת דגש מיוחדת על שילובם של הנושאים השונים זה עם זה.
                 </Description>
                 <Spacer height={spacing.spacing24}/>
-                <FeaturesPanel features={features} featureWidth={"30%"}/>
+                <FeaturesPanel features={features2} featureWidth={"30%"} align={"space-between"}/>
                 <Spacer height={spacing.spacing32}/>
-                <ToggleButtonPanel>
-                    <ToggleButton onClick={() => setTopicsPanelIsOpen(!topicsPanelIsOpen)} isOpen={topicsPanelIsOpen}>
-                        <span>פירוט נושאי הלימוד</span>
-                        <img src="/assets/arrowdown.svg"/>
-                    </ToggleButton>
-                </ToggleButtonPanel>
-                <Accordion open={topicsPanelIsOpen} contentHeight={"4000px"}>
-                    <SpacerRigid height={spacing.spacing12}/>
-                    <TopicsPanel>
-                        <TopicsGrid>
-                            <Column>
-                                <Topic topic={topics.git}/>
-                                <SpacerRigid height={spacing.spacing24}/>
-                                <Topic topic={topics.python}/>
-                                <SpacerRigid height={spacing.spacing24}/>
-                                <Topic topic={topics.coding}/>
-                                <SpacerRigid height={spacing.spacing24}/>
-                                <Topic topic={topics.dataStructures}/>
-                            </Column>
-                            <Column>
-                                <MobileSpacer height={spacing.spacing24}/>
-                                <Topic topic={topics.algo}/> 
-                                <SpacerRigid height={spacing.spacing24}/>
-                                <Topic topic={topics.databases}/> 
-                                <SpacerRigid height={spacing.spacing24}/>
-                                <Topic topic={topics.ai}/>                       
-                            </Column>
-                        </TopicsGrid>
-                    </TopicsPanel>
-                </Accordion>
+                <FeaturesPanel features={features3} featureWidth={"40%"} align={"space-around"}/>
+                <Spacer height={spacing.spacing32}/>
+                <FeaturesPanel features={features4} featureWidth={"40%"} align={"space-around"}/>
+                {false && (
+                    <>
+                    <ToggleButtonPanel>
+                        <ToggleButton onClick={() => setTopicsPanelIsOpen(!topicsPanelIsOpen)} isOpen={topicsPanelIsOpen}>
+                            <span>פירוט נושאי הלימוד</span>
+                            <img src="/assets/arrowdown.svg"/>
+                        </ToggleButton>
+                    </ToggleButtonPanel>
+                    <Accordion open={topicsPanelIsOpen} contentHeight={"4000px"}>
+                        <SpacerRigid height={spacing.spacing12}/>
+                        <TopicsPanel>
+                            <TopicsGrid>
+                                <Column>
+                                    <Topic topic={topics.git}/>
+                                    <SpacerRigid height={spacing.spacing24}/>
+                                    <Topic topic={topics.python}/>
+                                    <SpacerRigid height={spacing.spacing24}/>
+                                    <Topic topic={topics.coding}/>
+                                    <SpacerRigid height={spacing.spacing24}/>
+                                    <Topic topic={topics.dataStructures}/>
+                                </Column>
+                                <Column>
+                                    <MobileSpacer height={spacing.spacing24}/>
+                                    <Topic topic={topics.algo}/> 
+                                    <SpacerRigid height={spacing.spacing24}/>
+                                    <Topic topic={topics.databases}/> 
+                                    <SpacerRigid height={spacing.spacing24}/>
+                                    <Topic topic={topics.ai}/>                       
+                                </Column>
+                            </TopicsGrid>
+                        </TopicsPanel>
+                    </Accordion>
+                    </>
+                )}
             </Page>
         </Strip>
     )

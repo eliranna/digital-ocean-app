@@ -14,6 +14,7 @@ import Host from './Host'
 import RequestRegistration from './RequestRegistration'
 import Footer from './Footer'
 import FAQs from './FAQ';
+import RegistrationPage from './RegistrationPage';
 
 
 const Wrapper = styled.div`
@@ -32,7 +33,7 @@ const Homepage = () => {
             <Program/>
             <Info/>
             <Host/>
-            <RequestRegistration onShowTerms={() => setTermsModalIsOpen(true)}/>
+            <RegistrationPage onShowTerms={() => setTermsModalIsOpen(true)}/>
             <FAQs/>
             <Footer/>
         </Wrapper>
