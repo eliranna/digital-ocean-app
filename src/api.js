@@ -1,7 +1,7 @@
 
 const isDevelopment = false;
 
-let BASE_URL = '/shavitim-backend';
+let BASE_URL = '';
 
 if (isDevelopment) {
     BASE_URL = 'http://localhost:9090'
