@@ -8,5 +8,5 @@ if (isDevelopment) {
 }
 
 export default {
-    openRegistration: `${BASE_URL}/api/open-registration-request`
+    getCourses: `${BASE_URL}/api/get-courses`
 }

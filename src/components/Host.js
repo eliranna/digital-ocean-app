@@ -7,6 +7,14 @@ import Page from '../common/components/Page';
 import Centered from '../common/components/Centered';
 import Strip from '../common/components/Strip';
 
+const ABOUT = `
+    
+בוגר הפקולטה למדעי המחשב בטכניון, ומשמש מזה כעשור כארכיטקט תוכנה וכמוביל טכנולוגי בחברות תוכנה בארץ ובחו״ל, כדוגמת Intel, Cybereason, Cyberbit, Axonius ועוד. 
+
+במהלך שנות שהותו בניו-יורק ובאמסטרדם, תפקד כמוביל טכנולוגי עבור מיזם רחב היקף בראשות משרד הבריאות ההולנדי והוזמן כמרצה לכנסי תוכנה מרכזיים ברחבי אירופה.
+בימים אלו, משמש בין היתר כיועץ טכנולוגי מטעם הרשות לחדשנות.
+`
+
 const Wrapper = styled.div`
     display: flex;
     flex-direction: column;
@@ -71,7 +79,7 @@ const Host = () => {
                 </HostRole>
                 <Spacer height={spacing.spacing12}/>
                 <HostDescription>
-                    בוגר הפקולטה למדעי המחשב בטכניון עם התמקדות בבינה מלאכותית, ומשמש מזה כעשור כארכיטקט תוכנה וכמוביל טכנולוגי של חברות תוכנה בארץ ובחו״ל, בחברות כגון Intel, Cybereason, Cyberbit, Plunck ועוד. במהלך שנות שהותו בניו-יורק ובאמסטרדם, תפקד כמוביל טכנולוגי עבור מיזם רחב היקף בראשות משרד הבריאות ההולנדי. בימים אלו, משמש כארכיטקט מערכת בחברת הסייבר Axonius.
+                    {ABOUT}
                 </HostDescription>
             </Page>
         </Strip>

@@ -3,18 +3,18 @@ import styled from "styled-components/macro"
 import { fontSize } from '../style';
 
 const CheckboxWrapper = styled.div`
-  font-size: ${fontSize.fontSize3};
+  font-size: ${fontSize.fontSize2};
   display: flex;
 
 ` 
 
 const CheckboxInput = styled.div`
    input {
-    width: 23px;
-    height: 23px;
+    width: 18px;
+    height: 18px;
     cursor: pointer;
    }
-   margin-top: 2px;
+   margin-top: 1px;
    margin-left: 5px;
 
 ` 

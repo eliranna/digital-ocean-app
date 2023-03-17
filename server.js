@@ -15,10 +15,33 @@ app.use(cors({
   exposedHeaders: "*"
 }));
 
+const courses = [
+  {
+      id: 1,
+      title: "אוקטובר — נובמבר",
+      description: "המפגש הראשון יתקיים ביום חמישי, 03 לאוקטובר 2022",
+      freeSpots: 0
+  },
+  {
+      id: 2,
+      title: "דצמבר — ינואר",
+      description: "המפגש הראשון יתקיים ביום חמישי, 03 לדצמבר 2022",
+      freeSpots: 2
+  },
+  {
+      id: 3,
+      title: "פברואר — מרץ",
+      description: "המפגש הראשון יתקיים ביום חמישי, 03 לפברואר 2023",
+      freeSpots: 5
+  }
+]
+
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.raw());
 
 app.use('/login', (req, res) => res.send('Hello World!'))
+
+app.use('/api/get-courses', (req, res) => res.send(courses))
 
 app.use(bodyParser.json({
   limit: '50mb'
@@ -28,17 +51,17 @@ app.use(bodyParser.json({
 const wwwPath = path.join(__dirname, 'www');
 app.use('/', express.static(wwwPath));
 
-app.post('/api/login', (req, res, next) => {
+app.get('/api/login', (req, res, next) => {
   return res.status(200).json({
       token: 123
   });
 });
 
-/*
+
 app.listen(process.env.PORT || 9090, () => {
   console.log(`App is running on port 9090`);
 });
-*/
+
 
 
 //app.listen(8080, () => console.log('API is running on http://localhost:8080/login'))

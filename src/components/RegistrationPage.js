@@ -1,7 +1,10 @@
-import React, {useState} from 'react'
+import React, {useState, useEffect} from 'react'
 import { useSearchParams } from 'react-router-dom'
 import styled from "styled-components/macro"
 import { spacing, fontSize, colors, device, pageWidth } from '../common/style'
+
+import axios from 'axios'
+import api from '../api';
 
 import Button from '../common/components/Button'
 import InputBox from '../common/components/InputBox'
@@ -14,27 +17,6 @@ import Strip from '../common/components/Strip';
 import MobileSpacer from '../common/components/MobileSpacer'
 import TextArea from '../common/components/TextArea'
 import Checkbox from '../common/components/Checkbox'
-
-const courses = [
-    {
-        id: 1,
-        title: "אוקטובר — נובמבר",
-        description: "המפגש הראשון יתקיים ביום חמישי, 03 לאוקטובר 2022",
-        freeSpots: 0
-    },
-    {
-        id: 2,
-        title: "דצמבר — ינואר",
-        description: "המפגש הראשון יתקיים ביום חמישי, 03 לדצמבר 2022",
-        freeSpots: 2
-    },
-    {
-        id: 3,
-        title: "פברואר — מרץ",
-        description: "המפגש הראשון יתקיים ביום חמישי, 03 לפברואר 2023",
-        freeSpots: 5
-    }
-]
 
 const SpacerRigid = styled(Spacer)`
     flex-shrink: 0;
@@ -140,6 +122,18 @@ const CellNote = styled.div`
     
 `
 
+const CheckboxCaption = styled.div`
+
+`
+
+const Link = styled.span`
+    text-decoration: underline; 
+    cursor: pointer;
+    :hover {
+        opacity: 80%;
+    }
+`
+
 const FormTitle = styled.div`
     font-size: ${fontSize.fontSize5};
     text-align: center;
@@ -157,9 +151,9 @@ const RegistrationButton = styled(Button)`
     background: ${colors.accent};
     color: ${colors.textOnAccent};
     height: 55px;
-    max-width: 225px;
     width: 100%;
-    font-size: ${fontSize.fontSize3};
+    font-size: ${fontSize.fontSize2};
+    align-self: center;
     font-weight: 500;
     transition: all 400ms;
     align-text: center;
@@ -212,9 +206,23 @@ const RegistrationPage = () => {
     const [parentEmail, setParentEmail] = useState();
     const [isSelfRegister, setIsSelfRegister] = useState(false);
 
+    const [termsModalIsOpen, setTermsModalIsOpen] = useState(false);
+    const [websiteConditionsModalIsOpen, setWebsiteConditionsModalIsOpen] = useState(false);
+    const [agreeTerms, setAgreeTerms] = useState(false);
+
+    const [courses, setCourses] = useState([]);
+
     const handleCourseSelection = (index) => {
-        setSelectedCourseIndex(index)
+        setSelectedCourseIndex(index)       
     }
+
+    useEffect(() => {
+        fetch(api.getCourses)
+            .then(response => response.json())
+            .then((courses) => {
+                setCourses(courses);
+            });
+    }, []);
 
     return (
         <Strip>
@@ -226,7 +234,7 @@ const RegistrationPage = () => {
                     <Spacer height={spacing.spacing16}/>  
                     <StepWrapper>
                         <StepTitle>
-                            שלב א׳ — בחירת קבוצת הלימוד
+                            בחירת קבוצת הלימוד
                         </StepTitle>
                         <Spacer height={spacing.spacing8}/>
                         <StepExplenation>
@@ -244,10 +252,10 @@ const RegistrationPage = () => {
                             })}
                         </CoursesSelectionPanel>                    
                     </StepWrapper>
-                    <Spacer height={spacing.spacing32}/>
+                    <Spacer height={spacing.spacing16}/>
                     <StepWrapper>
                         <StepTitle>
-                            שלב ב׳ — מילוי פרטי התלמיד
+                            מילוי פרטי התלמיד
                         </StepTitle>
                         <Spacer height={spacing.spacing12}/>   
                         <FormSection>                  
@@ -272,19 +280,15 @@ const RegistrationPage = () => {
                                         </CellNote>
                                     </Cell>
                                 </Row>
-                                <Spacer height={spacing.spacing8}/>
-                                <Row>
-                                    <TextArea placeholder={"הערות מיוחדות בנוגע לתלמיד (אם ישנן)"}/>
-                                </Row>
                             </SectionContent>
                         </FormSection>                                    
                     </StepWrapper>
-                    <Spacer height={spacing.spacing32}/>
+                    <Spacer height={spacing.spacing16}/>
                     <StepWrapper>
                         <StepTitle>
-                            שלב ג׳ — מילוי פרטי האפוטרופוס (הורה או אחר)
+                            מילוי פרטי האפוטרופוס (הורה או אחר)
                         </StepTitle>
-                        <Spacer height={spacing.spacing12}/>   
+                        <Spacer height={spacing.spacing6}/>   
                         <Checkbox onChange={() => setIsSelfRegister(!isSelfRegister)}>
                             אני תלמיד הרושם את עצמו לתוכנית
                         </Checkbox>
@@ -309,6 +313,38 @@ const RegistrationPage = () => {
                                 </Row>
                             </SectionContent>
                         </FormSection>                                    
+                    </StepWrapper>
+                    <Spacer height={spacing.spacing16}/>
+                    <StepWrapper>
+                        <StepTitle>
+                            תנאים ותשלום
+                        </StepTitle>
+                        <Spacer height={spacing.spacing12}/>   
+                        <Checkbox onChange={e => setAgreeTerms(e.target.value)}>
+                            <CheckboxCaption>
+                                <span>
+                                    <span>
+                                        אני מאשר כי קראתי את
+                                    </span>
+                                    &nbsp;
+                                    <span>
+                                        <Link onClick={() => setWebsiteConditionsModalIsOpen(true)}>תקנון השימוש</Link>
+                                    </span>
+                                    &nbsp;
+                                    <span>
+                                        ואת
+                                    </span>
+                                    &nbsp;
+                                    <span>
+                                        <Link onClick={() => setTermsModalIsOpen(true)}>תקנון התוכנית</Link>
+                                    </span>
+                                        &nbsp;
+                                    <span>
+                                        ואני מסכים לתנאיהם.
+                                    </span>
+                                </span>
+                            </CheckboxCaption>    
+                        </Checkbox>                                
                     </StepWrapper>
                     <Spacer height={spacing.spacing20}/>
                     <StepWrapper>
