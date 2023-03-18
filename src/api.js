@@ -1,7 +1,7 @@
 
 const isDevelopment = false;
 
-let BASE_URL = '';
+let BASE_URL = 'https://shavitim-u3g34.ondigitalocean.app';
 
 if (isDevelopment) {
     BASE_URL = 'http://localhost:9090'
