@@ -217,9 +217,10 @@ const RegistrationPage = () => {
     }
 
     useEffect(() => {
-        fetch(api.getCourses)
+        fetch(api.hello)
             .then(response => response.json())
             .then((courses) => {
+                console.log(courses);
                 setCourses(courses);
             });
     }, []);
