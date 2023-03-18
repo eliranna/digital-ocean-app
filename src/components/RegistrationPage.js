@@ -217,7 +217,7 @@ const RegistrationPage = () => {
     }
 
     useEffect(() => {
-        fetch(api.hello)
+        fetch(api.getCourses)
             .then(response => response.json())
             .then((courses) => {
                 console.log(courses);
