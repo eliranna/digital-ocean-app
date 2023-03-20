@@ -7,7 +7,7 @@ import Page from '../common/components/Page';
 import Centered from '../common/components/Centered';
 
 const caption = {
-    TITLE: "שביטים",
+    TITLE: "שביטים להייטק",
     SUBTITLE: "תוכנית הכנה ליחידות הסייבר ולתעשיית ההייטק עבור תלמידי תיכון מצטיינים",
     DESCRIPTION: "שביטים הינו מסלול העשרה המיועד לתלמידי תיכון מצטיינים אשר מעוניינים להעמיק את ידיעותיהם ולפתח את כישוריהם במדעי המחשב ובפיתוח תוכנה, לצורך השתלבותם העתידית במערך הסייבר הצבאי, בתעשיית ההייטק ובאקדמיה.",
     VISION: "ההשתתפות בתוכנית תחשוף את התלמידים אל עקרונות עולם התוכנה המודרני, תעודד את יצר סקרנותם כלפי התחום, תעניק להם כלים ראשוניים להמשך למידה עצמאית או אקדמאית, ותפתח את יכולתם להתנהל כאנשי צוות בסביבה טכנולוגית."
@@ -29,7 +29,7 @@ const Title = styled.div`
     text-align: center;
     font-size: ${fontSize.fontSize8};
     color: ${colors.accent};
-    font-weight: 300;
+    font-weight: 800;
     right: 0;
     left: 0;
     margin-left: auto;

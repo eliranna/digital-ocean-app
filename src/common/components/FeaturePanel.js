@@ -33,7 +33,7 @@ const FeatureIcon = styled.div`
     flex-direction: column;
     flex-grow: 0;
     img {
-        width: 150px;
+        width: 110px;
         align-self: center;
         filter: ${props => (props.invertColors ? "invert(1)" : "none")};
     }
@@ -67,6 +67,7 @@ const Feature = ({icon, title, description, invertColors, featureWidth}) => {
             <FeatureIcon invertColors={invertColors}>
                 <img src={icon}/>
             </FeatureIcon>
+            <Spacer height={spacing.spacing6}/> 
             <FeatureContent>
                 <FeatureTitle invertColors={invertColors}>
                     {title}

@@ -226,7 +226,7 @@ const RegistrationPage = () => {
     }, []);
 
     return (
-        <Strip>
+        <Strip id="google">
             <PageBox>
                 <Wrapper>
                     <FormTitle>
