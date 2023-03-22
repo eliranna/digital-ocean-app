@@ -4,8 +4,8 @@ import { colors } from './common/style';
 import { Route, Routes } from 'react-router-dom';
 import Navbar from './components/Navbar';
 import Homepage from './components/Homepage';
-import Admin from './components/Admin';
-import RegistrationPage from './components/RegistrationPage';
+import PaymentSuccess from './components/PaymentSuccess';
+import PaymentFailed from './components/PaymentFailed';
 
 const Wrapper = styled.div`
     display: flex;
@@ -29,8 +29,8 @@ function App() {
   return (
     <Routes>
       <Route path="/" element={<LandingPage />}/>
-      <Route path="/admin" element={<Admin />}/>
-      <Route path="/registration" element={<RegistrationPage />}/>
+      <Route path="/payment-success" element={<PaymentSuccess />}/>
+      <Route path="/payment-failed" element={<PaymentFailed />}/>
     </Routes>
   )
 }

@@ -2,7 +2,7 @@ import React from 'react'
 import styled from "styled-components/macro"
 import { fontSize, colors, spacing, device } from '../style';
 import MobileSpacer from './MobileSpacer';
-
+import { AnimationOnScroll } from 'react-animation-on-scroll';
 import Spacer from './Spacer';
 
 const Wrapper = styled.div`
@@ -61,34 +61,38 @@ const FeatureDescription = styled.div`
     font-weight: 600;
 `;
 
-const Feature = ({icon, title, description, invertColors, featureWidth}) => {
+const Feature = ({icon, title, description, invertColors, featureWidth, index}) => {
+    const delay =  index * 200;
     return (
         <FeatureWrapper featureWidth={featureWidth}>
-            <FeatureIcon invertColors={invertColors}>
-                <img src={icon}/>
-            </FeatureIcon>
+            <AnimationOnScroll animateIn="animate__fadeInUp" delay={delay}>
+                <FeatureIcon invertColors={invertColors}>
+                    <img src={icon}/>
+                </FeatureIcon>
+            </AnimationOnScroll>
             <Spacer height={spacing.spacing6}/> 
-            <FeatureContent>
-                <FeatureTitle invertColors={invertColors}>
-                    {title}
-                </FeatureTitle>
-                <Spacer height={spacing.spacing6}/>
-                <FeatureDescription>
-                    {description}
-                </FeatureDescription>
-            </FeatureContent>
+            <AnimationOnScroll animateIn="animate__fadeInUp" delay={delay}>
+                <FeatureContent>
+                    <FeatureTitle invertColors={invertColors}>
+                        {title}
+                    </FeatureTitle>
+                    <Spacer height={spacing.spacing6}/>
+                    <FeatureDescription>
+                        {description}
+                    </FeatureDescription>
+                </FeatureContent>
+            </AnimationOnScroll>
         </FeatureWrapper>        
     )
 }
 
 const FeaturesPanel = ({features, invertColors, featureWidth, align}) => {
-    console.log(align)
     return (
         <Wrapper align={align}>
             {features.map((feature, index) => {
                 return (
                     <>
-                        <Feature key={index} icon={feature.icon} title={feature.title} description={feature.description} invertColors={invertColors} featureWidth={featureWidth}/>
+                        <Feature key={index} index={index} icon={feature.icon} title={feature.title} description={feature.description} invertColors={invertColors} featureWidth={featureWidth}/>
                         {(index < features.length - 1) && (<MobileSpacer height={spacing.spacing24}/>)}
                     </>
                 )

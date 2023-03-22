@@ -1,6 +1,7 @@
 import React from 'react'
 import styled from "styled-components/macro"
 import { fontSize, pageWidth, spacing, colors, device } from '../common/style';
+import { AnimationOnScroll } from 'react-animation-on-scroll';
 
 import Spacer from '../common/components/Spacer';
 import Page from '../common/components/Page';

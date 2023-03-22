@@ -8,6 +8,7 @@ import Strip from '../common/components/Strip';
 import Centered from '../common/components/Centered';
 import MobileSpacer from '../common/components/MobileSpacer';
 import NonMobileOnly from '../common/components/NonMobileOnly';
+import { AnimationOnScroll } from 'react-animation-on-scroll';
 
 const info = [
     {
@@ -69,14 +70,18 @@ const Inner = styled(Centered)`
 const InfoBlock = ({question, answare}) => {
     return (
         <InfoBlockWrapper>
-            <Question>
-                {question}
-            </Question>
+            <AnimationOnScroll animateIn="animate__fadeInRight">
+                <Question>
+                    {question}
+                </Question>
+            </AnimationOnScroll>
             <SpacerRigid width={spacing.spacing12}/>
             <MobileSpacer height={spacing.spacing12} />
-            <Answare>
-                {answare}
-            </Answare>
+            <AnimationOnScroll animateIn="animate__fadeInLeft">
+                <Answare>
+                    {answare}
+                </Answare>
+            </AnimationOnScroll>
         </InfoBlockWrapper>
     )
 }

@@ -9,6 +9,7 @@ import NonMobileOnly from '../common/components/NonMobileOnly';
 import Strip from '../common/components/Strip';
 import MobileSpacer from '../common/components/MobileSpacer';
 import SectionTitle from '../common/components/SectionTitle';
+import { AnimationOnScroll } from 'react-animation-on-scroll';
 
 const caption = {
     TITLE: "איך לומדים?",
@@ -95,9 +96,11 @@ const Program = () => {
                     <Content>
                         <Pane>
                             <NonMobileOnly>
-                                <SectionTitle right>
-                                    {caption.TITLE}
-                                </SectionTitle>
+                                <AnimationOnScroll animateIn="animate__fadeInLeft">
+                                    <SectionTitle right>
+                                        {caption.TITLE}
+                                    </SectionTitle>
+                                </AnimationOnScroll>
                             </NonMobileOnly>
                             <MobileOnly>
                                 <SectionTitle>
@@ -111,62 +114,74 @@ const Program = () => {
                                 </Image>
                             </MobileOnly>
                             <Spacer height={spacing.spacing16}/>
-                            <DescriptionBlock>
-                                <DescriptionTitle>
-                                    {caption.LESSONS_TITLE}
-                                </DescriptionTitle>
-                                <Spacer height={spacing.spacing4}/>
-                                <DescriptionContent>
-                                    {caption.LESSONS_ABOUT}
-                                </DescriptionContent>
-                            </DescriptionBlock>
+                            <AnimationOnScroll animateIn="animate__fadeInLeft">
+                                <DescriptionBlock>
+                                    <DescriptionTitle>
+                                        {caption.LESSONS_TITLE}
+                                    </DescriptionTitle>
+                                    <Spacer height={spacing.spacing4}/>
+                                    <DescriptionContent>
+                                        {caption.LESSONS_ABOUT}
+                                    </DescriptionContent>
+                                </DescriptionBlock>
+                            </AnimationOnScroll>
                             <Spacer height={spacing.spacing16}/>
-                            <DescriptionBlock>
-                                <DescriptionTitle>
-                                    {caption.WORKSHOP_TITLE}
-                                </DescriptionTitle>
-                                <Spacer height={spacing.spacing4}/>
-                                <DescriptionContent>
-                                    {caption.WORKSHOP_ABOUT}
-                                </DescriptionContent>
-                            </DescriptionBlock>
+                            <AnimationOnScroll animateIn="animate__fadeInLeft">
+                                <DescriptionBlock>
+                                    <DescriptionTitle>
+                                        {caption.WORKSHOP_TITLE}
+                                    </DescriptionTitle>
+                                    <Spacer height={spacing.spacing4}/>
+                                    <DescriptionContent>
+                                        {caption.WORKSHOP_ABOUT}
+                                    </DescriptionContent>
+                                </DescriptionBlock>
+                            </AnimationOnScroll>
                         </Pane>
                     </Content>
                     <SpacerRigid width={spacing.spacing24}/>
                     <NonMobileOnly>
                         <Image>
-                            <img src='/assets/student.jpg'/>
+                            <AnimationOnScroll animateIn="animate__fadeInRight">
+                                <img src='/assets/student.jpg'/>
+                            </AnimationOnScroll>
                         </Image>
                     </NonMobileOnly>
                 </Inner>
                 <Spacer height={spacing.spacing32}/>
                 <Inner>
                     <Image>
-                        <img src='/assets/wework.jpg'/>
+                        <AnimationOnScroll animateIn="animate__fadeInLeft">
+                            <img src='/assets/wework.jpg'/>
+                        </AnimationOnScroll>
                     </Image>
                     <SpacerRigid width={spacing.spacing32}/>
                     <MobileSpacer height={spacing.spacing32}/>
                     <Content>
                         <Pane>
-                            <DescriptionBlock>
-                                <DescriptionTitle>
-                                    {caption.HACKATHON_TITLE}
-                                </DescriptionTitle>
-                                <Spacer height={spacing.spacing4}/>
-                                <DescriptionContent>
-                                    {caption.HACKATHON_ABOUT}
-                                </DescriptionContent>
-                            </DescriptionBlock>
+                            <AnimationOnScroll animateIn="animate__fadeInRight">
+                                <DescriptionBlock>
+                                    <DescriptionTitle>
+                                        {caption.HACKATHON_TITLE}
+                                    </DescriptionTitle>
+                                    <Spacer height={spacing.spacing4}/>
+                                    <DescriptionContent>
+                                        {caption.HACKATHON_ABOUT}
+                                    </DescriptionContent>
+                                </DescriptionBlock>
+                            </AnimationOnScroll>
                             <Spacer height={spacing.spacing16}/>
-                            <DescriptionBlock>
-                                <DescriptionTitle>
-                                    {caption.PROJECT_TITLE}
-                                </DescriptionTitle>
-                                <Spacer height={spacing.spacing4}/>
-                                <DescriptionContent>
-                                    {caption.PROJECT_ABOUT}
-                                </DescriptionContent>
-                            </DescriptionBlock>
+                            <AnimationOnScroll animateIn="animate__fadeInRight">
+                                <DescriptionBlock>
+                                    <DescriptionTitle>
+                                        {caption.PROJECT_TITLE}
+                                    </DescriptionTitle>
+                                    <Spacer height={spacing.spacing4}/>
+                                    <DescriptionContent>
+                                        {caption.PROJECT_ABOUT}
+                                    </DescriptionContent>
+                                </DescriptionBlock>
+                            </AnimationOnScroll>
                         </Pane>
                     </Content>
                 </Inner>

@@ -11,6 +11,7 @@ import Approch from './Approch'
 import Program from './Program'
 import Info from './Info'
 import Host from './Host'
+import Register from './RegistrationPage'
 import RequestRegistration from './RequestRegistration'
 import Footer from './Footer'
 import FAQs from './FAQ';
@@ -33,7 +34,7 @@ const Homepage = () => {
             <Program/>
             <Info/>
             <Host/>
-            <RegistrationPage onShowTerms={() => setTermsModalIsOpen(true)}/>
+            <Register/>
             <FAQs/>
             <Footer/>
         </Wrapper>

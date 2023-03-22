@@ -11,6 +11,7 @@ import Accordion from '../common/components/Accordion';
 import Strip from '../common/components/Strip';
 import SectionTitle from '../common/components/SectionTitle';
 import MobileSpacer from '../common/components/MobileSpacer';
+import { AnimationOnScroll } from 'react-animation-on-scroll';
 
 const features = [
     {
@@ -273,13 +274,15 @@ const Approch = () => {
     return (
         <Strip>
             <Page>
-                <SectionTitle>
-                    מה לומדים?
-                </SectionTitle>
-                <Spacer height={spacing.spacing12}/>
-                <Description>
-                    התוכנית משלבת יסודות של מדעי המחשב, עקרונות של פיתוח תוכנה, מיומנויות תכנות, והכרות עם כלי העבודה העדכניים והנפוצים ביותר לשימוש ע״י חברות ההייטק ויחידות המודיעין של צה״ל תוך שימת דגש מיוחדת על שילובם של הנושאים השונים זה עם זה.
-                </Description>
+                <AnimationOnScroll animateIn="animate__fadeInUp">
+                    <SectionTitle>
+                        מה לומדים?
+                    </SectionTitle>
+                    <Spacer height={spacing.spacing12}/>
+                    <Description>
+                        התוכנית משלבת יסודות של מדעי המחשב, עקרונות של פיתוח תוכנה, מיומנויות תכנות, והכרות עם כלי העבודה העדכניים והנפוצים ביותר לשימוש ע״י חברות ההייטק ויחידות המודיעין של צה״ל תוך שימת דגש מיוחדת על שילובם של הנושאים השונים זה עם זה.
+                    </Description>
+                </AnimationOnScroll>
                 <Spacer height={spacing.spacing24}/>
                 <FeaturesPanel features={features2} featureWidth={"30%"} align={"space-between"}/>
                 <Spacer height={spacing.spacing32}/>

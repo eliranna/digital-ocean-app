@@ -49,23 +49,25 @@ const StepExplenation = styled.div`
 
 const CoursesSelectionPanel = styled.div`
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     justify-content: flex-start;
 `;
 
 const CourseOptionWrapper = styled.div`
-    border: ${props => (props.isSelected ? "2px" : "2px")} solid ${props => (props.isSelected ? colors.accent : colors.text)};
+    border: ${props => (props.isSelected ? "1px" : "1px")} solid ${props => (props.isSelected ? colors.accent : '#d2d2d7')};
     background-color: ${props => (props.isSelected ? colors.accent : 'transparant')};
     color: ${props => (props.isSelected ? colors.textOnAccent : colors.text)};
-    border-radius: 6px;
+    border-radius: 12px;
     padding: ${spacing.spacing5};
     cursor: ${props => (props.fade ? "default" : "pointer")};
     pointer-events: ${props => (props.fade ? "none" : "default")};
-    flex-shrink: 1;
-    flex-grow: 0;
-    width: 33%;
+    width: 100%;
+    height: 100%;
     opacity: ${props => (props.fade ? "0.5" : "1")};
     transition: all 500ms; 
+    display: flex;
+    justify-content: space-between;
+    flex-direction: row;
     :hover {
         border-color: ${colors.accent};
     }
@@ -73,7 +75,7 @@ const CourseOptionWrapper = styled.div`
 
 const CourseOptionTitle = styled.div`
     text-align: center;
-    font-size: ${fontSize.fontSize2};
+    font-size: ${fontSize.fontSize4};
     font-weight: 600;
     text-decoration: ${props => (props.crossed ? "line-through" : "none")};
 `;
@@ -169,6 +171,39 @@ const PageBox = styled(Page)`
     align-items: center;
 `
 
+const CourseOptionSelectButton = styled(Button)`
+    border: 1px solid ${colors.accent};
+    background: white;
+    color: ${colors.text};
+    height: 40px;
+    width: 100%;
+    font-size: ${fontSize.fontSize2};
+    align-self: center;
+    font-weight: 500;
+    transition: all 400ms;
+    align-text: center;
+    :hover {
+        opacity: 80%;
+    }
+`
+
+const CourseOptionContent = styled.div`
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+`
+
+const CourseOptionOuter = styled.div`
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    flex-shrink: 1;
+    flex-grow: 0;
+    width: 100%;
+`
+
 const CourseOption = ({title, description, isSelected, freeSpots, onClick}) => {
 
     const freeSpotCaption = (freeSpots) => {
@@ -176,19 +211,26 @@ const CourseOption = ({title, description, isSelected, freeSpots, onClick}) => {
     }
 
     return (
-        <CourseOptionWrapper isSelected={isSelected} onClick={onClick} fade={freeSpots === 0}>
-            <CourseOptionTitle crossed={freeSpots === 0}>
-                {title}
-            </CourseOptionTitle>
-            <Spacer height={spacing.spacing6}/>
-            <CourseOptionDescription>
-                {description}
-            </CourseOptionDescription>
-            <Spacer height={spacing.spacing6}/>
+        <CourseOptionOuter>
+            <CourseOptionWrapper isSelected={isSelected} fade={freeSpots === 0}>
+                <CourseOptionContent>
+                    <CourseOptionTitle crossed={freeSpots === 0}>
+                        03
+                    </CourseOptionTitle>
+                    <Spacer height={spacing.spacing6}/>
+                    <CourseOptionDescription>
+                        {description}
+                    </CourseOptionDescription>
+                </CourseOptionContent>
+                <Spacer height={spacing.spacing6}/>
+                {false &&  (<CourseOptionSelectButton onClick={onClick}>
+                    בחר
+                </CourseOptionSelectButton>)}
+            </CourseOptionWrapper>
             <CourseOptionSpotsLeft>
-                {freeSpots == 0 ? "אזלו המקומות" : freeSpotCaption(freeSpots)}
+                {false && (freeSpots == 0 ? "אזלו המקומות" : freeSpotCaption(freeSpots))}
             </CourseOptionSpotsLeft>
-        </CourseOptionWrapper>
+        </CourseOptionOuter>
     )
 }
 
@@ -256,7 +298,7 @@ const RegistrationPage = () => {
                     <Spacer height={spacing.spacing16}/>
                     <StepWrapper>
                         <StepTitle>
-                            מילוי פרטי התלמיד
+                             פרטי התלמיד
                         </StepTitle>
                         <Spacer height={spacing.spacing12}/>   
                         <FormSection>                  
@@ -281,35 +323,14 @@ const RegistrationPage = () => {
                                         </CellNote>
                                     </Cell>
                                 </Row>
-                            </SectionContent>
-                        </FormSection>                                    
-                    </StepWrapper>
-                    <Spacer height={spacing.spacing16}/>
-                    <StepWrapper>
-                        <StepTitle>
-                            מילוי פרטי האפוטרופוס (הורה או אחר)
-                        </StepTitle>
-                        <Spacer height={spacing.spacing6}/>   
-                        <Checkbox onChange={() => setIsSelfRegister(!isSelfRegister)}>
-                            אני תלמיד הרושם את עצמו לתוכנית
-                        </Checkbox>
-                        <Spacer height={spacing.spacing12}/> 
-                        <FormSection disabled={isSelfRegister} blocked={isSelfRegister}>                  
-                            <SectionContent>
-                                <Row>
-                                    <Cell>
-                                        <InputBox type="text" disabled={isSelfRegister} onChange={e => setParentFirstName(e.target.value)} placeholder={"שם פרטי"}/>
-                                    </Cell>
-                                    <Spacer width={spacing.spacing6}/>
-                                    <MobileSpacer height={spacing.spacing6}/>
-                                    <Cell>
-                                        <InputBox type="text" disabled={isSelfRegister} onChange={e => setParentLastName(e.target.value)} placeholder={"שם משפחה"}/> 
-                                    </Cell>
-                                </Row>
                                 <Spacer height={spacing.spacing8}/>
                                 <Row>
                                     <Cell single>
-                                        <InputBox left type="text" disabled={isSelfRegister} onChange={e => setParentEmail(e.target.value)} placeholder={"כתובת דואר אלקטרוני"}/> 
+                                        <InputBox left type="text" onChange={e => setStudentEmail(e.target.value)} placeholder={"מספר טלפון של הורה / אפוטרופוס"}/> 
+                                        <Spacer height={spacing.spacing3}/>
+                                        <CellNote>
+                                            ליצירת קשר במקרים של אי-הגעה או במקרי חירום
+                                        </CellNote>
                                     </Cell>
                                 </Row>
                             </SectionContent>

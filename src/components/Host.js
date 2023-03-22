@@ -6,6 +6,7 @@ import Spacer from '../common/components/Spacer'
 import Page from '../common/components/Page';
 import Centered from '../common/components/Centered';
 import Strip from '../common/components/Strip';
+import { AnimationOnScroll } from 'react-animation-on-scroll';
 
 const ABOUT = `
     
@@ -66,21 +67,27 @@ const Host = () => {
     return (
         <Strip backgroundColor={colors.lightGrey}>
             <Page nerrow>
-                <AvatarPanel>
-                    <Avatar src="./assets/host.jpg"/>
-                </AvatarPanel>
+                <AnimationOnScroll animateIn="animate__fadeInUp">
+                    <AvatarPanel>
+                        <Avatar src="./assets/host.jpg"/>
+                    </AvatarPanel>
+                </AnimationOnScroll>
                 <Spacer height={spacing.spacing8}/>
-                <HostName>
-                    אלירן מלר נתן
-                </HostName>
-                <Spacer height={spacing.spacing1}/>
-                <HostRole>
-                    יוצר ומנחה התוכנית
-                </HostRole>
+                <AnimationOnScroll animateIn="animate__fadeInUp">
+                    <HostName>
+                        אלירן מלר נתן
+                    </HostName>
+                    <Spacer height={spacing.spacing1}/>
+                    <HostRole>
+                        יוצר ומנחה התוכנית
+                    </HostRole>
+                </AnimationOnScroll>
                 <Spacer height={spacing.spacing12}/>
-                <HostDescription>
-                    {ABOUT}
-                </HostDescription>
+                <AnimationOnScroll animateIn="animate__fadeInUp">
+                    <HostDescription>
+                        {ABOUT}
+                    </HostDescription>
+                </AnimationOnScroll>
             </Page>
         </Strip>
     )
