@@ -2,8 +2,7 @@ import React, { useState } from 'react';
 import styled from 'styled-components/macro';
 import { colors } from './common/style';
 import { Route, Routes } from 'react-router-dom';
-import Navbar from './components/Navbar';
-import Homepage from './components/Homepage';
+import Cover from './sections/Cover';
 import PaymentSuccess from './components/PaymentSuccess';
 import PaymentFailed from './components/PaymentFailed';
 
@@ -17,8 +16,7 @@ function LandingPage() {
   return (
     <>
       <Wrapper>
-        <Navbar/>
-        <Homepage/>
+        <Cover/>
       </Wrapper>
     </>
   )
