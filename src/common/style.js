@@ -17,10 +17,8 @@ const spacing = {
 }
 
 const size = {
-    mobileS: '320px',
-    mobileS: '375px',
-    mobileM: '425px',
-    mobileL: '768px',
+    mobileS: '325px',
+    mobile: '733px',
     tablet: '1024px',
     laptop: '1440px',
     laptopL: '2560px'
@@ -29,7 +27,7 @@ const size = {
 const device = {
   mobileS: `(max-width: ${size.mobileS})`,
   mobileM: `(max-width: ${size.mobileM})`,
-  mobileL: `(max-width: ${size.mobileL})`,
+  mobile: `(max-width: ${size.mobile})`,
   tablet: `(max-width: ${size.tablet})`,
   laptop: `(max-width: ${size.laptop})`,
   laptopL: `(max-width: ${size.laptopL})`,
@@ -38,36 +36,26 @@ const device = {
 };
 
 const colors = {
-    background: '#FFFFFF',
-    text: '#37352f',
-    textOnAccent: '#FFFFFF',
-    accent: '#4240EA',
-    lightGrey: '#fbfbfa',
-    accentDeep: '#2623ea'
+    textOnDark: '#FFFFFF',
+    textOnDarkWeak: 'rgba(255, 255, 255, 0.7)'
 }
 
 const fonts = {
     main: 'Assistant'
 }
 
+const fontWeight = {
+    extraLight: 300,
+    semiBold: 600
+}
+
 const fontSize = {
-    fontSizeTiny: '0.6rem',
-    fontSizeSmall: '0.7rem',
-    fontSize0: '0.833rem',
-    fontSize1: '1rem',
-    fontSize2: '1.2rem',
-    fontSize3: '1.44rem',
-    fontSize4: '1.728rem',
-    fontSize5: '2.074rem',
-    fontSize6: '2.488rem',
-    fontSize7: '2.986rem',
-    fontSize8: '69.33333333333333px',
-    fontSize9: '40px',
-    fontSize9Mobile: '30px',
-    fontSize32: '32px',
-    fontSize21: '21.3px',
-    fontSize25: '25.3px',
-    headerMobile: '70px'
+    fontSize0: "12px",
+    fontSize1: "14px",
+    fontSize2: "16px",
+    fontSize3: "18px",
+    fontSize4: "20px",
+    fontSize5: "30px",
 }
 
 const pageWidth = {
@@ -85,6 +73,7 @@ const pageWidth = {
 export {
     spacing,
     colors,
+    fontWeight,
     fonts,
     fontSize,
     pageWidth,
