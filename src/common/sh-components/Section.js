@@ -4,10 +4,12 @@ import { colors, fontSize, fontWeight, device, pageWidth } from '../style'
 
 const Wrapper = styled.div`
     padding-top: 212px;
+    padding-bottom: ${ props => props.paddingBottom ? '212px' : '0px'};
     display: flex;
     flex-direction: column;
     @media ${device.tabletS} {
         padding-top: 76px;
+        padding-bottom: ${ props => props.paddingBottom ? '76px' : '0px'};
     }
 `;
 
@@ -29,9 +31,9 @@ const Page = styled.div`
     }
 `;
 
-const Section = ({children, nerrow}) => {
+const Section = ({children, nerrow, paddingBottom}) => {
     return (
-        <Wrapper>
+        <Wrapper paddingBottom={paddingBottom}>
             <Page nerrow={nerrow}>
                 {children}
             </Page>

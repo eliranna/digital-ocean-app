@@ -14,34 +14,34 @@ const features = [
         icon: "./shavitim-assets/prog.svg"
     },
     {
-        id: 1,
-        title: 'לומדים תכנות לעומק',
-        desc: 'לומדים פייתון (Python), שפת התכנות המבוקשת בעולם, ומעמיקים בעקרונות בהנדסת תוכנה ובמדעי המחשב.',
-        icon: "./shavitim-assets/prog.svg"
+        id: 2,
+        title: 'סוללים דרך להייטק',
+        desc: 'רוכשים את הכלים שנדרשים להתמודדות עם מיוניים ליחידות הסייבר ולחברות ההייטק.',
+        icon: "./shavitim-assets/hitech.svg"
     },
     {
-        id: 1,
-        title: 'לומדים תכנות לעומק',
-        desc: 'לומדים פייתון (Python), שפת התכנות המבוקשת בעולם, ומעמיקים בעקרונות בהנדסת תוכנה ובמדעי המחשב.',
-        icon: "./shavitim-assets/prog.svg"
+        id: 3,
+        title: 'ימי העשרה חוויתיים',
+        desc: 'מסיירים במרכזי פיתוח ובמעבדות חדשניות, פוגשים מומחים מעולמות ההייטק, וחווים את היקום הווירטואלי.',
+        icon: "./shavitim-assets/days.svg"
     },
     {
-        id: 1,
-        title: 'לומדים תכנות לעומק',
-        desc: 'לומדים פייתון (Python), שפת התכנות המבוקשת בעולם, ומעמיקים בעקרונות בהנדסת תוכנה ובמדעי המחשב.',
-        icon: "./shavitim-assets/prog.svg"
+        id: 4,
+        title: 'חווים דינמיקה צוותית',
+        desc: 'מתפצלים לצוותי פיתוח קטנים ואוטונומיים הפועלים יחדיו באווירת סטארטאפ.',
+        icon: "./shavitim-assets/team.svg"
     },
     {
-        id: 1,
-        title: 'לומדים תכנות לעומק',
-        desc: 'לומדים פייתון (Python), שפת התכנות המבוקשת בעולם, ומעמיקים בעקרונות בהנדסת תוכנה ובמדעי המחשב.',
-        icon: "./shavitim-assets/prog.svg"
+        id: 5,
+        title: 'לומדים בקבוצה קטנה',
+        desc: 'מקבלים יחס אישי והכוונה אינדיווידואלית המאפשרת למידה איכותית ומותאמת אישית. ',
+        icon: "./shavitim-assets/small.svg"
     },
     {
-        id: 1,
-        title: 'לומדים תכנות לעומק',
-        desc: 'לומדים פייתון (Python), שפת התכנות המבוקשת בעולם, ומעמיקים בעקרונות בהנדסת תוכנה ובמדעי המחשב.',
-        icon: "./shavitim-assets/prog.svg"
+        id: 6,
+        title: 'פרוייקט גמר מאתגר',
+        desc: 'מיישמים את החומר הנלמד במהלך פיתוח פרוייקט בינה מלאכותית מאתגר ומסקרן.',
+        icon: "./shavitim-assets/project.svg"
     },
 ]
 
@@ -49,6 +49,13 @@ const FeaturesSection = styled(Section)``
 
 const FeaturesTitle = styled(SectionHeader)`
     text-align: center;
+    margin-bottom: 100px;
+    @media ${device.tabletS} {
+        margin-bottom: 76px;
+    }
+    @media ${device.mobile} {
+        font-size: ${fontSize.fontSize5Mobile};
+    }
 `
 
 const FeatureCard = styled.div`
@@ -60,20 +67,24 @@ const FeatureCard = styled.div`
     padding: 43px;
     align-items: center;
     z-index: 50;
-    position: absolute;
     width: 100%;
-    height: 100%;
+    height: 414px;
     background-color: white;
     
 `
 
 const FeatureImageFigure = styled.img`
-    width: 100%;
+    width: 110px;
     height: auto;    
+    align-self: center;
+    height: 120px;
 `
 
 const FeatureImage = styled.div`
-    width: 110px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
     margin-bottom: 29px;
 `
 
@@ -97,7 +108,7 @@ const FeatureInto = styled.div`
 
 const Features = () => {
     return (
-        <FeaturesSection nerrow={true}>
+        <FeaturesSection nerrow={true} paddingBottom={true}>
             <FeaturesTitle>
                 מה מיוחד בתכנית?
             </FeaturesTitle>

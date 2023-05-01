@@ -5,6 +5,7 @@ import { Route, Routes } from 'react-router-dom';
 import Cover from './sections/Cover';
 import Intro from './sections/Intro';
 import Features from './sections/Features';
+import Heighlights from './sections/Heighlights';
 import PaymentSuccess from './components/PaymentSuccess';
 import PaymentFailed from './components/PaymentFailed';
 
@@ -22,6 +23,7 @@ function LandingPage() {
         <Cover/>
         <Intro/>
         <Features/>
+        <Heighlights/>
       </Wrapper>
     </>
   )
