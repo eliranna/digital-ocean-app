@@ -7,6 +7,7 @@ const Wrapper = styled.div`
     padding-bottom: ${ props => props.paddingBottom ? '212px' : '0px'};
     display: flex;
     flex-direction: column;
+    background-color: ${props => props.background ? props.background : null};
     @media ${device.tabletS} {
         padding-top: 76px;
         padding-bottom: ${ props => props.paddingBottom ? '76px' : '0px'};
@@ -31,9 +32,9 @@ const Page = styled.div`
     }
 `;
 
-const Section = ({children, nerrow, paddingBottom}) => {
+const Section = ({children, nerrow, paddingBottom, background}) => {
     return (
-        <Wrapper paddingBottom={paddingBottom}>
+        <Wrapper paddingBottom={paddingBottom} background={background}>
             <Page nerrow={nerrow}>
                 {children}
             </Page>

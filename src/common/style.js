@@ -44,7 +44,8 @@ const device = {
 const colors = {
     textOnDark: '#FFFFFF',
     textOnDarkWeak: 'rgba(255, 255, 255, 0.7)',
-    gradient: 'linear-gradient(270deg, #A181FF 6.12%, #5B72FF 47.18%, #F97583 94.69%)'
+    gradient: 'linear-gradient(270deg, #A181FF 6.12%, #5B72FF 47.18%, #F97583 94.69%)',
+    backgrouondDark: '#121212'
 }
 
 const fonts = {
