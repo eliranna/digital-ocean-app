@@ -1,8 +1,6 @@
 import React, { useState } from 'react';
 import styled from 'styled-components/macro';
-
 import { colors, fontSize, fontWeight, device } from '../common/style'
-import { TextBody1 } from '../common/text'
 
 const Wrapper = styled.div`
     background-image: url("./shavitim-assets/cover.svg");
@@ -54,7 +52,6 @@ const SlogenText = styled.div`
     @media ${device.mobile} {
         max-width: 190px;
         font-size: ${fontSize.fontSize3};
-        margin-top: 32px;
     }
 `;
 

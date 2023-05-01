@@ -17,18 +17,24 @@ const spacing = {
 }
 
 const size = {
-    mobileS: '325px',
+    mobileSS: '325px',
+    mobileS: '550px',
     mobile: '733px',
+    tabletS: '927px',
     tablet: '1024px',
+    tabletL: '1200px',
     laptop: '1440px',
     laptopL: '2560px'
 }
 
 const device = {
+  mobileSS: `(max-width: ${size.mobileSS})`,
   mobileS: `(max-width: ${size.mobileS})`,
   mobileM: `(max-width: ${size.mobileM})`,
   mobile: `(max-width: ${size.mobile})`,
+  tabletS: `(max-width: ${size.tabletS})`,
   tablet: `(max-width: ${size.tablet})`,
+  tabletL: `(max-width: ${size.tabletL})`,
   laptop: `(max-width: ${size.laptop})`,
   laptopL: `(max-width: ${size.laptopL})`,
   desktop: `(max-width: ${size.desktop})`,
@@ -37,7 +43,8 @@ const device = {
 
 const colors = {
     textOnDark: '#FFFFFF',
-    textOnDarkWeak: 'rgba(255, 255, 255, 0.7)'
+    textOnDarkWeak: 'rgba(255, 255, 255, 0.7)',
+    gradient: 'linear-gradient(270deg, #A181FF 6.12%, #5B72FF 47.18%, #F97583 94.69%)'
 }
 
 const fonts = {
@@ -45,7 +52,9 @@ const fonts = {
 }
 
 const fontWeight = {
-    extraLight: 300,
+    extraLight: 200,
+    light: 300,
+    regular: 400,
     semiBold: 600
 }
 
@@ -54,8 +63,13 @@ const fontSize = {
     fontSize1: "14px",
     fontSize2: "16px",
     fontSize3: "18px",
+    fontSize4Mobile: "18px",
     fontSize4: "20px",
     fontSize5: "30px",
+    fontSize5Mobile: "34px",
+    fontSize6: "40px",
+    fontSize7: "50px",
+    fontSize7Mobile: "36px"
 }
 
 const pageWidth = {
@@ -67,7 +81,8 @@ const pageWidth = {
     maxWidth2XL: '42rem',
     maxWidth3XL: '48rem',
     maxWidth4XL: '56rem',
-    maxWidth5XL: '1141.3px'
+    maxWidth5XL: '1141.3px',
+    nerrow: '1200px'
 }
 
 export {
