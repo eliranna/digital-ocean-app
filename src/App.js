@@ -5,9 +5,10 @@ import { Route, Routes } from 'react-router-dom';
 import Cover from './sections/Cover';
 import Intro from './sections/Intro';
 import Features from './sections/Features';
-import Heighlights from './sections/Heighlights';
+import HighTech from './sections/HighTech';
 import PaymentSuccess from './components/PaymentSuccess';
 import PaymentFailed from './components/PaymentFailed';
+import Heighlights from './sections/Heighlights';
 
 const Wrapper = styled.div`
     display: flex;
@@ -23,6 +24,7 @@ function LandingPage() {
         <Cover/>
         <Intro/>
         <Features/>
+        <HighTech/>
         <Heighlights/>
       </Wrapper>
     </>

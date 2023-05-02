@@ -45,16 +45,17 @@ const features = [
     },
 ]
 
-const FeaturesSection = styled(Section)``
+const FeaturesSection = styled(Section)`
+    @media ${device.tabletS} {
+        padding-bottom: 160px;
+    }
+`
 
 const FeaturesTitle = styled(SectionHeader)`
     text-align: center;
     margin-bottom: 100px;
     @media ${device.tabletS} {
         margin-bottom: 76px;
-    }
-    @media ${device.mobile} {
-        font-size: ${fontSize.fontSize5Mobile};
     }
 `
 

@@ -14,6 +14,9 @@ export const SectionHeader = styled(GradientText)`
     font-size: ${fontSize.fontSize6};
     font-weight: ${fontWeight.light};
     line-height: 120%;
+    @media ${device.mobile} {
+        font-size: ${fontSize.fontSize5Mobile};
+    }
 `
 
 export const SectionText = styled.div`

@@ -7,7 +7,7 @@ const Wrapper = styled.div`
     padding-bottom: ${ props => props.paddingBottom ? '212px' : '0px'};
     display: flex;
     flex-direction: column;
-    background-color: ${props => props.background ? props.background : "white"};
+    background: ${props => props.background ? props.background : "white"};
     z-index: 500;
     @media ${device.tabletS} {
         padding-top: 76px;
