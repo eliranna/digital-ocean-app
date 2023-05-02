@@ -149,7 +149,7 @@ const ImagePanel = styled.div`
 
 const Intro = () => {
     return (
-        <AboutSection>
+        <AboutSection background={"white"}>
             <IntroSlogen>
                 <IntroSlogenText>
                     סוללים את הדרך אל עולמות ההייטק והסייבר, בצה”ל ובאזרחות.

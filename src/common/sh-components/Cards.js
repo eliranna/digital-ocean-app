@@ -18,31 +18,18 @@ const CardWrapper = styled.div`
     flex-direction: column;
     width: 287px; 
     position: relative;
-    ::before {
-        content: "";
-        z-index: -1;
+    :before {
         position: absolute;
-        top: 0;
-        right: 0;
-        bottom: 0;
-        left: 0;
-        background: linear-gradient(180deg, #EB7BA9 0%, #C671D8 49.48%, #7982F7 99.48%);
-        transform: translate3d(3px, 15px, 0) scale(0.9);
+        top: 0px;
+        left: -11.5px;
+        width: 100%;
+        height: 100%;
+        -webkit-filter: blur(25px);
         filter: blur(25px);
-        opacity: 0.8;
-        transition: opacity 0.3s;
-        border-radius: inherit;
-    }
-    ::after {
-        content: "";
+        opacity: 0.6;
         z-index: -1;
-        position: absolute;
-        top: 0;
-        right: 0;
-        bottom: 0;
-        left: 0;
-        background: inherit;
-        border-radius: inherit;
+        background: linear-gradient(180deg, #EB7BA9 0%, #C671D8 49.48%, #7982F7 99.48%);
+        content: '';
     }
             
 `

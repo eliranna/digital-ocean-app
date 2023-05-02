@@ -3,15 +3,42 @@ import styled from 'styled-components/macro';
 import { colors, fontSize, fontWeight, device } from '../common/style'
 
 const Wrapper = styled.div`
+    width: 100vw;
+    height: 100vh;
+    color: ${colors.textOnDark};
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    position: relative;
+    :before {
+        background-image: url("./shavitim-assets/cover.jpg");
+        content: '';
+        position: fixed;
+        z-index: -1;
+        display: block;
+        top: 0px;
+        left: 0px;
+        bottom: 0px;
+        right: 0px;
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-position: center top;       
+    }
+`;
+
+const CoverImage = styled.div`
     background-image: url("./shavitim-assets/cover.svg");
     width: 100vw;
     height: 100vh;
     background-size: cover;
     background-repeat: no-repeat;
-    background-attachment: fixed;
+    position: fixed;
     background-position: center;
-    color: ${colors.textOnDark};
-    position: relative;
+    top: 0;
+    right: 0;
+    left: 0;
+    margin-left: auto;
+    margin-right: auto;
 `;
 
 const LogoBox = styled.div`
@@ -19,6 +46,7 @@ const LogoBox = styled.div`
     display: flex;
     flex-direction: column;
     justify-content: center;
+    z-index: 500;
     @media ${device.mobile} {
         margin-top: 33%;
     }
@@ -40,6 +68,7 @@ const Slogen = styled.div`
     display: flex;
     flex-direction: column;
     justify-content: center;
+    z-index: 500;
 `;
 
 const SlogenText = styled.div`
@@ -173,6 +202,7 @@ const BurgerMenu = styled.img`
 const Cover = () => {
     return (
         <Wrapper>
+         
             <Header>
                 <HeaderInner>
                     <Right>
