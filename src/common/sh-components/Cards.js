@@ -3,11 +3,12 @@ import styled from 'styled-components/macro';
 import { device } from '../style'
 
 export const CardsBoard = styled.div`
-    text-align: center;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
+    display: grid;
     grid-gap: 82px;
+    grid-template-columns: auto auto auto;
+    @media ${device.tabletL} {
+        grid-template-columns: repeat(2, 1fr);
+    }
     @media ${device.tabletS} {
         grid-gap: 32px;
     }
@@ -18,9 +19,9 @@ export const CardsBoard = styled.div`
 
 const CardWrapper = styled.div`
     display: flex;
-    flex-direction: column;
-    width: 287px; 
+    flex-direction: column; 
     position: relative;
+    max-width: 292px;
     :before {
         position: absolute;
         top: 0px;
@@ -35,10 +36,10 @@ const CardWrapper = styled.div`
         content: '';
     }
     @media ${device.mobileL} {
-        width: 40%;
+       
     }
     @media ${device.mobile} {
-        width: 46%;
+        
     }
             
 `
