@@ -28,8 +28,8 @@ const Page = styled.div`
         padding-left: 45px;
     }
     @media ${device.mobileS} {
-        padding-right: 10px;
-        padding-left: 10px;
+        padding-right: 20px;
+        padding-left: 20px;
     }
 `;
 

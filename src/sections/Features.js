@@ -9,7 +9,7 @@ import { CardsBoard, Card } from '../common/sh-components/Cards'
 const features = [
     {
         id: 1,
-        title: 'תוכנית לימודים מעמיקה ומעודכנת',
+        title: 'תוכנית לימודים מעמיקה',
         desc: 'לומדים פייתון (Python), שפת התכנות המבוקשת בעולם, ומעמיקים בעקרונות בהנדסת תוכנה ובמדעי המחשב.',
         icon: "./shavitim-assets/prog.svg"
     },
@@ -72,14 +72,15 @@ const FeatureCard = styled.div`
     height: 414px;
     background-color: white;
     @media ${device.mobileL} {
-        padding: 30px;
+        padding: 18px;
         height: 280px;
     }
-    @media ${device.mobile} {
-        padding: 20px;
+    @media ${device.mobileS} {
+      
     }
-    @media ${device.mobileL} {
-        padding: 10px;
+    @media ${device.mobileSS} {
+        height: unset;
+        padding: 25px;
     }
     
 `
@@ -105,6 +106,10 @@ const FeatureImage = styled.div`
         padding-top: 15px;
         padding-bottom: 15px;
     }
+    @media ${device.mobileS} {
+        padding-top: 0px;
+        padding-bottom: 15px;
+    }
 `
 
 const FeatureTitle = styled.div`
@@ -112,12 +117,18 @@ const FeatureTitle = styled.div`
     font-size: ${fontSize.fontSize4};
     font-weight: ${fontWeight.regular};
     margin-bottom: 16px;
+    @media ${device.mobile} {
+        font-size: ${fontSize.fontSize3};
+    }    
 `
 
 const FeatureDesc = styled.div`
     text-align: center;
     font-size: ${fontSize.fontSize2};
     font-weight: ${fontWeight.regular};
+    @media ${device.mobile} {
+        font-size: ${fontSize.fontSize1};
+    }   
 `
 
 const FeatureInto = styled.div`

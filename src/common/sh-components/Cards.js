@@ -13,7 +13,13 @@ export const CardsBoard = styled.div`
         grid-gap: 32px;
     }
     @media ${device.mobile} {
-        grid-gap: 16px;
+        grid-gap: 20px;
+    }
+    @media ${device.mobileS} {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    @media ${device.mobileSS} {
+        grid-template-columns: repeat(1, 1fr);
     }
 `
 
@@ -36,10 +42,10 @@ const CardWrapper = styled.div`
         content: '';
     }
     @media ${device.mobileL} {
-       
+       max-width: 220px;
     }
     @media ${device.mobile} {
-        
+   
     }
             
 `
