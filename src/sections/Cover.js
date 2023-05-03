@@ -13,7 +13,7 @@ const Wrapper = styled.div`
     :before {
         background-image: url("./shavitim-assets/cover.jpg");
         content: '';
-        position: fixed;
+        position: absolute;
         z-index: -1;
         display: block;
         top: 0px;
@@ -202,7 +202,6 @@ const BurgerMenu = styled.img`
 const Cover = () => {
     return (
         <Wrapper>
-         
             <Header>
                 <HeaderInner>
                     <Right>
