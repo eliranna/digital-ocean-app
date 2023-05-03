@@ -7,12 +7,12 @@ export const CardsBoard = styled.div`
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    gap: 82px;
+    grid-gap: 82px;
     @media ${device.tabletS} {
-        gap: 32px;
+        grid-gap: 32px;
     }
     @media ${device.mobile} {
-        gap: 16px;
+        grid-gap: 16px;
     }
 `
 

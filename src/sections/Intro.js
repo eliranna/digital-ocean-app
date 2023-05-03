@@ -32,11 +32,11 @@ const AboutStrip = styled.div`
     display: flex;
     flex-direction: row;
     justify-content: center;
-    grid-gap: 153px;
+    gap: 153px;
     margin-top: 171px;
     position: relative;
     @media ${device.tabletL} {
-        grid-gap: 65px;
+        gap: 65px;
     }
     @media ${device.tabletS} {
         flex-direction: column-reverse;
