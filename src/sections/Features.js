@@ -9,7 +9,7 @@ import { CardsBoard, Card } from '../common/sh-components/Cards'
 const features = [
     {
         id: 1,
-        title: 'לומדים תכנות לעומק',
+        title: 'תוכנית לימודים מעמיקה ומעודכנת',
         desc: 'לומדים פייתון (Python), שפת התכנות המבוקשת בעולם, ומעמיקים בעקרונות בהנדסת תוכנה ובמדעי המחשב.',
         icon: "./shavitim-assets/prog.svg"
     },
@@ -39,7 +39,7 @@ const features = [
     },
     {
         id: 6,
-        title: 'פרוייקט גמר מאתגר',
+        title: 'עושים פרוייקט גמר מאתגר',
         desc: 'מיישמים את החומר הנלמד במהלך פיתוח פרוייקט בינה מלאכותית מאתגר ומסקרן.',
         icon: "./shavitim-assets/project.svg"
     },

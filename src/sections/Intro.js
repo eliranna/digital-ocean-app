@@ -58,6 +58,9 @@ const AboutImage = styled(ParallaxBanner)`
     ::before{
         border-radius: 100%!important;
     }
+    div {
+        will-change: unset!important;
+    }
 
 `;
 
