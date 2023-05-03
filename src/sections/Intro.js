@@ -4,6 +4,7 @@ import { colors, fontSize, fontWeight, device } from '../common/style'
 import Section from '../common/sh-components/Section'
 import {GradientText, SectionHeader, SectionText} from '../common/sh-components/Text'
 import {GradiantBrderedBox} from '../common/sh-components/Containers'
+import { ParallaxBanner } from 'react-scroll-parallax';
 
 const AboutSection = styled(Section)`
 
@@ -38,20 +39,18 @@ const AboutStrip = styled.div`
         gap: 65px;
     }
     @media ${device.tabletS} {
-        flex-direction: column;
+        flex-direction: column-reverse;
         margin-top: 117px;
     }
 `;
 
-const AboutImage = styled(GradiantBrderedBox)`
+const AboutImage = styled(ParallaxBanner)`
     display: flex;
     flex-direction: column;
     justify-content: center;
     position: relative;
-    width: 527px;
-    min-width: 261px;
-    height: 527px;
-    min-height: 261px;
+
+    border-radius: 100%;
     padding: 25px;
     border-width: 1px 0px 0px 1px;
     flex-grow: 0;
@@ -59,24 +58,7 @@ const AboutImage = styled(GradiantBrderedBox)`
     ::before{
         border-radius: 100%!important;
     }
-    @media ${device.tabletL} {
-        width: 460px;
-        height: 460px;
-        padding: 20px;
-    }
-    @media ${device.tabletS} {
-        flex-direction: row;
-        width: 450px;
-        height: 450px;
-        padding: 16px;
-    }
-    @media ${device.mobile} {
-        width: 80vw;
-        height: 80vw;
-        max-width: 450px;
-        max-height: 450px;
-        padding: 15px;
-    }
+
 `;
 
 const AboutImageInner = styled.div`
@@ -127,7 +109,7 @@ const AboutInner = styled.div`
     margin-top: 80px;
     max-width: 421px;
     @media ${device.tablet} {
-
+        align-self: center;
     }
     @media ${device.tabletS} {
         margin-top: 0px;
@@ -136,16 +118,39 @@ const AboutInner = styled.div`
 
 const Glass = styled.img`
     position: absolute;
-    z-index: 1;
+    z-index: 10;
     width: 100%;
     height: 100%;
-    z-index: 10;
 `;
 
 const ImagePanel = styled.div`
     display: flex;
     justify-content: center;
+    width: 527px;
+    height: 527px;
+    position: relative;
+    width: 527px!important;
+    height: 527px!important;
+    flex-grow: 0;
+    flex-shrink: 0;
+    align-self: center;
+    @media ${device.tabletL} {
+        width: 460px!important;
+        height: 460px!important;
+    }
+    @media ${device.tabletS} {
+        flex-direction: row;
+        width: 450px!important;
+        height: 450px!important;
+    }
+    @media ${device.mobile} {
+        width: 80vw!important;
+        height: 80vw!important;
+        max-width: 450px;
+        max-height: 450px;
+    }
 `;
+
 
 const Intro = () => {
     return (
@@ -157,10 +162,11 @@ const Intro = () => {
             </IntroSlogen>
             <AboutStrip>
                 <ImagePanel>
-                    <AboutImage>
-                        <AboutImageInner></AboutImageInner>
-                        <Glass src="./shavitim-assets/glass.svg"></Glass>
-                    </AboutImage>
+                    <AboutImage
+                        layers={[{ image: './shavitim-assets/rocket-full.svg', speed: -8 }]}
+                        
+                    />
+                    <Glass src="./shavitim-assets/glass.svg"/>
                 </ImagePanel>
                 <About>
                     <AboutInner>

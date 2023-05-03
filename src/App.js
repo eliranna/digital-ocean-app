@@ -9,6 +9,8 @@ import HighTech from './sections/HighTech';
 import PaymentSuccess from './components/PaymentSuccess';
 import PaymentFailed from './components/PaymentFailed';
 import Heighlights from './sections/Heighlights';
+import { ParallaxProvider } from 'react-scroll-parallax';
+
 
 const Wrapper = styled.div`
     display: flex;
@@ -19,7 +21,7 @@ const Wrapper = styled.div`
 
 function LandingPage() {
   return (
-    <>
+    <ParallaxProvider>
       <Wrapper>
         <Cover/>
         <Intro/>
@@ -27,7 +29,7 @@ function LandingPage() {
         <HighTech/>
         <Heighlights/>
       </Wrapper>
-    </>
+    </ParallaxProvider>
   )
 }
 
