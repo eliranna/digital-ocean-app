@@ -71,6 +71,16 @@ const FeatureCard = styled.div`
     width: 100%;
     height: 414px;
     background-color: white;
+    @media ${device.mobileL} {
+        padding: 30px;
+        height: 280px;
+    }
+    @media ${device.mobile} {
+        padding: 20px;
+    }
+    @media ${device.mobileL} {
+        padding: 10px;
+    }
     
 `
 
@@ -79,14 +89,22 @@ const FeatureImageFigure = styled.img`
     height: auto;    
     align-self: center;
     height: 120px;
+    @media ${device.mobileL} {
+        width: 60px;
+        height: 60px;
+    }
 `
 
 const FeatureImage = styled.div`
     width: 100%;
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    margin-bottom: 29px;
+    justify-content: flex-start;
+    padding-bottom: 30px;
+    @media ${device.mobileL} {
+        padding-top: 15px;
+        padding-bottom: 15px;
+    }
 `
 
 const FeatureTitle = styled.div`

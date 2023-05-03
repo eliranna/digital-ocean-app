@@ -11,6 +11,9 @@ export const CardsBoard = styled.div`
     @media ${device.tabletS} {
         gap: 32px;
     }
+    @media ${device.mobile} {
+        gap: 16px;
+    }
 `
 
 const CardWrapper = styled.div`
@@ -30,6 +33,12 @@ const CardWrapper = styled.div`
         z-index: -1;
         background: linear-gradient(180deg, #EB7BA9 0%, #C671D8 49.48%, #7982F7 99.48%);
         content: '';
+    }
+    @media ${device.mobileL} {
+        width: 40%;
+    }
+    @media ${device.mobile} {
+        width: 46%;
     }
             
 `
