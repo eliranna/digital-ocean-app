@@ -49,7 +49,6 @@ const AboutImage = styled(ParallaxBanner)`
     flex-direction: column;
     justify-content: center;
     position: relative;
-
     border-radius: 100%;
     padding: 25px;
     border-width: 1px 0px 0px 1px;
@@ -61,7 +60,6 @@ const AboutImage = styled(ParallaxBanner)`
     div {
         will-change: unset!important;
     }
-
 `;
 
 const AboutImageInner = styled.div`

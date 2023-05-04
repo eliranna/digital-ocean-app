@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import styled from 'styled-components/macro';
-import { device } from '../style'
+import { device } from './old/style'
 
 export const CardsBoard = styled.div`
     display: grid;

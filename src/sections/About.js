@@ -1,0 +1,31 @@
+import React, { useState } from 'react'
+import styled from 'styled-components/macro'
+import { SectionTitle, BodyText, SectionTopic } from '../common/captions'
+import { Section, Row, Cell } from '../common/layout'
+import { spacing } from '../common/style'
+import SectionContent from '../common/shared/SectionContent'
+import SectionRow from '../common/shared/SectionRow'
+import SectionPod from '../common/shared/ImagePod'
+
+const SECTION_TOPIC = 'אודות התוכנית'
+const SECTION_TITLE = 'על התוכנית'
+const SECTION_DESC = `
+    שביטים הינה תוכנית ייחודית וחוויתית עבור תלמידי התיכון.
+    משתתפי התוכנית ילמדו פיתוח תוכנה באופן יסודי ומעמיק,
+    יחשפו אל טכנולוגיות העתיד, יתנסו בדינמיקה צוותית ויישמו את הנלמד במהלך ביצוע פרוייקט מאתגר. 
+`
+
+const Wrapper = styled(Section)``
+
+const AboutImage = <SectionPod src="./shavitim-assets/rocket-full.svg"/>
+const AboutContent = <SectionContent topic={SECTION_TOPIC} title={SECTION_TITLE} desc={SECTION_DESC}/>
+
+const About = () => {
+    return (
+        <Wrapper>
+            <SectionRow image={AboutImage} content={AboutContent}/>
+        </Wrapper>
+    )
+}
+
+export default About
