@@ -38,6 +38,7 @@ const Image = styled(ParallaxBanner)`
     border-width: 1px 0px 0px 1px;
     flex-grow: 0;
     flex-shrink: 0;
+    z-index: 100;
     ::before{
         border-radius: 100%!important;
     }
@@ -46,11 +47,23 @@ const Image = styled(ParallaxBanner)`
     }
 `;
 
+const Circle = styled.div`
+    position: absolute;
+    top: -26px;
+    right: -25px;
+    z-index: 50;
+`
+const CircleImage = styled.img`
+    width: 580px;
+`
 
 const ImagePod = ({src}) => {
     return (
         <Wrapper>
             <Image layers={[{ image: src, speed: -8 }]}/>
+            <Circle>
+                <CircleImage src={"./shavitim-assets/circle.jpg"}/>
+            </Circle>
         </Wrapper>
     )
 }

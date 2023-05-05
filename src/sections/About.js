@@ -5,8 +5,8 @@ import SectionContent from '../common/shared/SectionContent'
 import SectionRow from '../common/shared/SectionRow'
 import SectionPod from '../common/shared/ImagePod'
 
-const SECTION_TOPIC = 'אודות התוכנית'
-const SECTION_TITLE = 'על התוכנית'
+const SECTION_TOPIC = 'על התוכנית'
+const SECTION_TITLE = 'הכירו את שביטים'
 const SECTION_DESC = `
     שביטים הינה תוכנית ייחודית וחוויתית עבור תלמידי התיכון.
     משתתפי התוכנית ילמדו פיתוח תוכנה באופן יסודי ומעמיק,

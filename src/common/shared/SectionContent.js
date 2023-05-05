@@ -4,7 +4,7 @@ import { SectionTitle, SectionTopic, BodyText } from '../captions'
 import { spacing } from '../style'
 import { Spacer } from '../layout'
 
-const SHOW_SECTION_TOPIC = false;
+const SHOW_SECTION_TOPIC = true;
 
 const Wrapper = styled.div`
     text-align: ${props => props.align ? props.align : "center"};
@@ -23,6 +23,7 @@ const SectionContent = ({align, topic, title, desc}) => {
                     </SectionTopic>
                 </SectionTopicPanel>
             )}
+            <Spacer height={spacing.spacing5} />
             <SectionTitlePanel>
                 <SectionTitle>
                     {title}

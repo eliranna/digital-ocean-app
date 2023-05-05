@@ -15,7 +15,7 @@ export const fontWeight = {
 export const fontSize = {
     tiny: '12px',
     small: '14px',
-    regular: '16px',
+    regular: '18px',
     medium: '20px',
     large: '38px',
     xLarge: '48px',
@@ -29,7 +29,9 @@ export const color = {
     extraDeepBlack: '#010002',
     black: '#121212',
     darkGray: '#444444',
-    darkGradient: 'radial-gradient(50% 50% at 50% 50%, #000000 0%, rgba(0, 0, 0, 0.78) 100%)'
+    darkGradient: 'radial-gradient(50% 50% at 50% 50%, #000000 0%, rgba(0, 0, 0, 0.78) 100%)',
+    blackGradient: 'linear-gradient(266.34deg, #1E1E1E 15.2%, rgba(31, 31, 31, 0.87) 95.82%)',
+    lightGrayGradient: 'rgba(0, 0, 0, 0.2) 0px 18px 50px -10px;'
 }
 
 export const spacing = {
@@ -47,6 +49,7 @@ export const spacing = {
     spacing20: '5rem',
     spacing24: '6rem',
     spacing32: '8rem',
+    spacing36: '12rem',
     spacing64: '16rem',
 }
 

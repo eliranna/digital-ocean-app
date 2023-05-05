@@ -24,15 +24,21 @@ export const SectionTitle = styled.span`
 
 export const SectionTopic = styled.span`
     font-size: ${fontSize.tiny};
-    font-weight: ${fontWeight.bold};
+    font-weight: ${fontWeight.semiBold};
     border-radius: 12px;
+    background: ${color.blackGradient};
+    color: ${color.white};
+    padding: 0px 10px;
+    height: 22px;
+    display: inline-block;
+    line-height: 21px;
 `
 
 export const BodyText = styled.span`
-    font-size: ${fontSize.medium};
+    font-size: ${fontSize.regular};
     font-weight: ${fontWeight.regular};
-    border-radius: 12px;
     color: ${props => props.darkMode ? color.white : color.dark};
+    line-height: 28.8px;
 `
 
 export const NavBarLink = styled.span`

@@ -55,4 +55,4 @@ export const Spacer = styled.div`
     width: ${props => props.width ? props.width : 0};
 `;
 
-export const SectionSpacer = () => <Spacer height={spacing.spacing64}/>
+export const SectionSpacer = () => <Spacer height={spacing.spacing36}/>

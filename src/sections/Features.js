@@ -5,7 +5,8 @@ import SectionContent from '../common/shared/SectionContent'
 import FeatureCardsBoard from '../components/FeatureCardsBoard'
 import { spacing } from '../common/style'
 
-const SECTION_TITLE = 'מה מיוחד בתוכנית?'
+const SECTION_TOPIC = 'דגשי התוכנית'
+const SECTION_TITLE = 'למידה מעמיקה לצד עשייה חווייתית'
 
 const features = [
     {
@@ -49,7 +50,7 @@ const Features = () => {
         <Wrapper>
             <SectionBody>
                 <SectionHeader>
-                    <SectionContent align={"center"} title={SECTION_TITLE}/>
+                    <SectionContent align={"center"} topic={SECTION_TOPIC} title={SECTION_TITLE}/>
                 </SectionHeader>
                 <Spacer height={spacing.spacing32}/>
                 <CardsPanel>
