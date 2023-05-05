@@ -7,14 +7,12 @@ const Wrapper = styled.div`
     background: ${color.white};
     display: flex;
     justify-content: center;
-    width: 527px;
-    height: 527px;
     position: relative;
-    width: 527px!important;
-    height: 527px!important;
     flex-grow: 0;
     flex-shrink: 0;
     align-self: center;
+    width: 100%;
+    height: 100%;
     :before {
         position: absolute;
         top: 0px;

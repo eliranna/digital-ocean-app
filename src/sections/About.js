@@ -1,8 +1,6 @@
-import React, { useState } from 'react'
+import React from 'react'
 import styled from 'styled-components/macro'
-import { SectionTitle, BodyText, SectionTopic } from '../common/captions'
-import { Section, Row, Cell } from '../common/layout'
-import { spacing } from '../common/style'
+import { Section, SectionBody } from '../common/layout'
 import SectionContent from '../common/shared/SectionContent'
 import SectionRow from '../common/shared/SectionRow'
 import SectionPod from '../common/shared/ImagePod'
@@ -18,12 +16,14 @@ const SECTION_DESC = `
 const Wrapper = styled(Section)``
 
 const AboutImage = <SectionPod src="./shavitim-assets/rocket-full.svg"/>
-const AboutContent = <SectionContent topic={SECTION_TOPIC} title={SECTION_TITLE} desc={SECTION_DESC}/>
+const AboutContent = <SectionContent align={"right"} topic={SECTION_TOPIC} title={SECTION_TITLE} desc={SECTION_DESC}/>
 
 const About = () => {
     return (
         <Wrapper>
-            <SectionRow image={AboutImage} content={AboutContent}/>
+            <SectionBody>
+                <SectionRow image={AboutImage} content={AboutContent}/>
+            </SectionBody>
         </Wrapper>
     )
 }

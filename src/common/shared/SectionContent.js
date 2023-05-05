@@ -7,14 +7,15 @@ import { Spacer } from '../layout'
 const SHOW_SECTION_TOPIC = false;
 
 const Wrapper = styled.div`
+    text-align: ${props => props.align ? props.align : "center"};
 `
 const SectionTopicPanel = styled.div``
 const SectionTitlePanel = styled.div``
 const SectionDescPanel = styled.div``
 
-const SectionContent = ({topic, title, desc}) => {
+const SectionContent = ({align, topic, title, desc}) => {
     return (
-        <Wrapper>
+        <Wrapper align={align}>
             {SHOW_SECTION_TOPIC && (
                 <SectionTopicPanel>
                     <SectionTopic>
@@ -27,12 +28,16 @@ const SectionContent = ({topic, title, desc}) => {
                     {title}
                 </SectionTitle>
             </SectionTitlePanel>
-            <Spacer height={spacing.spacing10}/>
-            <SectionDescPanel>
-                <BodyText>
-                    {desc}
-                </BodyText>
-            </SectionDescPanel>
+            {desc && (
+                <>
+                    <Spacer height={spacing.spacing10}/>
+                    <SectionDescPanel>
+                        <BodyText>
+                            {desc}
+                        </BodyText>
+                    </SectionDescPanel>
+                </>
+            )}
         </Wrapper>
     )
 }

@@ -25,6 +25,7 @@ export const fontSize = {
 export const color = {
     white: '#FFFFFF',
     coloredGradient: 'linear-gradient(270deg, #A181FF 6.12%, #5B72FF 47.18%, #F97583 94.69%)',
+    coloredBackdrop: 'linear-gradient(180deg, #EB7BA9 0%, #C671D8 49.48%, #7982F7 99.48%)',
     extraDeepBlack: '#010002',
     black: '#121212',
     darkGray: '#444444',
@@ -46,6 +47,7 @@ export const spacing = {
     spacing20: '5rem',
     spacing24: '6rem',
     spacing32: '8rem',
+    spacing64: '16rem',
 }
 
 export const pageWidth = {

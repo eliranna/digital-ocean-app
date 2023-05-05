@@ -8,19 +8,27 @@ const Wrapper = styled.div`
     grid-gap: ${spacing.spacing32};
     grid-template-columns: 1fr 1fr;
 `
-const Cell = styled.div`
+const ImageCell = styled.div`
+    width: 527px;
+    height: 527px;
+`
 
+const ContentCell = styled.div`
+    margin-top: ${spacing.spacing20};
+    div {
+        max-width: 400px;
+    }
 `
 
 const SectionRow = ({image, content}) => {
     return (
         <Wrapper>
-            <Cell>
+            <ImageCell>
                 {image}
-            </Cell>
-            <Cell>
+            </ImageCell>
+            <ContentCell>
                 {content}
-            </Cell>
+            </ContentCell>
         </Wrapper>
     )
 }

@@ -19,7 +19,11 @@ export const Section = styled.div`
 export const SectionBody = styled.div`
     display: flex;
     flex-direction: column;
-    max-width: ${pageWidth.noraml};
+    max-width: ${pageWidth.normal};
+    right: 0;
+    left: 0;
+    margin-right: auto;
+    margin-left: auto;
 `
 
 export const Centered = styled.div`
@@ -51,4 +55,4 @@ export const Spacer = styled.div`
     width: ${props => props.width ? props.width : 0};
 `;
 
-export const SectionSpacer = () => <Spacer height={spacing.spacing32}/>
+export const SectionSpacer = () => <Spacer height={spacing.spacing64}/>

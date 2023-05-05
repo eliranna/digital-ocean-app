@@ -11,8 +11,9 @@ export const DarkGradientText = styled.span`
 `
 
 export const Slogen = styled(DarkGradientText)`
-    font-size: ${fontSize.huge};
-    font-weight: ${fontWeight.bold};
+    font-size: ${fontSize.xLarge};
+    font-weight: ${fontWeight.extraLight};
+    letter-spacing: 0.03em;
 `
 
 export const SectionTitle = styled.span`
@@ -31,6 +32,7 @@ export const BodyText = styled.span`
     font-size: ${fontSize.medium};
     font-weight: ${fontWeight.regular};
     border-radius: 12px;
+    color: ${props => props.darkMode ? color.white : color.dark};
 `
 
 export const NavBarLink = styled.span`

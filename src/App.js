@@ -1,8 +1,8 @@
 import React from 'react';
 import { Route, Routes } from 'react-router-dom';
 import Landing from './pages/Landing'
-import PaymentSuccess from './components/PaymentSuccess';
-import PaymentFailed from './components/PaymentFailed';
+import PaymentSuccess from './pages/PaymentSuccess';
+import PaymentFailed from './pages/PaymentFailed';
 
 const App = () => {
   return (

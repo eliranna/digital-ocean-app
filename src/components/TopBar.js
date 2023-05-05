@@ -2,10 +2,6 @@ import React, { useState } from 'react';
 import styled from "styled-components/macro";
 import { Page, PageBody, SectionSpacer, Spacer } from '../common/layout';
 import { NavBarLink as NavBarTitle } from '../common/captions';
-import { ParallaxProvider } from 'react-scroll-parallax';
-import Cover from '../sections/Cover';
-import About from '../sections/About';
-import Slogen from '../sections/Slogen';
 import { Link } from 'react-router-dom';
 import { spacing, pageWidth } from '../common/style';
 import { RoundButton } from '../common/shared/Button';
@@ -43,11 +39,11 @@ const NavBar = styled.div`
     position: absolute;
     right: 0;
     left: 0;
-    top: 6px;
     margin-right: auto;
     margin-left: auto;
     display: flex;
     width: fit-content;
+    top: 6px;
 `
 const NavBarItem = styled.div``
 const ButtonsPanel = styled.div``
@@ -59,7 +55,7 @@ const TopBar = ({darkMode}) => {
                 {links.map((link, index) => {
                     return (
                         <>
-                            <NavBarItem key={index}>
+                            <NavBarItem>
                                 <Link to={link.route}>
                                     <NavBarTitle darkMode={darkMode}>{link.caption}</NavBarTitle>
                                 </Link>
